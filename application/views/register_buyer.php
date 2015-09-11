@@ -1,0 +1,505 @@
+<html lang="zh-CN"><head>
+		<meta charset="utf-8">
+		<meta content="IE=edge" http-equiv="X-UA-Compatible">
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<meta content="昆明国际花卉拍卖交易中心:花拍在线 " name="description">
+		<meta content="zgh" name="author">
+		<link href="/static/images/favicon.ico" rel="icon">
+		
+		<title>花拍在线 </title>
+		
+		<!-- Bootstrap core CSS -->
+	   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/css/sitemesh/decorator.css">
+		<script src="/Public/js/jquery.js"></script>
+		<script src="http://www.kifaonline.com.cn/static/components/jquery/jquery-1.11.1.js"></script>
+		<link rel="stylesheet" href="/static/css/sitemesh/decorator-out.css">
+<script src="/static/components/jquery/validation/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/static/components/jquery/validation/messages_zh.js" type="text/javascript"></script>
+<script src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" type="text/javascript"></script> 
+<script type="text/javascript">
+
+	var checksubmitflg = false; 
+		function checkSubmit() {
+			if (checksubmitflg == true) { 
+				return false; 
+			} 
+			checksubmitflg = true; 
+			return true;
+			} 
+		document.ondblclick = function docondblclick() { 
+			//	window.event.returnvalue = false; 
+			} 
+		document.onclick = function doconclick() {
+			if (checksubmitflg) {
+				window.event.returnvalue = false; 
+			} 
+		}
+	$(document).ready(function() {
+		jQuery.validator.addMethod("chrnum", function(value, element) {
+			return this.optional(element) || (/^([a-zA-Z0-9]+)$/.test(value));
+		}, "只能为字母与数字");
+		$("#buyer").validate({
+			rules : {
+				id : {
+					required : true,
+					chrnum : true,
+					minlength : 6,
+					maxlength : 20,
+					remote : {
+						url : "/User/isUnique", //后台处理程序
+						async:false,
+						type : "get", //数据发送方式
+						data : { //要传递的数据
+							id : function() {
+								return $("#id").val();
+							},
+							date:new Date()
+						},
+					}
+				},
+// 				buyName : {
+// 					required : true,
+// 					maxlength : 50
+// 				},
+// 				passWD : {
+// 					required : true,
+// 					minlength : 6,
+// 					maxlength : 20
+// 				},
+// 				rePassWD : {
+// 					required : true,
+// 					equalTo : "#passWD"
+// 				},
+// 				buyPickPsw : {
+// 					digits : true,
+// 					minlength : 6,
+// 					maxlength : 6
+// 				},
+// 				reBuyPickPsw : {
+// 					digits : true,
+// 					equalTo : "#buyPickPsw"
+// 				},
+// 				buyConName : {
+// 					required : true,
+// 					maxlength : 16
+// 				},
+// 				buyConPid : {
+// 					required : true,
+// 					minlength : 18,
+// 					maxlength : 18
+// 				},
+// 				buyConTel : {
+// 					required : true,
+// 					maxlength : 30
+// 				},
+				
+// 				buyMinInfo : {
+// 					maxlength : 30
+// 				},
+// 				buyConQq : {
+// 					maxlength : 20
+// 				},
+// 				buyConEmail : {
+// 					required : true,
+// 					email : true,
+// 					maxlength : 30
+// 				},
+				
+				
+// 				conProvince : {
+// 					required : true
+// 				},
+// 				conCity : {
+// 					required : true
+// 				},
+				
+// 				buyAddress : {
+// 					required : true,
+// 					maxlength : 60
+// 				},
+				
+// 				buyIsShip : {
+// 					required : true,
+// 					maxlength : 1
+// 				},
+// 				buyShipAddress : {
+// 					maxlength : 80
+// 				}
+			},
+			messages : {
+				id : {
+					remote : "账号已被占用",
+				}
+			},
+		});
+	});
+	
+	function buyIsShipChange() {
+		if ($("#buyIsShip").val() == 'Y') {
+			$("#province").attr("required","required");
+			$("#city").attr("required","required");
+			$("#buyShipAddress").attr("required","required");
+			$("#buyPickPsw").removeAttr("required");
+			$("#reBuyPickPsw").removeAttr("required");
+			$("#inputbuyPickPsw").html("提货密码");
+			$("#inputreBuyPickPsw").html("确认密码");
+			
+		} else {
+			$("#province").attr("required","required");
+			$("#city").attr("required","required");
+			$("#buyShipAddress").attr("required","required");
+			$("#buyPickPsw").attr("required","required");
+			$("#reBuyPickPsw").attr("required","required");
+			$("#inputbuyPickPsw").html("提货密码*");
+			$("#inputreBuyPickPsw").html("确认密码*");
+			
+		}
+	}
+	
+	function getCity() {
+			$.getJSON("/register/getCity", {
+				province : $("#province").val(),
+				date : new Date()
+			}, function(result) {
+				if (result[0]['success'] == 'Y') {
+					var city = document.getElementById("city");
+					city.length = 0;
+					var cityAreas = result[0]["cityAreas"];
+					city.options.add(new Option("请选择", ""));
+					for (var i = 0; i < cityAreas.length; i++) {
+						city.options.add(new Option(cityAreas[i]["asName"],
+								cityAreas[i]["asCode"]));
+					}
+				} 
+			});
+	};
+	function getConCity() {
+			$.getJSON("/register/getConCity", {
+				province : $("#conProvince").val(),
+				date : new Date()
+			}, function(result) {
+				if (result[0]['success'] == 'Y') {
+					var conCity = document.getElementById("conCity");
+					conCity.length = 0;
+					var cityAreas = result[0]["cityAreas"];
+					conCity.options.add(new Option("请选择州市", ""));
+					for (var i = 0; i < cityAreas.length; i++) {
+						conCity.options.add(new Option(cityAreas[i]["asName"],
+								cityAreas[i]["asCode"]));
+					}
+				} 
+			});
+	};
+</script>
+
+	
+		
+	</head>
+	<body>
+		<div class="header">
+			<div class="container">
+				<div class="row">
+					
+				  
+				  	<div class="col-md-6">
+							<div style="float: left;">
+								您好，欢迎光临花拍在线[<a href="/login">请登录</a>] [<a href="/register">免费注册</a>]
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div style="float: right;">
+								<a href="/myKIFAOnline">我的花拍</a>&nbsp;|&nbsp;<a href="/default">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
+							</div>
+						</div>
+					
+					
+					
+				</div>
+			</div>
+		</div>
+	
+		<div class="container">
+			
+		<div class="logo">
+			<a href="/default"><img border="0" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" src="/static/images/logo.png"></a>
+			<img border="0" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" src="/static/images/wx.jpg">
+			<!--  <div class="col-md-12">
+				<img class="img-responsive" alt="Responsive image"  src="/static/images/header.png"  usemap="#planetmap" >
+				<map name="planetmap">
+				  <area href="" shape="rect" coords="0,0,230,98">
+				</map>
+			</div> -->
+		</div>
+			
+	<ol class="breadcrumb">
+		您现在的位置：
+		<li><a href="/default">首页</a></li>
+		<li class="active">用户注册</li>
+	</ol>
+	<div style="text-align: center;" role="alert" class="alert alert-warning">
+		1、供购选择 <span class="glyphicon glyphicon-arrow-right"></span> <font color="#FF0000">2、注册信息</font> <span class="glyphicon glyphicon-arrow-right"></span> 3、注册成功
+	</div>
+	
+	
+	
+	<form method="post" action="/register/buyerRegister" role="form" class="form-horizontal" name="buyer" id="buyer" novalidate="novalidate">
+		<fieldset>
+			<legend>购买商基本信息（亲，如下信息涉及您的货品安全、资金安全，请认真填写）</legend>
+			 <div class="form-group">
+		    <label class="col-md-1 control-label" for="inputid">登录账号*</label>
+		    <div class="col-md-5">
+		      <input type="text" placeholder="6-20位数字或字母" onblur="this.value = this.value.toLowerCase();" value="" name="id" id="id" class="form-control">
+		    </div>
+		     <label class="col-md-1 control-label" for="inputid">花店名称*</label>
+		    <div class="col-md-5">
+		      <input type="text" placeholder="如无花店，请填写真实姓名" value="" name="buyName" id="buyName" class="form-control">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-md-1 control-label" for="inputpassWD">登录密码*</label>
+		    <div class="col-md-5">
+		      <input type="password" placeholder="6-20位" value="" name="passWD" id="passWD" class="form-control">
+		    </div>
+		    <label class="col-md-1 control-label" for="inputrePassWD">确认密码*</label>
+		    <div class="col-md-5">
+		      <input type="password" placeholder="6-20位" value="" name="rePassWD" id="rePassWD" class="form-control">
+		    </div>
+		  </div>
+		 </fieldset>
+		 <fieldset>
+			<legend>联系人信息</legend> 
+		  <div class="form-group">
+		    <label class="col-md-1 control-label" for="inputbuyConName">姓名*</label>
+		    <div class="col-md-5">
+		      <input type="text" placeholder="" value="" name="buyConName" id="buyConName" class="form-control">
+		    </div>
+		    <label class="col-md-1 control-label" for="inputbuyConPid">身份证号*</label>
+		    <div class="col-md-5">
+		      <input type="text" placeholder="" value="" name="buyConPid" id="buyConPid" class="form-control">
+		    </div>
+	  	</div>
+	  	<div class="form-group">
+		    <label class="col-md-1 control-label" for="inputbuyConTel">电话*</label>
+		    <div class="col-md-5">
+		      <input type="text" placeholder="如实填写，方便及时联系" value="" name="buyConTel" id="buyConTel" class="form-control">
+		    </div>
+		    <label class="col-md-1 control-label" for="inputbuyConEmail">Email*</label>
+		    <div class="col-md-5">
+		      <input type="text" placeholder="如实填写，方便及时联系" value="" name="buyConEmail" id="buyConEmail" class="form-control">
+		    </div>
+	  	</div>
+	  	<div class="form-group">
+		    <label class="col-md-1 control-label" for="inputbuyConQq">微信</label>
+		    <div class="col-md-5">
+		      <input type="text" placeholder="" value="" name="buyMinInfo" id="buyMinInfo" class="form-control">
+		    </div>
+		    <label class="col-md-1 control-label" for="inputbuyConQq">QQ</label>
+		    <div class="col-md-5">
+		      <input type="text" placeholder="" value="" name="buyConQq" id="buyConQq" class="form-control">
+		   	</div>
+	  	</div>
+		  <div class="form-group">
+			   <label class="col-md-1 control-label" for="inputbuyAddress">花店地址*</label>
+			   <div class="col-md-2">
+		      <select onchange="getConCity();" class="form-control" id="conProvince" name="conProvince">
+							<option value="">请选择省份</option>
+							
+								<option value="11">北京</option>
+							
+								<option value="12">天津</option>
+							
+								<option value="13">河北省</option>
+							
+								<option value="14">山西省</option>
+							
+								<option value="15">内蒙古自治区</option>
+							
+								<option value="21">辽宁省&#12288;</option>
+							
+								<option value="22">吉林省</option>
+							
+								<option value="23">黑龙江省</option>
+							
+								<option value="31">上海市</option>
+							
+								<option value="32">江苏省</option>
+							
+								<option value="33">浙江省</option>
+							
+								<option value="34">安徽省</option>
+							
+								<option value="35">福建省</option>
+							
+								<option value="36">江西省</option>
+							
+								<option value="37">山东省</option>
+							
+								<option value="41">河南省&#12288;</option>
+							
+								<option value="42">湖北省</option>
+							
+								<option value="43">湖南省</option>
+							
+								<option value="44">广东省</option>
+							
+								<option value="45">广西壮族自治区</option>
+							
+								<option value="46">海南省</option>
+							
+								<option value="50">重庆市&#12288;</option>
+							
+								<option value="51">四川省</option>
+							
+								<option value="52">贵州省</option>
+							
+								<option value="53">云南省</option>
+							
+								<option value="54">西藏自治区</option>
+							
+								<option value="61">陕西省</option>
+							
+								<option value="62">甘肃省</option>
+							
+								<option value="63">青海省</option>
+							
+								<option value="64">宁夏回族自治区</option>
+							
+								<option value="65">新疆维吾尔自治区&#12288;</option>
+							
+					</select>
+				</div>
+				<div class="col-md-3">
+					<select class="form-control" id="conCity" name="conCity">
+							<option value="">请选择州市</option>
+					</select>
+				</div>
+		  	<div class="col-md-6">
+			      <input type="text" placeholder="详细地址" value="" name="buyAddress" id="buyAddress" class="form-control">
+		  	</div>
+		  </div>
+		</fieldset>
+		<fieldset>
+			<legend>代理发货信息（亲，您在斗南是否有自己的提货人和发货人）</legend>
+			<div class="form-group">
+		    <label class="col-md-1 control-label" for="buyIsShip">是否代理*</label>
+		    <div class="col-md-11">
+		      <select onchange="buyIsShipChange()" class="form-control" id="buyIsShip" name="buyIsShip">
+		      		<option value="">是否代理</option>
+							<option value="N">不需要</option>
+							<option value="Y">需要</option>
+					</select>
+		    </div>
+	  	</div>
+	  	<div class="form-group">
+		    <label class="col-md-1 control-label" id="inputAddress" for="inputAddress">发货地址*</label>
+		  	<div class="col-md-2">
+		      <select onchange="getCity();" class="form-control " id="province" name="province">
+							<option value="">请选择省份</option>
+							
+								<option value="11">北京</option>
+							
+								<option value="12">天津</option>
+							
+								<option value="13">河北省</option>
+							
+								<option value="14">山西省</option>
+							
+								<option value="15">内蒙古自治区</option>
+							
+								<option value="21">辽宁省&#12288;</option>
+							
+								<option value="23">黑龙江省</option>
+							
+								<option value="31">上海市</option>
+							
+								<option value="32">江苏省</option>
+							
+								<option value="33">浙江省</option>
+							
+								<option value="34">安徽省</option>
+							
+								<option value="35">福建省</option>
+							
+								<option value="36">江西省</option>
+							
+								<option value="37">山东省</option>
+							
+								<option value="41">河南省&#12288;</option>
+							
+								<option value="42">湖北省</option>
+							
+								<option value="43">湖南省</option>
+							
+								<option value="44">广东省</option>
+							
+								<option value="45">广西壮族自治区</option>
+							
+								<option value="50">重庆市&#12288;</option>
+							
+								<option value="51">四川省</option>
+							
+								<option value="52">贵州省</option>
+							
+								<option value="53">云南省</option>
+							
+								<option value="61">陕西省</option>
+							
+								<option value="62">甘肃省</option>
+							
+					</select>
+				</div>
+		  	<div class="col-md-3">
+		       <select class="form-control" id="city" name="city">
+							<option value="">请选择州市</option>
+					</select>
+				</div>
+		  	<div class="col-md-6">
+					 <input type="text" placeholder="详细地址" value="" name="buyShipAddress" id="buyShipAddress" class="form-control">
+		  	</div>
+		  </div>
+		   <div class="form-group">
+		    <label class="col-md-1 control-label" id="inputbuyPickPsw" for="inputbuyPickPsw">提货密码</label>
+		    <div class="col-md-5">
+		      <input type="password" placeholder="6位数字" value="" name="buyPickPsw" id="buyPickPsw" class="form-control">
+		    </div>
+		    <label class="col-md-1 control-label" id="inputreBuyPickPsw" for="inputreBuyPickPsw">确认密码</label>
+		    <div class="col-md-5">
+		      <input type="password" placeholder="6位数字" value="" name="reBuyPickPsw" id="reBuyPickPsw" class="form-control">
+		    </div>
+		  </div>
+		</fieldset>
+		
+		<span class="col-md-4"></span>
+		
+		<button class="btn btn-primary btn-lg col-md-4" type="submit">
+			<span class="glyphicon glyphicon-ok">保存</span>
+		</button>
+		<span class="col-md-4"></span>
+	</form>
+
+	
+		</div>
+		
+		<div class="footer">
+			<div class="container">
+				<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
+					公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
+				<br>
+				<script type="text/javascript">
+					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
+							: " http://");
+					document
+							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
+									+ cnzz_protocol
+									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+				</script><span id="cnzz_stat_icon_1252972050"><a title="站长统计" target="_blank" href="http://www.cnzz.com/stat/website.php?web_id=1252972050"><img vspace="0" border="0" hspace="0" src="http://icon.cnzz.com/img/pic.gif"></a></span><script type="text/javascript" src=" http://s19.cnzz.com/z_stat.php?id=1252972050&amp;show=pic"></script><script type="text/javascript" charset="utf-8" src="http://c.cnzz.com/core.php?web_id=1252972050&amp;show=pic&amp;t=z"></script>
+			</div>
+			</div>
+		</div>
+		<!-- Bootstrap core JavaScript-->
+      <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+	
+
+</body></html>
