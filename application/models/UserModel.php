@@ -18,5 +18,10 @@
 		}
 		return false;
      }
+     // 根据 province_id 去获取  下级 数据
+     function get_provice_city($province_id){
+     	
+     	$this->db
+     }
 }
 ?>

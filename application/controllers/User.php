@@ -79,4 +79,29 @@ class User extends CI_Controller {
 		exit();
 		
 	}
+	
+	
+	// 用户城市
+	public function getCity(){
+		
+		//echo $_GET['p']
+
+		if(isset($_GET['province'])){
+			
+			
+			// 查询数据库返回的数据
+			$returnArray = $this->UserModel->get_provice_city($_GET['province']);
+			
+			
+			$data['success'] = 'Y';
+			$data['cityAreas'][0] = array('asName'=>'河南','asCode'=>'1');
+			echo json_encode($data);
+			
+		}
+		
+	}
+	// 用户选择城市
+	public function getConCity(){
+		
+	}
 }

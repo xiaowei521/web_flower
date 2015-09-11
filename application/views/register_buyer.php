@@ -158,14 +158,14 @@
 	}
 	
 	function getCity() {
-			$.getJSON("/register/getCity", {
+			$.getJSON("/User/getCity", {
 				province : $("#province").val(),
 				date : new Date()
 			}, function(result) {
-				if (result[0]['success'] == 'Y') {
+				if (result['success'] == 'Y') {
 					var city = document.getElementById("city");
 					city.length = 0;
-					var cityAreas = result[0]["cityAreas"];
+					var cityAreas = result["cityAreas"];
 					city.options.add(new Option("请选择", ""));
 					for (var i = 0; i < cityAreas.length; i++) {
 						city.options.add(new Option(cityAreas[i]["asName"],
@@ -175,7 +175,7 @@
 			});
 	};
 	function getConCity() {
-			$.getJSON("/register/getConCity", {
+			$.getJSON("/User/getConCity", {
 				province : $("#conProvince").val(),
 				date : new Date()
 			}, function(result) {
