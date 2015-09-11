@@ -91,10 +91,17 @@ class User extends CI_Controller {
 			
 			// 查询数据库返回的数据
 			$returnArray = $this->UserModel->get_provice_city($_GET['province']);
+			if(count($returnArray) ==0){
+				$data['success'] = 'N';
+			}
+			else{
+				$data['success'] = 'Y';
+			}
 			
-			
-			$data['success'] = 'Y';
-			$data['cityAreas'][0] = array('asName'=>'河南','asCode'=>'1');
+			foreach($returnArray as $key =>$value){
+				$data['cityAreas'][$key] = array('asName'=>$value['name'],'asCode'=>$value['id']);
+			}
+			//$data['cityAreas'][0] = array('asName'=>'河南','asCode'=>'1');
 			echo json_encode($data);
 			
 		}

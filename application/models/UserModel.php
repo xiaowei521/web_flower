@@ -21,7 +21,10 @@
      // 根据 province_id 去获取  下级 数据
      function get_provice_city($province_id){
      	
-     	$this->db
+     	//$this->db->where(array('id'=>$province_id))->get('province')->result();
+     	
+     	return $this->db->where(array('province_id'=>$province_id))->get('city');
+     	
      }
 }
 ?>
