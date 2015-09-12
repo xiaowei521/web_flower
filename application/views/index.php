@@ -1,24 +1,19 @@
 <html lang="zh-CN"><head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="description" content="昆明国际花卉拍卖交易中心:花拍在线 ">
-		<meta name="author" content="zgh">
-		<link rel="icon" href="/static/images/favicon.ico">
+		<meta content="IE=edge" http-equiv="X-UA-Compatible">
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<meta content="昆明国际花卉拍卖交易中心:花拍在线 " name="description">
+		<meta content="zgh" name="author">
+		<link href="/static/images/favicon.ico" rel="icon">
 		
 		<title>花拍在线 </title>
 		
 		<!-- Bootstrap core CSS -->
-		<link href="/static/css/sitemesh/decorator.css" rel="stylesheet">
+	   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/css/sitemesh/decorator.css">
+		<script src="/Public/js/jquery.js"></script>
 		<script src="/static/components/jquery/jquery.js"></script>
-		
-		<script src="http://www.kifaonline.com.cn/static/components/jquery/jquery-1.11.1.js"></script>
-		<link href="/static/css/sitemesh/decorator-out.css" rel="stylesheet">
-		
-  
-	  <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" /> 
-	  <script src="/public/js/jquery.js"></script> 
-	  <script src="/bootstrap/js/bootstrap.js"></script> 
+		<link rel="stylesheet" href="/static/css/sitemesh/decorator-out.css">
 	
 		
 	</head>

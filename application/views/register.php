@@ -1,24 +1,4 @@
-<html lang="zh-CN"><head>
-		<meta charset="utf-8">
-		<meta content="IE=edge" http-equiv="X-UA-Compatible">
-		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<meta content="昆明国际花卉拍卖交易中心:花拍在线 " name="description">
-		<meta content="zgh" name="author">
-		<link href="/static/images/favicon.ico" rel="icon">
-		
-		<title>花拍在线 </title>
-		
-		<!-- Bootstrap core CSS -->
-	  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/static/css/sitemesh/decorator.css">
-		<script src="/Public/js/jquery.js"></script><script src="http://www.kifaonline.com.cn/static/components/jquery/jquery-1.11.1.js"></script>
-		
-	
-		<link rel="stylesheet" href="/static/css/sitemesh/decorator-out.css">
-		
-<script src="/static/components/jquery/validation/jquery.validate.min.js" type="text/javascript"></script>
-<script src="/static/components/jquery/validation/messages_zh.js" type="text/javascript"></script>
-<script src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" type="text/javascript"></script>
+<?php echo $header?>
 <style type="text/css">
 .form-register {
 	
@@ -110,27 +90,7 @@
 		
 	</head>
 	<body>
-		<div class="header">
-			<div class="container">
-				<div class="row">
-					
-				  
-				  	<div class="col-md-6">
-							<div style="float: left;">
-								您好，欢迎光临花拍在线[<a href="/login;jsessionid=00330778955713A0D89698CBCC34C08B">请登录</a>] [<a href="/register">免费注册</a>]
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div style="float: right;">
-								<a href="/myKIFAOnline;jsessionid=00330778955713A0D89698CBCC34C08B">我的花拍</a>&nbsp;|&nbsp;<a href="/default">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
-							</div>
-						</div>
-					
-					
-					
-				</div>
-			</div>
-		</div>
+		 <?php echo $login_in?>
 	
 		<div class="container">
 			
@@ -196,25 +156,4 @@
 	
 		</div>
 		
-		<div class="footer">
-			<div class="container">
-				<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
-					公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
-				<br>
-				<script type="text/javascript">
-					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
-							: " http://");
-					document
-							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
-									+ cnzz_protocol
-									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-				</script><span id="cnzz_stat_icon_1252972050"><a title="站长统计" target="_blank" href="http://www.cnzz.com/stat/website.php?web_id=1252972050"><img vspace="0" border="0" hspace="0" src="http://icon.cnzz.com/img/pic.gif"></a></span><script type="text/javascript" src=" http://s19.cnzz.com/z_stat.php?id=1252972050&amp;show=pic"></script><script type="text/javascript" charset="utf-8" src="http://c.cnzz.com/core.php?web_id=1252972050&amp;show=pic&amp;t=z"></script>
-			</div>
-			</div>
-		</div>
-		<!-- Bootstrap core JavaScript-->
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-
-	
-
-</body></html>
+            <?php echo $footer?>
