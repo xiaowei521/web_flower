@@ -9,8 +9,43 @@ class buyer extends CI_Controller {
 // 		$this->load->helper('url');
 // 		$this->load->driver('cache');
 // 		$this->load->library('session');
-		
+		$this->load->library('cart');
 	}
+	
+	// 购买
+	public function addToCart(){
+		$data = array(
+				array(
+						'id'      => 'sku_123ABC',
+						'qty'     => 1,
+						'price'   => 10,
+						'name'    => 'T-Shirt',
+						'options' => array('Size' => 'L', 'Color' => 'Red')
+				),
+				array(
+						'id'      => 'sku_567ZYX',
+						'qty'     => 1,
+						'price'   => 10,
+						'name'    => 'Coffee Mug'
+				),
+				array(
+						'id'      => 'sku_965QRS',
+						'qty'     => 1,
+						'price'   => 10,
+						'name'    => 'Shot Glass'
+				)
+		);
+		
+		$this->cart->insert($data);
+		$test = $this->cart->total();
+		$this->load->view('buy/test.php',array(
+				'total' =>$test,
+				
+		));
+	}
+	
+	
+	
 	
 	//默认交易首页
 	public function index(){

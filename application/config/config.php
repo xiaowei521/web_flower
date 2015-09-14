@@ -362,6 +362,11 @@ $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
 $config['sess_save_path'] = NULL;
 $config['sess_match_ip'] = FALSE;
+//注意哦
+$config ['sess_encrypt_cookie'] = FALSE;
+$config ['sess_use_database'] = TRUE;
+$config ['sess_table_name'] = 'ad_sessions';
+
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
