@@ -7,8 +7,8 @@
 					
 						<div class="col-md-6">
 							<div style="float: left;">
-								weilanchuxia
-								(901071)您好，欢迎光临花拍在线[<a href="/j_spring_security_logout">退出</a>]
+								<?php   echo $user_id; ?>
+								(<?php  echo $user_name;?>)您好，欢迎光临花拍在线[<a href="/user/j_logout">退出</a>]
 							</div>
 						</div>
 						<div class="col-md-6">

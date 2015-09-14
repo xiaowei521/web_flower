@@ -13,23 +13,26 @@
     </style>
     <script>    
     	function login_check(){
-
-    		if($("#j_username").val() ==""){
-        		alert("请输入用户名");
+    		var username = $("#j_username").val();
+    		var passwd = $("#j_password").val();
+    		var checkcode = $("#captcha").val();
+    		if(username == "" || passwd == "" || checkcode == ""){
         		return ;
     		}
         	$.ajax({ 
             	url: "/user/login_check", 
             	type:'POST',
-            	data:{"j_username":$("#j_username").val(),"j_password":$("#j_password").val(),"captcha":$("#captcha").val()},
+            	data:{"j_username":username,"j_password":passwd,"captcha":checkcode},
             	success: function(data){
            		    ajaxobj=eval("("+data+")");  
            		    if(ajaxobj.status ==0){
-           		    	alert(ajaxobj.info);  
+              		 	$('#message_div').css('display','block');
+               		    $('#message').html(ajaxobj.info);
            		    }
            		    else{
-           		    	alert(ajaxobj.info);  
-           		    	window.location.href="/user/register";
+              		 	$('#message_div').css('display','block');
+               		    $('#message').html(ajaxobj.info);
+           		    	window.location.href="/user/buy_login_success";
            		    }
                  	           		
               }});
@@ -72,7 +75,7 @@
                         花拍在线
                     </h2>
                     <br>
-<div id="message" class="alert alert-danger"> <button data-dismiss="alert" class="close">×</button>效验码错误，请重试！</div>
+                    <div id="message_div" class="alert alert-danger"  style="display:none"> <button data-dismiss="alert" class="close">×</button><span id="message"></span></div>
                     
                     <input type="text" id="j_username" name="j_username" class="form-control" placeholder="账号"
                     required="" autofocus="">
@@ -100,7 +103,7 @@
                             </a>
                         </li>
                         <li class="next">
-                            <a href="/register">
+                            <a href="/user/register">
                                 注册新用户
                             </a>
                         </li>

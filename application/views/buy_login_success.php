@@ -35,27 +35,32 @@
 				}, 1000);
 		
 			}
-		
 			function syncTimeLeft() {
-				$
-						.getJSON(
-								'/timeSet/getStatues2?date=' + new Date(),
-								function(data) {
-									if (data[0]['statues']=='Y') {
-										$('#statusName').text("离交易结束还剩");
-									} else {
-										$('#statusName').text("离交易开始还剩");
-									}
-									
-									timeLeft = data[0]['second'];
-									if (timeLeft <= 0) {
-										document.getElementById("hour_show").innerHTML = '00:00:00';
-										clearInterval(syncInterval);
-										//return;
-									} else {
-										resetCountdown(timeLeft);
-									}
-								});
+	        	$.ajax({ 
+	            	url: "/timeSet/getStatus/", 
+	            	type:'POST',
+	            	data:{"date":new Date()},
+	            	success: function(data){
+	           		    ajaxobj=eval("("+data+")");  
+
+						if (ajaxobj.status=='Y') {
+							$('#statusName').text("离交易结束还剩");
+							window.location.href="/buyer";
+						} else {
+							$('#statusName').text("离交易开始还剩");
+							
+						}
+						timeLeft = ajaxobj.second;
+						if (timeLeft <= 0) {
+							document.getElementById("hour_show").innerHTML = '00:00:00';
+							clearInterval(syncInterval);
+							//return;
+						} else {
+							resetCountdown(timeLeft);
+						}
+	                 	           		
+	              }});
+
 			}
 		</script>
 		
@@ -66,6 +71,7 @@
 	</head>
 	<body>
 
+		
 	
 		<div class="container">
 			

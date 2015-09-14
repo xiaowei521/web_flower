@@ -39,6 +39,9 @@
      			//OK 
      			$result['status'] = '1';
      			$result['info'] ="验证成功";
+     			$result['user_id'] = $userId;
+     			$result['user_type'] = $query[0]->user_type;
+     			$result['name'] = $query[0]->buyName;
      			return $result;
      		}
      		else{

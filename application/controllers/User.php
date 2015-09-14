@@ -70,32 +70,69 @@ class User extends CI_Controller {
 			$this->load->model('UserModel');
 			
 			$result = $this->UserModel->j_user_info($userId,$passwd);
+			// 如果登陆成功保存session
+			if($result['status'] == 1){
+				$this->session->set_userdata('user_id'  ,$result['user_id']);
+				$this->session->set_userdata('user_type',$result['user_type']);
+				$this->session->set_userdata('name',$result['name']);
+			}
+			
 		}
-// 		$login_in =  $this->load->view('public/login_in.php','',true);
-// 		$footer = $this->load->view('public/footer.php','',true);
-// 		$header = $this->load->view('public/header.php','',true);
-// 		$this->load->view('login.php',array(
-// 				'footer' =>$footer,
-// 				'login_in' =>$login_in,
-// 				'header' =>$header,
-// 				'result' =>$result,
-// 		));
-	//	echo $result;
-
 		echo json_encode($result);
 		exit();
 		
 	}
+	
+	//用户登陆成功后
+	public function buy_login_success(){
+		$login_in =  $this->load->view('public/login_out.php','',true);
+		$footer = $this->load->view('public/footer.php','',true);
+		$header = $this->load->view('public/header.php','',true);
+		
+		
+		if($this->session->userdata('user_id') == NULL){
+			$this->login();
+			
+		}
+		$data['user_id'] = $this->session->userdata('user_id');
+		$data['user_type'] = $this->session->userdata('user_type');
+		$data['user_name'] = $this->session->userdata('name');
+		
+		$this->load->view('public/login_out.php',$data);
+		
+		$this->load->view('buy_login_success.php',array(
+				'footer' =>$footer,
+				'header' =>$header,
+		));
+	}
+	 
+	//用户   交易时间到   购买记录显示
+	public function buy_data_show(){
+		$this->load->view('buy/index.php');
+		
+	}
+	
+	// 用户退出
+	public function j_logout(){
+// 		if($this->session->userdata('user_id') == NULL){
+// 			//
+// 		}
+// 		else{
+			
+// 		}
+        //清空user_id
+		$this->session->unset_userdata('user_id');
+		
+		$this->index();
+		
+	}
+	
+	
 	// 用户刷新 获取验证码
 	public function getRefreshImg()
 	{
 		echo $this->captcha->doimg();
-		 
-		//$this->session->set_userdata('checkcode','1234');
 		$this->session->set_userdata('checkcode', $this->captcha->getCode());
-		
-	//	$this->session-
-		//	echo $this->session->userdata('checkcode');
 	}
 	
 	public function register()
