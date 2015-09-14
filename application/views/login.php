@@ -11,6 +11,32 @@
         border-top-right-radius: 0; } .form-signin img { margin-bottom: 10px; height:44px;
         border-top-left-radius: 0; border-top-right-radius: 0; }
     </style>
+    <script>    
+    	function login_check(){
+
+    		if($("#j_username").val() ==""){
+        		alert("请输入用户名");
+        		return ;
+    		}
+        	$.ajax({ 
+            	url: "/user/login_check", 
+            	type:'POST',
+            	data:{"j_username":$("#j_username").val(),"j_password":$("#j_password").val(),"captcha":$("#captcha").val()},
+            	success: function(data){
+           		    ajaxobj=eval("("+data+")");  
+           		    if(ajaxobj.status ==0){
+           		    	alert(ajaxobj.info);  
+           		    }
+           		    else{
+           		    	alert(ajaxobj.info);  
+           		    	window.location.href="/user/register";
+           		    }
+                 	           		
+              }});
+    	}
+    </script>
+    
+    
     </head>
     
     <body>
@@ -41,24 +67,29 @@
                         登录
                     </li>
                 </ol>
-                <form class="form-signin" role="form" method="post" action="/User/login_check">
+                <form class="form-signin" role="form" method="post" action="/User/login_check" onsubmit="return false;">
                     <h2 class="form-signin-heading">
                         花拍在线
                     </h2>
                     <br>
-                    <input type="text" name="j_username" class="form-control" placeholder="账号"
+<div id="message" class="alert alert-danger"> <button data-dismiss="alert" class="close">×</button>效验码错误，请重试！</div>
+                    
+                    <input type="text" id="j_username" name="j_username" class="form-control" placeholder="账号"
                     required="" autofocus="">
                     <br>
-                    <input type="password" name="j_password" class="form-control" placeholder="密码"
+                    <input type="password" id="j_password" name="j_password" class="form-control" placeholder="密码"
                     required="">
                     <br>
                     <div class="input-group">
-                        <input type="text" name="captcha" class="form-control" style="width: 175px;margin-right: 5px;"
+                        <input type="text" id="captcha" name="captcha" class="form-control" style="width: 175px;margin-right: 5px;"
                         placeholder="效验码" required="">
-                        <img src="/login/captcha.jpg">
+<img class="login-captcha-img" src="http://<?php echo $_SERVER['HTTP_HOST'];?>/user/getRefreshImg/date/<?php echo time();?>" http_header="<?php echo $_SERVER['HTTP_HOST'];?>" alt="刷新验证码">
                     </div>
                     <br>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                
+                    <br>
+                    
+                    <button class="btn btn-lg btn-primary btn-block" type="submit"  onclick="login_check()">
                         登录
                     </button>
                     <br>
@@ -74,7 +105,8 @@
                             </a>
                         </li>
                     </ul>
-                </form>
+                </div>
                 ​
-            </div>
+            </form>
             <?php echo $footer?>
+            

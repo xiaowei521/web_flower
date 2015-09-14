@@ -26,28 +26,27 @@
      }
      //判断用户登陆账号和密码  是否符合
      public function j_user_info($userId,$passwd){
-     	
-     	
      	if($this->db->where('user_id',$userId)->from('user')->get()->num_rows() == 0){
      		// 用户肯定不存在
-     		$result;// 返回信息
-     		return false;
+     		$result['status'] = '0';
+     		$result['info'] ="用户不存在";
+     		return $result;
      	}
      	// 核对 密码
      	else{
      		$query = $this->db->where('user_id',$userId)->from('user')->get()->result();
-     		
      		if($query[0]->password == $this->passwd($passwd)){
      			//OK 
-     			return true;
+     			$result['status'] = '1';
+     			$result['info'] ="验证成功";
+     			return $result;
      		}
      		else{
-     			return false;
+     			$result['status'] = '0';
+     			$result['info'] ="密码错误";
+     			return $result;
      		}
-     		
      	}
-     	
-
      }
      
      // 存储用户信息

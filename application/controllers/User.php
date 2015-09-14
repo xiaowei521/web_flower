@@ -5,6 +5,11 @@ class User extends CI_Controller {
 	
 	function User(){
 		parent::__construct();
+		$this->load->library('captcha');
+		$this->load->helper('url');
+		$this->load->driver('cache');
+		$this->load->library('session');
+		
 	}
 	/**
 	 * Index Page for this controller.
@@ -45,15 +50,52 @@ class User extends CI_Controller {
 			)
 		);
 	}
+	
+	
+	
+	
 	// 用户 登陆校验
 	public function login_check(){
 		$userId = $_POST['j_username'];
 		$passwd = $_POST['j_password'];
-		//$captcha = $_POST['captcha']; 验证码 稍等再弄
-		$this->load->model('UserModel');
-		$sendEmailInfo = $this->UserModel->j_user_info($userId,$passwd);
+		$captcha = $_POST['captcha']; //验证码 稍等再弄
 		
+		if($captcha !=$this->session->userdata('checkcode')){
+			$result['status'] = 0;
+			$result['info'] ="验证码错误";
+			
+		}
+		else{
+
+			$this->load->model('UserModel');
+			
+			$result = $this->UserModel->j_user_info($userId,$passwd);
+		}
+// 		$login_in =  $this->load->view('public/login_in.php','',true);
+// 		$footer = $this->load->view('public/footer.php','',true);
+// 		$header = $this->load->view('public/header.php','',true);
+// 		$this->load->view('login.php',array(
+// 				'footer' =>$footer,
+// 				'login_in' =>$login_in,
+// 				'header' =>$header,
+// 				'result' =>$result,
+// 		));
+	//	echo $result;
+
+		echo json_encode($result);
+		exit();
 		
+	}
+	// 用户刷新 获取验证码
+	public function getRefreshImg()
+	{
+		echo $this->captcha->doimg();
+		 
+		//$this->session->set_userdata('checkcode','1234');
+		$this->session->set_userdata('checkcode', $this->captcha->getCode());
+		
+	//	$this->session-
+		//	echo $this->session->userdata('checkcode');
 	}
 	
 	public function register()
