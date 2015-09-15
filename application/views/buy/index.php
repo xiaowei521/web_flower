@@ -104,8 +104,8 @@
 
 	function addtocar(id, quantity) {
 	$.ajax({
-			type : "GET",
-			url : "/buyer/fixPrice/addToCart",
+			type : "POST",
+			url : "/buyer/addToCart",
 			data : {
 			fixBrdId : id,
 			quantity : $("#" + quantity).val()
@@ -119,26 +119,28 @@
 			});
 			}
 
-			function addtocarD(id) {
+			function addtocarD(id) {				
 			$.ajax({
-				type : "GET",
-				url : "/buyer/fixPrice/addToCartD",
+				type : "POST",
+				url : "/buyer/addToCartD",
 				data : {
-				fixBrdId : id,
+				fixBrdId : id, // 物品的id
 				date : new Date()
 			},
 			//dataType: "json",
 			success : function(data) {
-					alert(data);
+				    ajaxobj=eval("("+data+")");  
+					alert(ajaxobj.info);
 			}
-		});
+		})
+		;
 		return false;
 			};
 
 			function fixPrice(id) {
 			$.ajax({
 					type : "GET",
-					url : "/buyer/fixPrice/saveFixPrice",
+					url : "/buyer/saveFixPrice",
 					data : {
 					fixBrdId : id,
 					quantity : $("#quantity" + id).val(),
@@ -227,9 +229,9 @@
 				<form class="form-inline" role="form" id="queryform" name="queryform" method="post" action="/buyer/index">
 				<input type="hidden" id="curPage" name="curPage" />
 				<input type="hidden" id="breed" name="breed" value="" />
-				<input type="text" class="form-control" id="search_fixPrdName" name="search_fixPrdName" value=""placeholder="品种">
-			<input type="text" class="form-control" id="search_fixGrdCode" name="search_fixGrdCode" value="" placeholder="等级">
-			<input type="text" class="form-control" id="search_fixName" name="search_fixName" value="" placeholder="品牌">
+				<input type="text" class="form-control" id="search_variety" name="search_fixPrdName" value=""placeholder="品种">
+			<input type="text" class="form-control" id="search_level" name="search_fixGrdCode" value="" placeholder="等级">
+			<input type="text" class="form-control" id="search_brand" name="search_fixName" value="" placeholder="品牌">
 			<button type="submit" class="btn btn-default">
 			<span class="glyphicon glyphicon-search"></span>
 			</button>
@@ -272,7 +274,11 @@
 							</thead>
 					<tbody>
 					
-					<?php 
+<?php 
+					if($page['all_page'] == 0){
+						echo "<tr>没有数据</tr>";
+					}
+					else{
 					foreach($show as $key =>$value){
 
 						echo "<tr><td style=\"padding-bottom: 0;padding-left: 3px;padding-right: 0;\">".$value['good_category']."</td>";
@@ -289,10 +295,12 @@
 												<a href=\"#\" onclick=\"fixPrice('150914000068');return false;\"><strong>购买</strong></a>
 												</td>";
 						echo "<td style=\"padding-bottom: 0;padding-left: 0;padding-right: 0;\">
-												<a href=\"#\" onclick=\"addtocarD('150914000068');return false;\"><strong>购物车</strong></a>
+												<a href=\"#\" onclick=\"addtocarD('".$value['good_amount']['pid']."')".";return false;\"><strong>购物车</strong></a>
 												</td>";
 						echo 	"<td>". $value['good_desc']."</td></tr>";
-					}?>
+					}
+					
+}?>
 		
 							</tbody>
 					</table>
