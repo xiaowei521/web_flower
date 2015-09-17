@@ -219,57 +219,31 @@
 				</tr>
 			</thead>
 			<tbody>
-				
-					<tr>
-						<td align="center">百合</td>
-						<td align="center" style="font-size:12px">昆明花意浓花卉</td>
-						<td valign="middle" align="left" style="padding-bottom: 0;padding-right: 0;">
-							<span style="font-size:12px">木门 3</span>
-						</td>
-						<td align="center">
-							<div id="sit-simple"><a target="_blant" class="sit-preview" href="/static/images/product/3023A.jpg"><img src="/static/images/product/3023A.jpg" data-preview-url="/static/images/product/3023A.jpg" width="20" height="20" border="0" /></a></div>
-						</td>
-						<td align="center">A</td>
-						<td align="center">6.20元/枝</td>
-						
-						<td align="center"><label style="color: red;">10</label>×20枝</td>
-						
-
-						<td align="left"><input id="input0" name="text" type="text" value="" size="5" style="color: red;"
-							onblur="changeFromCart('input0','150915000074');" onchange="changeFromCart('input0','150915000074');"
-							onKeyUp="value=value.replace(/\D/g,'')" onafterpaste="value=value.replace(/\D/g,'')" />×20枝</td>
-
-						<td align="center" style="font-size:12px" id="tempTotalFee150915000074">0</td>
-
-						<td align="center"><A style="cursor:hand" onclick="removeFromCart(this.parentNode.parentNode,'150915000074');"><span class="glyphicon glyphicon-trash"></span></A></td>
-					</tr>
-				
-					<tr>
-						<td align="center">百合</td>
-						<td align="center" style="font-size:12px">昆明花意浓花卉</td>
-						<td valign="middle" align="left" style="padding-bottom: 0;padding-right: 0;">
-							<span style="font-size:12px">木门 多</span>
-						</td>
-						<td align="center">
-							<div id="sit-simple"><a target="_blant" class="sit-preview" href="/static/images/product/3024A.jpg"><img src="/static/images/product/3024A.jpg" data-preview-url="/static/images/product/3024A.jpg" width="20" height="20" border="0" /></a></div>
-						</td>
-						<td align="center">A</td>
-						<td align="center">8.20元/枝</td>
-						
-						<td align="center"><label style="color: red;">10</label>×20枝</td>
-						
-
-						<td align="left"><input id="input1" name="text" type="text" value="" size="5" style="color: red;"
-							onblur="changeFromCart('input1','150915000075');" onchange="changeFromCart('input1','150915000075');"
-							onKeyUp="value=value.replace(/\D/g,'')" onafterpaste="value=value.replace(/\D/g,'')" />×20枝</td>
-
-						<td align="center" style="font-size:12px" id="tempTotalFee150915000075">0</td>
-
-						<td align="center"><A style="cursor:hand" onclick="removeFromCart(this.parentNode.parentNode,'150915000075');"><span class="glyphicon glyphicon-trash"></span></A></td>
-					</tr>
-				
+              <?php 
+					foreach($data as $key =>$value){
+								echo $key;
+								echo $value['id'];
+								
+								echo "<tr><td align=\"center\">".$value['name']."</td>";
+								echo "<td align=\"center\" style=\"font-size:12px\">".$value['options']['good_brand']."</td>";
+								echo "<td valign=\"middle\" align=\"left\" style=\"padding-bottom: 0;padding-right: 0;\">
+							    <span style=\"font-size:12px\">".$value['options']['good_variety']."</span></td>";
+							    echo "<td style=\"padding-bottom: 0;padding-right: 0;\"><div id=\"sit-simple\"><a target=\"_blant\" class=\"sit-preview\" "."href=\"".$value['options']['good_img_url']."\">". "<img src=\"".$value['options']['good_img_url']."\""."data-preview-url=\"".$value['options']['good_img_url']."\""." width=\"20\" height=\"20\" border=\"0\" /></a></div></td>";
+								echo "<td align=\"center\">".$value['options']['good_level']."</td>";
+								echo "<td align=\"center\">".$value['price']."</td>";
+								
+								
+								echo "<td align=\"center\"><label style=\"color: red;\">10</label>×20枝</td>";
+								
+					         	echo "<td style=\"padding-bottom: 0;padding-left: 0;padding-right: 0;\">".$value['qty']."</td>";
+					         	
+					         	echo "<td align=\"center\" style=\"font-size:12px\" id=\"tempTotalFee150915000074\">". $value['subtotal']."</td>";
+					         	echo "<td align=\"center\"><A style=\"cursor:hand\" onclick=\"removeFromCart(this.parentNode.parentNode,'150915000074');\"><span class=\"glyphicon glyphicon-trash\"></span></A></td>";
+								echo "</tr>";
+						}
+					?>
 				<tr>
-					<td colspan=11><label id="total" style="float: right;">商品总计2批,预计订单金额0</label></td>
+					<td colspan=11><label id="total" style="float: right;">商品总计  <?php $this->cart->total_items();?>批,预计订单金额 <?php echo $this->cart->total();?></label></td>
 				</tr>
 			</tbody>
 		</table>

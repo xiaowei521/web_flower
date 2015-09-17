@@ -1,10 +1,6 @@
 		<div class="header">
 			<div class="container">
 				<div class="row">
-					
-				  
-					
-					
 						<div class="col-md-6">
 							<div style="float: left;">
 								<?php   echo $user_id; ?>
@@ -16,7 +12,7 @@
 								
 										<a href="/buyer/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>&nbsp;|&nbsp;
 								
-								<a href="/myKIFAOnline">我的花拍</a>&nbsp;|&nbsp; <a href="/default">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
+								<a href="/buyer/myFlower">我的花拍</a>&nbsp;|&nbsp; <a href="/Welcome">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
 							</div>
 						</div>
 					

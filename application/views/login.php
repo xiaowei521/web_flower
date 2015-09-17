@@ -62,7 +62,7 @@
                 <ol class="breadcrumb">
                     您现在的位置：
                     <li>
-                        <a href="/default">
+                        <a href="/Welcome">
                             首页
                         </a>
                     </li>
@@ -98,7 +98,7 @@
                     <br>
                     <ul class="pager">
                         <li class="previous">
-                            <a href="/forgetpassword">
+                            <a href="/user/forgetpassword">
                                 忘记密码?
                             </a>
                         </li>

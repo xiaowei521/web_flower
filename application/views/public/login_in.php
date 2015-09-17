@@ -20,7 +20,7 @@
                         我的花拍
                     </a>
                     &nbsp;|&nbsp;
-                    <a href="/default">
+                    <a href="/Welcome">
                         返回首页
                     </a>
                     &nbsp;|&nbsp;
