@@ -47,7 +47,7 @@
 
 						if (ajaxobj.status=='Y') {
 							$('#statusName').text("离交易结束还剩");
-							//window.location.href="/buyer";
+							window.location.href="/buyer";
 						} else {
 							$('#statusName').text("离交易开始还剩");
 							

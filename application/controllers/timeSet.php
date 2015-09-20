@@ -17,7 +17,7 @@ class timeSet extends CI_Controller {
 		$_POST['date'];
 		
 		
-		$result['status'] ="Y";
+		$result['status'] ="N";
 		$result['second'] ="1000";
 		echo json_encode($result);
 		
