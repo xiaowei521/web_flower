@@ -1,25 +1,4 @@
 
-<!DOCTYPE HTML>
-
-
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="description" content="昆明国际花卉拍卖交易中心:花拍在线 ">
-<meta name="author" content="zgh">
-<link rel="icon" href="/static/images/favicon.ico">
-
-<title>花拍在线 </title>
-
-<!-- Bootstrap core CSS -->
-<link href="/static/components/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="/static/css/sitemesh/decorator.css" rel="stylesheet">
-		<script src="/static/components/jquery/jquery.js"></script>
-
-
-
 		<link href="/static/css/sitemesh/decorator-in.css" rel="stylesheet">
 		<script type="text/javascript">
 			var timeLeft;
@@ -85,11 +64,9 @@
 	              }});
 			}
 				</script>
-
-				<!-- Tablesorter: required -->
-				<link rel="stylesheet" href="/static/components/jquery/Plugin/tablesorter-v2.17.4/css/theme.ice.css" />
-				<script src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/jquery.tablesorter.js"></script>
-
+<!-- Tablesorter: required -->
+<link rel="stylesheet" href="/static/components/jquery/Plugin/tablesorter-v2.17.4/css/theme.ice.css" />
+<script src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/jquery.tablesorter.js"></script>
 <!-- render: required -->
 <link rel="stylesheet" type="text/css" href="/static/components/render/css/default.include.css" media="all" />
 <link rel="stylesheet" id="spi-render-css-css" href="/static/components/render/css/render.css" type="text/css" media="all" />
@@ -104,8 +81,8 @@
 
 	function addtocar(id, quantity) {
 	$.ajax({
-			type : "GET",
-			url : "/buyer/fixPrice/addToCart",
+			type : "POST",
+			url : "/buyer/addToCart",
 			data : {
 			fixBrdId : id,
 			quantity : $("#" + quantity).val()
@@ -119,26 +96,29 @@
 			});
 			}
 
-			function addtocarD(id) {
+			function addtocarD(id) {				
 			$.ajax({
-				type : "GET",
-				url : "/buyer/fixPrice/addToCartD",
+				type : "POST",
+				url : "/buyer/addToCartD",
 				data : {
-				fixBrdId : id,
+				fixBrdId : id, // 物品的id
+				uid : "用户id",
 				date : new Date()
 			},
 			//dataType: "json",
 			success : function(data) {
-					alert(data);
+				    ajaxobj=eval("("+data+")");  
+					alert(ajaxobj.info);
 			}
-		});
+		})
+		;
 		return false;
 			};
 
 			function fixPrice(id) {
 			$.ajax({
 					type : "GET",
-					url : "/buyer/fixPrice/saveFixPrice",
+					url : "/buyer/saveFixPrice",
 					data : {
 					fixBrdId : id,
 					quantity : $("#quantity" + id).val(),
@@ -178,40 +158,9 @@
 			}
 			}
 			</script>
-
-
-
 			</head>
 			<body>
-			<div class="header">
-			<div class="container">
-			<div class="row">
-				
-
-				
-				
-			<div class="col-md-6">
-			<div style="float: left;">
-			weilanchuxia
-			(901071)您好，欢迎光临花拍在线[<a href="/j_spring_security_logout">退出</a>]
-			</div>
-			</div>
-					<div class="col-md-6">
-							<div style="float: right;">
-
-							<a href="/buyer/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>&nbsp;|&nbsp;
-
-							<a href="/myKIFAOnline">我的花拍</a>&nbsp;|&nbsp; <a href="/default">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
-							</div>
-									</div>
-										
-									</div>
-											</div>
-											</div>
-
 		<div class="container">
-			
-
 		<div class="logo">
 			<a href="/default"><img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" border="0" /></a>
 			<img src="/static/images/wx.jpg" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" border="0" />
@@ -227,9 +176,9 @@
 				<form class="form-inline" role="form" id="queryform" name="queryform" method="post" action="/buyer/index">
 				<input type="hidden" id="curPage" name="curPage" />
 				<input type="hidden" id="breed" name="breed" value="" />
-				<input type="text" class="form-control" id="search_fixPrdName" name="search_fixPrdName" value=""placeholder="品种">
-			<input type="text" class="form-control" id="search_fixGrdCode" name="search_fixGrdCode" value="" placeholder="等级">
-			<input type="text" class="form-control" id="search_fixName" name="search_fixName" value="" placeholder="品牌">
+				<input type="text" class="form-control" id="search_variety" name="search_fixPrdName" value=""placeholder="品种">
+			<input type="text" class="form-control" id="search_level" name="search_fixGrdCode" value="" placeholder="等级">
+			<input type="text" class="form-control" id="search_brand" name="search_fixName" value="" placeholder="品牌">
 			<button type="submit" class="btn btn-default">
 			<span class="glyphicon glyphicon-search"></span>
 			</button>
@@ -272,7 +221,11 @@
 							</thead>
 					<tbody>
 					
-					<?php 
+<?php 
+					if($page['all_page'] == 0){
+						echo "<tr>没有数据</tr>";
+					}
+					else{
 					foreach($show as $key =>$value){
 
 						echo "<tr><td style=\"padding-bottom: 0;padding-left: 3px;padding-right: 0;\">".$value['good_category']."</td>";
@@ -289,10 +242,12 @@
 												<a href=\"#\" onclick=\"fixPrice('150914000068');return false;\"><strong>购买</strong></a>
 												</td>";
 						echo "<td style=\"padding-bottom: 0;padding-left: 0;padding-right: 0;\">
-												<a href=\"#\" onclick=\"addtocarD('150914000068');return false;\"><strong>购物车</strong></a>
+												<a href=\"#\" onclick=\"addtocarD('".$value['good_amount']['pid']."')".";return false;\"><strong>购物车</strong></a>
 												</td>";
 						echo 	"<td>". $value['good_desc']."</td></tr>";
-					}?>
+					}
+					
+}?>
 		
 							</tbody>
 					</table>
@@ -371,25 +326,4 @@
 
 		    		</div>
 
-		<div class="footer">
-		<div class="container">
-		<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
-		公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br /> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br /> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
-		<br>
-		<script type="text/javascript">
-				var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
-						: " http://");
-					document
-							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
-									+ cnzz_protocol
-									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-									</script>
-									</div>
-									</div>
-									</div>
-									<!-- Bootstrap core JavaScript-->
-									<script src="/static/components/bootstrap-3.2.0/js/bootstrap.min.js"></script>
-
-
-									</body>
-</html>
+	

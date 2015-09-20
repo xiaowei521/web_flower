@@ -1,45 +1,5 @@
-<html lang="zh-CN"><head>
-		<meta charset="utf-8">
-		<meta content="IE=edge" http-equiv="X-UA-Compatible">
-		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<meta content="昆明国际花卉拍卖交易中心:花拍在线 " name="description">
-		<meta content="zgh" name="author">
-		<link href="/static/images/favicon.ico" rel="icon">
-		
-		<title>花拍在线 </title>
-		
-		<!-- Bootstrap core CSS -->
-	   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/static/css/sitemesh/decorator.css">
-		<script src="/Public/js/jquery.js"></script>
-		<script src="/static/components/jquery/jquery.js"></script>
-		<link rel="stylesheet" href="/static/css/sitemesh/decorator-out.css">
-	
-		
-	</head>
+</head>
 	<body>
-		<div class="header">
-			<div class="container">
-				<div class="row">
-					
-				  
-				  	<div class="col-md-6">
-							<div style="float: left;">
-								您好，欢迎光临花拍在线[<a href="/User/login">请登录</a>] [<a href="/User/register">免费注册</a>]
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div style="float: right;">
-								<a href="/myKIFAOnline">我的花拍</a>&nbsp;|&nbsp;<a href="/default">返回首页</a>&nbsp;|&nbsp; <a href="http://www.baidu.com">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
-							</div>
-						</div>
-					
-					
-					
-				</div>
-			</div>
-		</div>
-	
 		<div class="container">
 			
 		<div class="logo">
@@ -191,7 +151,7 @@
 			</div>
 			<div class="row" style="text-align:center;margin-top:13px">
 				<div class="col-md-4">
-			  		<a href="/index" class="btn btn-primary" style="width: 100%;">
+			  		<a href="/buyer/index" class="btn btn-primary" style="width: 100%;">
 				  		<h2 style="color:white;margin-top: 0px;"><span class="glyphicon glyphicon-user"></span><br>会员入口</h2>
 				  	 </a>
 				</div>
@@ -208,31 +168,4 @@
 			</div>
 		</div>
 	</div>
-		
-			
-
-	
-		</div>
-		
-		<div class="footer">
-			<div class="container">
-				<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
-					公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
-				<br>
-				<script type="text/javascript">
-					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
-							: " http://");
-					document
-							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
-									+ cnzz_protocol
-									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-				</script><span id="cnzz_stat_icon_1252972050"><a href="http://www.cnzz.com/stat/website.php?web_id=1252972050" target="_blank" title="站长统计"><img src="http://icon.cnzz.com/img/pic.gif" hspace="0" border="0" vspace="0"></a></span><script src=" http://s19.cnzz.com/z_stat.php?id=1252972050&amp;show=pic" type="text/javascript"></script><script src="http://c.cnzz.com/core.php?web_id=1252972050&amp;show=pic&amp;t=z" charset="utf-8" type="text/javascript"></script>
-			</div>
-			</div>
-		</div>
-		<!-- Bootstrap core JavaScript-->
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
-
-	
-
-</body></html>
+</div>

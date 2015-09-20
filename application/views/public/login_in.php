@@ -16,11 +16,11 @@
             </div>
             <div class="col-md-6">
                 <div style="float: right;">
-                    <a href="/myKIFAOnline">
+                    <a href="/buyer/myFlower">
                         我的花拍
                     </a>
                     &nbsp;|&nbsp;
-                    <a href="/default">
+                    <a href="/Welcome">
                         返回首页
                     </a>
                     &nbsp;|&nbsp;

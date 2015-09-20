@@ -5,11 +5,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="description" content="昆明国际花卉拍卖交易中心:花拍在线 ">
+        <meta name="description" content="华派在线 ">
         <meta name="author" content="zgh">
         <link rel="icon" href="/static/images/favicon.ico">
         <title>
-            花拍在线
+            	花海  之都
         </title>
         <!-- Bootstrap core CSS -->
         <link href="/static/components/bootstrap-3.2.0/css/bootstrap.min.css"
