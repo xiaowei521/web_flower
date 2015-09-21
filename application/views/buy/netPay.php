@@ -208,14 +208,39 @@
 			};
 		</script>
 		
-  	
-  
+	  
+		<link type="text/css" rel="stylesheet" href="/static/css/wait.css" />
+	
 	
 	
 		
 	</head>
 	<body>
-
+		<div class="header">
+			<div class="container">
+				<div class="row">
+					
+				  
+					
+					
+						<div class="col-md-6">
+							<div style="float: left;">
+								weilanchuxia
+								(901071)您好，欢迎光临花拍在线[<a href="/j_spring_security_logout">退出</a>]
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div style="float: right;">
+								
+										<a href="/buyer/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>&nbsp;|&nbsp;
+								
+								<a href="/myKIFAOnline">我的花拍</a>&nbsp;|&nbsp; <a href="/default">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
+							</div>
+						</div>
+					
+				</div>
+			</div>
+		</div>
 	
 		<div class="container">
 			
@@ -234,9 +259,9 @@
 
 		<ol class="breadcrumb">
 			您现在的位置：
-		  <li><a href="/welcome">首页</a></li>
-		  <li><a href="myflower">我的花拍</a></li>
-		  <li class="active">我的花拍</li>
+		  <li><a href="/default">首页</a></li>
+		  <li><a href="/myKIFAOnline">我的花拍</a></li>
+		  <li class="active">资金预授</li>
 		</ol>
 		
 		
@@ -300,22 +325,17 @@
 			</div>
 			<div class="col-md-9" style=" padding-left: 0px; ">
 				<div class="panel panel-success">
-					<div class="panel-heading">我的花拍</div>
-					
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<div style=" text-align: center;"><a href="/index"><h1>开始交易！</a></h1></div> 
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br> 
-  
+					<div class="panel-heading">资金预授</div>
+						
+		<div class="waiting" style="text-align: center;">
+			<br>
+			<br>
+			<img src="/static/images/ban.gif" border="0" /><h1>当前系统状态下，不允许此操作！</h1>
+			<br>
+			<br>
+			<br>
+		</div>
+	
 				</div>
 			</div>
 		</div>		
@@ -323,3 +343,25 @@
 	
 		</div>
 		
+		<div class="footer">
+			<div class="container">
+				<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
+					公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br /> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br /> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
+				<br>
+				<script type="text/javascript">
+					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
+							: " http://");
+					document
+							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
+									+ cnzz_protocol
+									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+				</script>
+			</div>
+			</div>
+		</div>
+		<!-- Bootstrap core JavaScript-->
+    <script src="/static/components/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+
+	
+</body>
+</html>

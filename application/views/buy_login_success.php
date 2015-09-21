@@ -1,4 +1,4 @@
-<?php echo $header?>
+
 		<script type="text/javascript">
 			var timeLeft;
 			var syncInterval;
@@ -279,4 +279,3 @@
 	
 		</div>
 		
-            <?php echo $footer?>

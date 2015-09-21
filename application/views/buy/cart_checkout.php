@@ -105,31 +105,7 @@
 		
 	</head>
 	<body>
-		<div class="header">
-			<div class="container">
-				<div class="row">
-					
-				  
-					
-					
-						<div class="col-md-6">
-							<div style="float: left;">
-								weilanchuxia
-								(901071)您好，欢迎光临花拍在线[<a href="/j_spring_security_logout">退出</a>]
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div style="float: right;">
-								
-										<a href="/buyer/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>&nbsp;|&nbsp;
-								
-								<a href="/myKIFAOnline">我的花拍</a>&nbsp;|&nbsp; <a href="/default">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
-							</div>
-						</div>
-					
-				</div>
-			</div>
-		</div>
+
 	
 		<div class="container">
 			
@@ -147,7 +123,7 @@
 		
 	<ol class="breadcrumb">
 		您现在的位置：
-		<li><a href="/default">首页</a></li>
+		<li><a href="/welcome">首页</a></li>
 		<li class="active">购物车</li>
 	</ol>
 	<img class="img-responsive" src="/static/images/car2.png">
@@ -167,39 +143,33 @@
 				</tr>
 			</thead>
 			<tbody>
-				
-					<tr>
-						<td align="center">百合</td>
-						<td align="center" style="font-size:12px">昆明花意浓花卉</td>
-						<td valign="middle" align="left" style="padding-bottom: 0;padding-right: 0;">
-							<span style="font-size:12px">木门 3</span>
-						</td>
-						<td align="center"><div id="sit-simple"><a target="_blant" class="sit-preview" href="/static/images/product/3023A.jpg"><img src="/static/images/product/3023A.jpg" data-preview-url="/static/images/product/3023A.jpg" width="20" height="20" border="0" /></a></div></td>
-						<td align="center">A</td>
-						<td align="center">6.20元/枝</td>
-						<td align="center"><label style="color: red;">10</label>×20枝</td>
-						<td align="left"><label style="color: red;"></label>×20枝</td>
-						<td align="center">0</td>
+			
+              <?php 
+              		echo "订单号".$charge_id;
+					foreach($data as $key =>$value){
+								
+								echo "<tr><td align=\"center\">".$value['name']."</td>";
+								echo "<td align=\"center\" style=\"font-size:12px\">".$value['options']['good_brand']."</td>";
+								echo "<td valign=\"middle\" align=\"left\" style=\"padding-bottom: 0;padding-right: 0;\">
+							    <span style=\"font-size:12px\">".$value['options']['good_variety']."</span></td>";
+							    echo "<td style=\"padding-bottom: 0;padding-right: 0;\"><div id=\"sit-simple\"><a target=\"_blant\" class=\"sit-preview\" "."href=\"".$value['options']['good_img_url']."\">". "<img src=\"".$value['options']['good_img_url']."\""."data-preview-url=\"".$value['options']['good_img_url']."\""." width=\"20\" height=\"20\" border=\"0\" /></a></div></td>";
+								echo "<td align=\"center\">".$value['options']['good_level']."</td>";
+								echo "<td align=\"center\">".$value['price']."</td>";
+								
+								
+								echo "<td align=\"center\"><label style=\"color: red;\">10</label>×20枝</td>";
+								
+					         	echo "<td style=\"padding-bottom: 0;padding-left: 0;padding-right: 0;\">".$value['qty']."</td>";
+					         	
+					         	echo "<td align=\"center\" style=\"font-size:12px\" id=\"tempTotalFee150915000074\">". $value['subtotal']."</td>";
+					         //	echo "<td align=\"center\"><A style=\"cursor:hand\" onclick=\"removeFromCart(this.parentNode.parentNode,'150915000074');\"><span class=\"glyphicon glyphicon-trash\"></span></A></td>";
+								echo "</tr>";
+						}
+					?>
 
-					</tr>
-				
-					<tr>
-						<td align="center">百合</td>
-						<td align="center" style="font-size:12px">昆明花意浓花卉</td>
-						<td valign="middle" align="left" style="padding-bottom: 0;padding-right: 0;">
-							<span style="font-size:12px">木门 多</span>
-						</td>
-						<td align="center"><div id="sit-simple"><a target="_blant" class="sit-preview" href="/static/images/product/3024A.jpg"><img src="/static/images/product/3024A.jpg" data-preview-url="/static/images/product/3024A.jpg" width="20" height="20" border="0" /></a></div></td>
-						<td align="center">A</td>
-						<td align="center">8.20元/枝</td>
-						<td align="center"><label style="color: red;">10</label>×20枝</td>
-						<td align="left"><label style="color: red;"></label>×20枝</td>
-						<td align="center">0</td>
-
-					</tr>
 				
 				<tr>
-					<td colspan=11><label id="total" style="float: right;">商品总计2批,预计订单金额0,可用限额0.00</label></td>
+					<td colspan=11><label id="total" style="float: right;">商品总计<?php echo $this->cart->total_items();?>批,预计订单金额 <?php echo $this->cart->total();?>可用限额<?php echo $user_info['money']?>元</label></td>
 				</tr>
 			</tbody>
 		</table>
@@ -207,7 +177,7 @@
 
 	<ul class="pager">
 	  <li class="previous"><a href="/buyer/cart">&larr; 上一步</a></li>
-	  <li class="next"><a href="/buyer/fixPrice/saveCart">付款 &rarr;</a></li>
+	  <li class="next"><a href="/buyer/saveCart">付款 &rarr;</a></li>
 	</ul>
 	<script type="text/javascript">
 	    jQuery(document).ready(function() {
@@ -222,26 +192,4 @@
 
 	
 		</div>
-		
-		<div class="footer">
-			<div class="container">
-				<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
-					公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br /> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br /> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
-				<br>
-				<script type="text/javascript">
-					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
-							: " http://");
-					document
-							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
-									+ cnzz_protocol
-									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-				</script>
-			</div>
-			</div>
-		</div>
-		<!-- Bootstrap core JavaScript-->
-    <script src="/static/components/bootstrap-3.2.0/js/bootstrap.min.js"></script>
-
 	
-</body>
-</html>

@@ -1,31 +1,4 @@
-<html lang="zh-CN">
-    
-    <head>
-        <meta charset="utf-8">
-        <meta content="IE=edge" http-equiv="X-UA-Compatible">
-        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-        name="viewport">
-        <meta content="昆明国际花卉拍卖交易中心:花拍在线 " name="description">
-        <meta content="zgh" name="author">
-        <link href="/static/images/favicon.ico" rel="icon">
-        <title>
-            花拍在线
-        </title>
-        <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/static/css/sitemesh/decorator.css">
-        <script src="/static/components/jquery/jquery.js" type="text/javascript">
-        </script>
-        <link rel="stylesheet" href="/static/css/sitemesh/decorator-out.css">
-        <script src="/static/components/jquery/validation/jquery.validate.min.js"
-        type="text/javascript">
-        </script>
-        <script src="/static/components/jquery/validation/messages_zh.js" type="text/javascript">
-        </script>
-        <script src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js"
-        type="text/javascript">
-        </script>
-        <script type="text/javascript">
+ <script type="text/javascript">
             var checksubmitflg = false;
             function checkSubmit() {
                 if (checksubmitflg == true) {
@@ -202,10 +175,10 @@
     </head>
     
     <body>
-        <?php echo $login_in?>
+
             <div class="container">
                 <div class="logo">
-                    <a href="/default">
+                    <a href="/welcome">
                         <img border="0" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;"
                         src="/static/images/logo.png">
                     </a>
@@ -221,7 +194,7 @@
                 <ol class="breadcrumb">
                     您现在的位置：
                     <li>
-                        <a href="/default">
+                        <a href="/welcome">
                             首页
                         </a>
                     </li>
@@ -598,4 +571,3 @@
                     </span>
                 </form>
             </div>
-            <?php echo $footer?>

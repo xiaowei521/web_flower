@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* sdmenu */
+div.sdmenu{margin:0 auto;font-family:Arial, sans-serif;font-size:12px;color:#fff;}
+div.sdmenu div{background:url(../images/title.gif) repeat-x;overflow:hidden;border-top-width: 1px;border-top-style: solid;border-top-color: #E77B7B;}
+div.sdmenu div:first-child{background:url(../images/title.gif) repeat-x;overflow:hidden;}
+div.sdmenu div.collapsed{height:25px;}
+div.sdmenu div span{height:25px; display:block;overflow:hidden;padding:5px 25px;font-weight:bold;color: #666;font-size:13px;background:url(../images/expanded.gif) no-repeat 50px center;cursor:pointer;}
+div.sdmenu div.collapsed span{background-image:url(../images/collapsed.gif);}
+div.sdmenu div a{padding:5px 10px;background:#fff;display:block;border:0;text-decoration:none;border-bottom:1px solid #ddd;}
+div.sdmenu div a.current{background:#ccc;border-bottom:1px solid #ddd;}
+div.sdmenu div a:hover{background:#ccc url(../images/linkarrow.gif) no-repeat right center;color:#fff;text-decoration:none;border-bottom:1px solid #ddd;}

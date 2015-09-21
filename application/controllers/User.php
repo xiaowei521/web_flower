@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class User extends MY_Controller {
 	
 	function User(){
 		parent::__construct();
@@ -9,6 +9,7 @@ class User extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->driver('cache');
 		$this->load->library('session');
+	 //	$this->is_logged_in();
 		
 	}
 	/**
@@ -28,27 +29,19 @@ class User extends CI_Controller {
 	 */
 	public function index()
 	{
-		$login_in =  $this->load->view('public/login_in.php','',true);
-		$footer = $this->load->view('public/footer.php','',true);
-		$header = $this->load->view('public/header.php','',true);
-		$this->load->view('login.php',array(
-				'footer' =>$footer,
-				'login_in' =>$login_in,
-				'header' =>$header,
-			));
+// 		$login_in =  $this->load->view('public/login_in.php','',true);
+// 		$footer = $this->load->view('public/footer.php','',true);
+// 		$header = $this->load->view('public/header.php','',true);
+		$this->load->view('login.php');
 	}
 	// 用户登陆界面
 	public function login()
 	{
-		$login_in =  $this->load->view('public/login_in.php','',true);
-		$footer = $this->load->view('public/footer.php','',true);
-		$header = $this->load->view('public/header.php','',true);
-		$this->load->view('login.php',array(
-				'footer' =>$footer,
-				'login_in' =>$login_in,
-				'header' =>$header,
-			)
-		);
+// 		$login_in =  $this->load->view('public/login_in.php','',true);
+// 		$footer = $this->load->view('public/footer.php','',true);
+// 		$header = $this->load->view('public/header.php','',true);
+		$this->is_logged_in();
+		$this->load->view('login.php');
 	}
 	
 	
@@ -85,25 +78,22 @@ class User extends CI_Controller {
 	
 	//用户登陆成功后
 	public function buy_login_success(){
-		$login_in =  $this->load->view('public/login_out.php','',true);
-		$footer = $this->load->view('public/footer.php','',true);
-		$header = $this->load->view('public/header.php','',true);
+// 		$login_in =  $this->load->view('public/login_out.php','',true);
+// 		$footer = $this->load->view('public/footer.php','',true);
+// 		$header = $this->load->view('public/header.php','',true);
 		
 		
-		if($this->session->userdata('user_id') == NULL){
-			$this->login();
+// 		if($this->session->userdata('user_id') == NULL){
+// 			$this->login();
 			
-		}
-		$data['user_id'] = $this->session->userdata('user_id');
-		$data['user_type'] = $this->session->userdata('user_type');
-		$data['user_name'] = $this->session->userdata('name');
+// 		}
+// 		$data['user_id'] = $this->session->userdata('user_id');
+// 		$data['user_type'] = $this->session->userdata('user_type');
+// 		$data['user_name'] = $this->session->userdata('name');
 		
-		$this->load->view('public/login_out.php',$data);
 		
-		$this->load->view('buy_login_success.php',array(
-				'footer' =>$footer,
-				'header' =>$header,
-		));
+		
+	//	$this->load->view('buy/index.php');
 	}
 	 
 	//用户   交易时间到   购买记录显示
@@ -114,6 +104,7 @@ class User extends CI_Controller {
 	
 	// 用户退出
 	public function j_logout(){
+		$this->is_logged_in();
 // 		if($this->session->userdata('user_id') == NULL){
 // 			//
 // 		}
@@ -137,40 +128,27 @@ class User extends CI_Controller {
 	
 	public function register()
 	{
-		$login_in =  $this->load->view('public/login_in.php','',true);
-		$footer = $this->load->view('public/footer.php','',true);
-		$header = $this->load->view('public/header.php','',true);
-		$this->load->view('register.php',array(
-				'footer' =>$footer,
-				'login_in' =>$login_in,
-				'header' =>$header,
-			));
+		$this->is_logged_in();
+
+		$this->load->view('register.php');
 	}
 	public function register_select()
 	{
-		$login_in =  $this->load->view('public/login_in.php','',true);
-		$footer = $this->load->view('public/footer.php','',true);
-		$header = $this->load->view('public/header.php','',true);
+// 		$login_in =  $this->load->view('public/login_in.php','',true);
+// 		$footer = $this->load->view('public/footer.php','',true);
+// 		$header = $this->load->view('public/header.php','',true);
 		
 		// 如果是购买商
 		$value = $this->input->post ( 'bsselect', TRUE );
 		
 		if($value =='supplier'){
 			
-			$this->load->view('register_supplier',array(
-				'footer' =>$footer,
-				'login_in' =>$login_in,
-				'header' =>$header,
-			));
+			$this->load->view('register_supplier');
 		}
 		else if($value =='buyer'){
 			
 			
-			$this->load->view('register_buyer',array(
-				'footer' =>$footer,
-				'login_in' =>$login_in,
-				'header' =>$header,
-			));
+			$this->load->view('register_buyer');
 		}
 		else{
 			$this->load->view('error');
@@ -191,16 +169,12 @@ class User extends CI_Controller {
 		
 		$this->sendMail($sendEmailInfo);
 		
-		
-		$login_in =  $this->load->view('public/login_in.php','',true);
-		$footer = $this->load->view('public/footer.php','',true);
-		$header = $this->load->view('public/header.php','',true);
+// 		$login_in =  $this->load->view('public/login_in.php','',true);
+// 		$footer = $this->load->view('public/footer.php','',true);
+// 		$header = $this->load->view('public/header.php','',true);
 		
 		
 		$this->load->view('set_register_buyer.php',array(
-				'footer' =>$footer,
-				'login_in' =>$login_in,
-				'header' =>$header,
 				'returnData' =>$returnData,
 			));
 	}
@@ -310,4 +284,38 @@ class User extends CI_Controller {
 	public function getConCity(){
 		
 	}
+	
+	
+	
+	
+	
+	
+	public function get_sync_date(){
+		
+		
+		 //$d=strtotime("-1 day");
+       //echo date("Y-m-d h:i:sa", $d) . "<br>";
+		for($i=0;$i<40;$i++){
+			$str = "-".$i." day";
+			$now_time = date("Ymd",strtotime($str));
+			$data1[$i] = "http://pcp.51ias.com/cron.php?s=/Cron/Sync/sync_pay/date/".$now_time;
+			$data2[$i] = "http://pcp.51ias.com/cron.php?s=/Cron/Sync/sync_channel_data_by_day/date/".$now_time;
+			$data3[$i] = "http://pcp.51ias.com/cron.php?s=/Cron/Sync/sync_cp_data_by_day/date/".$now_time;
+			$data4[$i] = "http://pcp.51ias.com/cron.php?s=/Cron/Sync/sync_game_data_by_day/date/".$now_time;
+		}
+		$this->load->view("sync.php",array(
+				"data1" =>$data1,
+				"data2" =>$data2,
+				"data3" =>$data3,
+				"data4" =>$data4,
+		
+		));
+	
+	}
+	
+	
+	
+	
+	
+	
 }

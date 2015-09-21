@@ -208,8 +208,8 @@
 			};
 		</script>
 		
-  	
-  
+
+
 	
 	
 		
@@ -235,8 +235,8 @@
 		<ol class="breadcrumb">
 			您现在的位置：
 		  <li><a href="/welcome">首页</a></li>
-		  <li><a href="myflower">我的花拍</a></li>
-		  <li class="active">我的花拍</li>
+		  <li><a href="/buy/myFlower">我的花拍</a></li>
+		  <li class="active">限额查询</li>
 		</ol>
 		
 		
@@ -300,22 +300,75 @@
 			</div>
 			<div class="col-md-9" style=" padding-left: 0px; ">
 				<div class="panel panel-success">
-					<div class="panel-heading">我的花拍</div>
+					<div class="panel-heading">限额查询</div>
 					
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<div style=" text-align: center;"><a href="/index"><h1>开始交易！</a></h1></div> 
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br> 
-  
+	<div class="result">
+		<fieldset>
+			<legend>预授金额</legend>
+			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
+				<tr>
+					<td class="left" style="width:25%; text-align: right;"><h3>预授金额</h3></td>
+					<td class="right"><h3>
+							￥0.00
+						</h3></td>
+				</tr>
+			</table>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>计算比例</legend>
+			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
+				<tr>
+					<td class="left" style="width:25%; text-align: right;"><h3>佣金比例</h3></td>
+					<td class="right"><h3>0.05</h3></td>
+					<td class="left" style="width:25%; text-align: right;"><h3>运费比例</h3></td>
+					<td class="right"><h3>0.30</h3></td>
+				</tr>
+			</table>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>购买限额</legend>
+			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
+				<tr>
+					<td class="left" style="width:25%; text-align: right;"><h3>购买限额</h3></td>
+					<td class="right"><h3>
+							￥0.00
+						</h3></td>
+				</tr>
+			</table>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>交易使用</legend>
+			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
+				<tr>
+					<td class="left" style="width:25%; text-align: right;"><h3>竞价占用</h3></td>
+					<td class="right"><h3>
+							￥0.00
+						</h3></td>
+					<td class="left" style="width:25%; text-align: right;"><h3>实际使用</h3></td>
+					<td class="right"><h3>
+							￥0.00
+						</h3></td>
+				</tr>
+			</table>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>可用限额</legend>
+			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
+				<tr>
+					<td class="left" style="width:25%; text-align: right;"><h3>可用限额</h3></td>
+					<td class="right"><h3>
+							￥0.00
+						</h3></td>
+				</tr>
+			</table>
+		</fieldset>
+		<br>
+	</div>
+
 				</div>
 			</div>
 		</div>		

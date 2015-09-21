@@ -89,31 +89,7 @@
 		
 	</head>
 	<body>
-		<div class="header">
-			<div class="container">
-				<div class="row">
-					
-				  
-					
-					
-						<div class="col-md-6">
-							<div style="float: left;">
-								weilanchuxia
-								(901071)您好，欢迎光临花拍在线[<a href="/j_spring_security_logout">退出</a>]
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div style="float: right;">
-								
-										<a href="/buyer/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>&nbsp;|&nbsp;
-								
-								<a href="/myKIFAOnline">我的花拍</a>&nbsp;|&nbsp; <a href="/default">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
-							</div>
-						</div>
-					
-				</div>
-			</div>
-		</div>
+
 	
 		<div class="container">
 			
@@ -122,7 +98,7 @@
 			<a href="/default"><img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" border="0" /></a>
 			<img src="/static/images/wx.jpg" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" border="0" />
 			<div class="time">
-				<label id=statusName></label>
+				<label id=statusName>ss</label>
 				<br>
 				<strong id="hour_show" style="background:#C71C60;padding: 2px 4px 2px 4px;border-radius:5px;"></strong><br>
 				
@@ -131,38 +107,16 @@
 		
 		<ol class="breadcrumb">
 			您现在的位置：
-			<li><a href="/default">首页</a></li>
+			<li><a href="/welcome">首页</a></li>
 			<li class="active">购物车</li>
 		</ol>
 		<img class="img-responsive" src="/static/images/car3.png">
-		<div class="alert alert-success" role="alert" style="margin-top: 100px;margin-bottom: 100px;	text-indent: 40px;font-size: 16px;font-weight: bold;color: #FF0000;text-align: center;"><span class="glyphicon glyphicon-gift">资金限额不足！</span></div>
+		<div class="alert alert-success" role="alert" style="margin-top: 100px;margin-bottom: 100px;	text-indent: 40px;font-size: 16px;font-weight: bold;color: #FF0000;text-align: center;"><span class="glyphicon glyphicon-gift"><?php echo $info;?></span></div>
 		<ul class="pager">
-		  <li class="previous"><a href="/index">&larr; 继续购物</a></li>
+		  <li class="previous"><a href="/buyer/">&larr; 继续购物</a></li>
 		  <li class="next"><a href="/buyer/cart">返回购物车 &rarr;</a></li>
 		</ul>
 	
 	
 		</div>
 		
-		<div class="footer">
-			<div class="container">
-				<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
-					公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br /> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br /> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
-				<br>
-				<script type="text/javascript">
-					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
-							: " http://");
-					document
-							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
-									+ cnzz_protocol
-									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-				</script>
-			</div>
-			</div>
-		</div>
-		<!-- Bootstrap core JavaScript-->
-    <script src="/static/components/bootstrap-3.2.0/js/bootstrap.min.js"></script>
-
-	
-</body>
-</html>

@@ -1,4 +1,4 @@
-<?php echo $header?>
+
     <style type="text/css">
         .form-signin { max-width: 390px; padding: 15px; margin: 0 auto; text-align:center;
         } .form-signin .form-signin-heading, .form-signin .checkbox { margin-bottom:
@@ -32,7 +32,7 @@
            		    else{
               		 	$('#message_div').css('display','block');
                		    $('#message').html(ajaxobj.info);
-           		    	window.location.href="/user/buy_login_success";
+           		    	window.location.href="/buyer";
            		    }
                  	           		
               }});
@@ -43,7 +43,7 @@
     </head>
     
     <body>
-        <?php echo $login_in?>
+
             <div class="container">
                 <div class="logo">
                     <a href="/default">
@@ -111,5 +111,5 @@
                 </div>
                 ​
             </form>
-            <?php echo $footer?>
+
             

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class buyer extends CI_Controller {
+class buyer extends MY_Controller {
 	
 	function __construct(){
 		parent::__construct();
@@ -9,34 +9,36 @@ class buyer extends CI_Controller {
 		$this->load->library('cart');
 		$this->load->helper('form');
 		$this->load->model('buyerModel');
+		$this->load->model('UserModel');
 		$this->load->library('session');
-
+		
+		//$this->is_logged_in();
 		
 	}
 
 	//判断用户session
-	public function j_session(){
+// 	public function j_session(){
 
-		//$this
-		$session_user_id = $this->session->userdata('user_id');
+// 		//$this
+// 		$session_user_id = $this->session->userdata('user_id');
 
-		//没登陆
-		if(null == $session_user_id  ){
-			return  false;
-		}
-		// 登陆，显示的头是不一样的。
-		else{
+// 		//没登陆
+// 		if(null == $session_user_id  ){
+// 			return  false;
+// 		}
+// 		// 登陆，显示的头是不一样的。
+// 		else{
 			
-			$session_user['user_name'] = $this->session->userdata('name');
-			$session_user['user_id'] = $session_user_id;
-			return $session_user;
-		}
-	}
+// 			$session_user['user_name'] = $this->session->userdata('name');
+// 			$session_user['user_id'] = $session_user_id;
+// 			return $session_user;
+// 		}
+// 	}
 	
 	//默认交易首页
 	public function index(){
-
-		$this->load->view('public/header.php');
+		$this->is_logged_in();
+	//	$this->load->view('public/header.php');
 // 		//$this
 // 		$session_user_id = $this->session->userdata('user_id');
 		
@@ -50,17 +52,17 @@ class buyer extends CI_Controller {
 // 		}
 
 		// 没登陆
-		$j_session = $this->j_session();
+// 		$j_session = $this->j_session();
 		
-		if(!$j_session){
-			 $this->load->view('public/login_in.php');;
-		}
-		//登陆进去显示的状态
-		else{
+// 		if(!$j_session){
+// 			 $this->load->view('public/login_in.php');;
+// 		}
+// 		//登陆进去显示的状态
+// 		else{
 			
-		     $this->load->view('public/login_out.php',$j_session);
+// 		     $this->load->view('public/login_out.php',$j_session);
 			
-		}
+// 		}
 		
 		
 		// 查询花的类型
@@ -105,12 +107,20 @@ class buyer extends CI_Controller {
 		$page['total'] =  (int)($list_info['count'] / 10 + 1);
 		$page['all_page'] = $list_info['count'];// 总共 111 个数据
 	
+		
+		
+		// 查询用户的信息。
+		
+		
+		$userInfo = $this->UserModel->get_user_info($this->session->userdata('user_id'));
+		
 		$this->load->view('buy/index.php',array(
 				'data' => $data,
 				'show' => $show,
 				'page' => $page,
+				'user_info' =>$userInfo,
 		));
-		$this->load->view('public/footer.php');
+	//	$this->load->view('public/footer.php');
 	
 	}
 	
@@ -137,25 +147,17 @@ class buyer extends CI_Controller {
 	
 	// 加入到购物车
 	public function addToCartD(){
-		
-		
 		$j_session = $this->j_session();
-		
-		
 		if(!$j_session){
 			//跳到登陆界面
 			//$this->load->view('public/login_in.php');;
-			
 			return false;
 		}
 		//登陆进去显示的状态
 		else{
 				
-			//$this->load->view('public/login_out.php',$j_session);
-				
+			//$this->load->view('public/login_out.php',$j_session);	
 		}
-		
-	
 		$pid = $_POST['fixBrdId'];//加入的id
 		$date = $_POST['date'];//加入购物车时间
 		
@@ -168,7 +170,7 @@ class buyer extends CI_Controller {
 		// 存储的时候 id 准备设置为用户id + 物品id  这样 确保唯一性
 		$data = array(
 				array(
-						'id'      => "uid".$pid,
+						'id'      => $pid,
 						'qty'     => 1,
 						'price'   => $flower_only_info[0]->good_price,
 						'name'    => $flower_only_info[0]->good_category, // 品类
@@ -176,15 +178,9 @@ class buyer extends CI_Controller {
 				),
 		);
 		// 点击一下插入一下 
-		
-		
-		
-		
 		$this->cart->insert($data);
 		
 		//$this->cart->destroy();
-		
-		
 		$result['info'] = "添加购物车成功！";
 		echo json_encode($result);
 		exit();
@@ -192,20 +188,216 @@ class buyer extends CI_Controller {
 	
 	// 用户进入购物车
 	public function cart(){
-		
+		$this->is_logged_in();
 		// 这里是不是应该 把 购物车数据传送过去 。
-		
-		
-		
-		
 		$data = $this->cart->contents();
 		
 		
 		//$this->load->view('buy/view.php');
-		var_dump($data);
+		//var_dump($data);
 		$this->load->view('buy/cart.php',array('data' =>$data));
 	}
 	
+	// 检查用户购物车 属性 进行到下一步
+	public function checkout(){
+		
+		// 这部分 应该很重要的。  但是应该做什么安全检测那？ 待定把。
+		//$this->cart->total();
+		//
+		
+		$user_id = $this->session->userdata('user_id');
+		
+		$data = $this->cart->contents();
+		if($data == null){
+			
+			exit();
+		}
+		//我觉得这一步是进行 订单号 的生成
+		// 存储 订单的 信息
+		$charge_id = $this->produce_chargeId();
+		$this->buyerModel->set_charge($charge_id,$user_id,$data);
+		
+		
+		$userInfo = $this->UserModel->get_user_info($user_id);
+		
+	//	header('location:cart_checkout');
+		
+		$this->load->view('buy/cart_checkout.php',array(
+				'data' =>$data,
+				'user_info' =>$userInfo,
+				'charge_id' => $charge_id,
+				
+		));
+	}
+	
+	public function cart_checkout(){
+		$user_id = $this->session->userdata('user_id');
+		
+		$data = $this->cart->contents();
+		if($data == null){
+				
+			exit();
+		}
+		//我觉得这一步是进行 订单号 的生成
+		// 存储 订单的 信息
+		$charge_id = $this->produce_chargeId();
+		$this->buyerModel->set_charge($charge_id,$user_id,$data);
+		
+		
+		$userInfo = $this->UserModel->get_user_info($user_id);
+		$this->load->view('buy/cart_checkout.php',array(
+				'data' =>$data,
+				'user_info' =>$userInfo,
+				'charge_id' => $charge_id,
+
+		));
+	}
+	
+	//生成订单号
+	public function produce_chargeId(){
+		$c1 = rand(10,99);
+		$c2 = rand(10,99);
+		return $c1.$c2.time();
+	}
+	
+	
+	// 用户 付款 操作。 保存购物车
+	public function saveCart(){
+		$cart_total = $this->cart->total();
+		$user_id = $this->session->userdata('user_id');
+		$userInfo = $this->UserModel->get_user_info($user_id);
+		
+		// 付款成功操作
+		// 需要 存在数据库中
+		if($userInfo['money'] >= $cart_total){
+			
+			
+			$this->UserModel->set_user_money($user_id,$cart_total);
+			
+			$status = 1; // 成功标志
+			$info ="购买成功！";
+
+		}
+		else{
+			$status = 0;// 失败标志  
+			$info ="余额不足，请充值！";
+			//alert('余额不足，请充值');
+		}
+		
+		//存储到 订单数据库 。
+		
+		//搞定 订单 
+
+		
+		
+		
+		
+		$cartInfo = $this->cart->contents();
+		
+		//var_dump($cartInfo);
+		
+		//$this->cart->destroy(); 这样就全都删掉了。
+		
+		// 是否清空 购物车？ $this->cart->destroy();
+		$this->load->view('buy/cart_check_result.php',array(
+				'status' => $status,
+				'info' => $info,
+				'data' => $cartInfo,
+		));
+		
+	}
+	
+	// 从购物车移除  数量设置为0   移除
+	public function removeFromCart(){
+		
+		$rid = $_GET['fixBrdId'];
+		$data = array(
+				'rowid' => $rid,
+				'qty'   => 0
+		);
+		$this->cart->update($data);
+		
+	}
+	public function test2(){
+
+		$this->load->view('buy/test.php');
+		
+	}
+	
+	// 跳转到 我的花派
+	public function myFlower(){
+		
+		$this->load->view('buy/myFlower.php');
+	}
+	
+	// 用户信息修正
+	public function ibuyer(){
+		$j_session = $this->j_session();
+		
+		if(!$j_session){
+			 $this->load->view('public/login_in.php');;
+		}
+		//登陆进去显示的状态
+		else{
+		     $this->load->view('public/login_out.php',$j_session);
+		}
+		$this->load->view('buy/ibuyer.php');
+	}
+	
+	//网银充值
+	public function netPay(){
+		$this->load->view('buy/netPay.php');
+	}
+	
+	// 修改密码
+	public function changePassword(){
+		$this->load->view('buy/changePassword.php');
+	}
+	
+	// 退款查询
+	public function drawBack(){
+		$this->load->view('buy/drawBack.php');
+		
+	}
+	// 限额查询
+	public function buyerLimit(){
+		$this->load->view('buy/buyerLimit.php');
+	}
+	// 交易明细
+	public function transation(){
+		$this->load->view('buy/transation.php');
+		
+	}
+	
+	// 交易汇总
+	public function rptBuyBuyTransactionT(){
+		$this->load->view('buy/rptBuyBuyTransactionT.php');
+	}
+	
+	// 结算查询
+	public function totalBalance(){
+		$this->load->view('buy/totalBalance.php');
+	}
+	//交易明细
+	public function rptBuyHisBuyTransactionD(){
+		$this->load->view('buy/rptBuyHisBuyTransactionD.php');
+	}
+	// 交易汇总
+	public function rptBuyHisBuyTransactionT(){
+		$this->load->view('buy/rptBuyHisBuyTransactionT.php');
+	}
+	//投诉明细
+	public function rptBuyHisLogdeListD(){
+		$this->load->view('buy/rptBuyHisLogdeListD.php');
+	}
+	//充值明细
+	public function rptBuyHisBuyPreBankFundD(){
+		$this->load->view('buy/rptBuyHisBuyPreBankFundD.php');
+	}
+	// 结算明细
+	public function rptBuyHisBalanceList(){
+		$this->load->view('buy/rptBuyHisBalanceList.php');
+	}
 	
 	//用户更新购物车
 	// 初步这么判断的是  根据用户选择 数量 来 异步提交表单 来 更新 购物车内容。

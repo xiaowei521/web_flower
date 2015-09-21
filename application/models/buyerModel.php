@@ -51,7 +51,37 @@
      	return $data;
      }
      
-     
+     //订单信息的生成
+     /**
+      *  @param $id 订单id    $data 订单数据  
+      *  @author wei sun
+      *   计划将订单数据 存成json 形式
+      */
+     public function set_charge($id,$userId,$data){
+     	
+     	//数据库的数据
+//      	$database_data = $this->db->where('user_id',$userId)->from('charge')->get()->result();
+     	
+//      	if($database_data ==null){
+//      		exit();
+//      	}
+//      	else{
+     		
+     		
+//      	}
+     	
+     	
+     	$json_data = json_encode($data);
+     	$mydata = array(
+     			'id' => $id,
+     			'data' =>$json_data,
+     			'user_id' =>$userId,
+     	);
+     	
+     	$this->db->insert('charge', $mydata);
+     	
+     	
+     }
      // 筛选功能 购买界面 
      public function search(){
      	

@@ -1,8 +1,8 @@
-<?php echo $header?>
+
     </head>
     
     <body>
-        <?php echo $login_in?>
+      
             <div class="container">
                 <div class="logo">
                     <a href="/default">
@@ -53,4 +53,4 @@
                     </font>
                 </div>
             </div>
-            <?php echo $footer?>
+       

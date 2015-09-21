@@ -1,4 +1,4 @@
-<?php echo $header?>
+
     <script type="text/javascript">
         $(document).ready(function() {
             jQuery.validator.addMethod("chrnum",
@@ -102,10 +102,10 @@
     </head>
     
     <body>
-        <?php echo $login_in?>
+
             <div class="container">
                 <div class="logo">
-                    <a href="/default">
+                    <a href="/welcome">
                         <img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;"
                         border="0" />
                     </a>
@@ -121,7 +121,7 @@
                 <ol class="breadcrumb">
                     您现在的位置：
                     <li>
-                        <a href="/default">
+                        <a href="/welcome">
                             首页
                         </a>
                     </li>
@@ -342,4 +342,3 @@
                     </span>
                 </form>
             </div>
-            <?php echo $footer?>

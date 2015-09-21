@@ -120,5 +120,26 @@
      }
      
      
+     // 获取玩家的 金币 数据~
+     public function get_user_info($id){
+     	$data = $this->db->where(array('user_id'=>$id))->get('user')->result();
+     
+     	$result['money'] = $data[0]->money;
+     
+     	return $result;
+     }
+     
+     // 更新用户金币
+     public function set_user_money($userId,$reduce_money){
+     	$data = $this->db->where(array('user_id'=>$userId))->get('user')->result();
+     	
+     	//这个会出现异常么？ 应该不会
+     	$update['money'] = $data[0]->money - $reduce_money;
+     	
+     	$this->db->update('user', $update, array('user_id'=>$userId));
+     	
+     	
+     }
+     
 }
 ?>

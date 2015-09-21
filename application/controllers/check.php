@@ -23,6 +23,20 @@ class check extends CI_Controller {
 		$this->load->view('index.php');
 	}
 	
+	
+	public function test1(){
+		$y=100;
+		$z=1012;
+		$c = $y.$y;
+		var_dump($c);
+		var_dump($c+$z);
+		
+		
+		
+		var_dump($y.$y+$z);
+		exit();
+	}
+	
 	//发送html邮件模板处理函数
 	function emailmoban($body){
 		if (is_array($body))

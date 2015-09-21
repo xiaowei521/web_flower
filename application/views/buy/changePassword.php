@@ -208,14 +208,64 @@
 			};
 		</script>
 		
-  	
-  
+		<script type="text/javascript" src="/static/components/jquery/validation/jquery.validate.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/static/components/jquery/validation/messages_zh.js"></script>
+		<script type="text/javascript" src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" /></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#user").validate({
+					rules : {
+						oldpswd : {
+							required : true,
+							minlength : 6,
+							maxlength : 20
+						},
+						newpswd : {
+							required : true,
+							minlength : 6,
+							maxlength : 20
+						},
+						repeatpswd : {
+							required : true,
+							equalTo : "#newpswd"
+						}
+					}
+				});
+			});
+		</script>
+		
+	
+	
 	
 	
 		
 	</head>
 	<body>
-
+		<div class="header">
+			<div class="container">
+				<div class="row">
+					
+				  
+					
+					
+						<div class="col-md-6">
+							<div style="float: left;">
+								weilanchuxia
+								(901071)您好，欢迎光临花拍在线[<a href="/j_spring_security_logout">退出</a>]
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div style="float: right;">
+								
+										<a href="/buyer/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>&nbsp;|&nbsp;
+								
+								<a href="/myKIFAOnline">我的花拍</a>&nbsp;|&nbsp; <a href="/default">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
+							</div>
+						</div>
+					
+				</div>
+			</div>
+		</div>
 	
 		<div class="container">
 			
@@ -234,9 +284,9 @@
 
 		<ol class="breadcrumb">
 			您现在的位置：
-		  <li><a href="/welcome">首页</a></li>
-		  <li><a href="myflower">我的花拍</a></li>
-		  <li class="active">我的花拍</li>
+		  <li><a href="/default">首页</a></li>
+		  <li><a href="/myKIFAOnline">我的花拍</a></li>
+		  <li class="active">密码重置</li>
 		</ol>
 		
 		
@@ -300,22 +350,35 @@
 			</div>
 			<div class="col-md-9" style=" padding-left: 0px; ">
 				<div class="panel panel-success">
-					<div class="panel-heading">我的花拍</div>
+					<div class="panel-heading">密码重置</div>
 					
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<div style=" text-align: center;"><a href="/index"><h1>开始交易！</a></h1></div> 
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br> 
-  
+		
+		<form id="user" name="user" action="/buyer/changePassword/changePsw" method="post">
+			<fieldset>
+				<legend>原始信息</legend>
+				<div class="input-group">
+				  <span class="input-group-addon">原始密码</span>
+				  <input type="password" id="oldpswd" name="oldpswd" class="form-control" placeholder="原始密码">
+				</div>
+			</fieldset>
+			<br>
+			<fieldset>
+				<legend>变更信息</legend>
+				<div class="input-group">
+				  <span class="input-group-addon">变更密码</span>
+				  <input type="password" id="newpswd" name="newpswd" class="form-control" placeholder="变更密码">
+				</div>
+				<div class="input-group">
+				  <span class="input-group-addon">确认密码</span>
+				  <input type="password" id="repeatpswd" name="repeatpswd" class="form-control" placeholder="确认密码">
+				</div>
+			</fieldset>
+			<br>
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-ok">保存</span>
+			</button>
+		</form>
+	
 				</div>
 			</div>
 		</div>		
@@ -323,3 +386,25 @@
 	
 		</div>
 		
+		<div class="footer">
+			<div class="container">
+				<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
+					公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br /> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br /> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
+				<br>
+				<script type="text/javascript">
+					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
+							: " http://");
+					document
+							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
+									+ cnzz_protocol
+									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+				</script>
+			</div>
+			</div>
+		</div>
+		<!-- Bootstrap core JavaScript-->
+    <script src="/static/components/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+
+	
+</body>
+</html>

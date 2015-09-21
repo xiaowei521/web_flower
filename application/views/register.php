@@ -1,4 +1,4 @@
-<?php echo $header?>
+
 <style type="text/css">
 .form-register {
 	
@@ -90,7 +90,7 @@
 		
 	</head>
 	<body>
-		 <?php echo $login_in?>
+	
 	
 		<div class="container">
 			
@@ -156,4 +156,3 @@
 	
 		</div>
 		
-            <?php echo $footer?>

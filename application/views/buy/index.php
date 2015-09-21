@@ -286,7 +286,7 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;<label id="buycomFund">0</label>
 								-->
 								<li>可用限额(元)</li>
-							&nbsp;&nbsp;&nbsp;&nbsp;<label id="buyLeftLimit">0.00</label>
+							&nbsp;&nbsp;&nbsp;&nbsp;<label id="buyLeftLimit"><?php echo $user_info['money']?>元</label>
 							<br>
 							<a href="/buyer/buyerLimit"><span class="glyphicon glyphicon-list-alt"></span>详情 </a>
 							</div>
@@ -326,4 +326,4 @@
 
 		    		</div>
 
-	
+	<
