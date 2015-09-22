@@ -12,7 +12,7 @@ class buyer extends MY_Controller {
 		$this->load->model('UserModel');
 		$this->load->library('session');
 		
-		//$this->is_logged_in();
+		$this->is_logged_in();
 		
 	}
 

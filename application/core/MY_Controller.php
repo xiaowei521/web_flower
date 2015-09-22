@@ -6,6 +6,8 @@ abstract class MY_Controller extends CI_Controller {
 
 		$this->load->library('session');
 		$this->load->helper("url");
+		
+		$this->config->load('myconfig', TRUE);
 	
 	}
 	
@@ -22,7 +24,19 @@ abstract class MY_Controller extends CI_Controller {
 			//登陆
 		}
 		else{
+			
+			
 			$this->load->view('public/login_in');
+			
+			$uri = uri_string ( current_url () );
+			
+		//var_dump($uri);
+			//var_dump($this->config->item ( 'sw_pass_url' ,'myconfig'));
+			
+			if (! in_array ( $uri, $this->config->item ( 'sw_pass_url' ,'myconfig') )) {
+				redirect ( $this->config->item ( 'sw_login_url','myconfig' ), 'refresh' );
+			}
+			return;
 			//header("location:".site_url("user/login"));
 			// 跳到登陆界面
 		//	redirect('/user/login');
