@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class webNoticeContent extends MY_Controller {
 	
-	function __construct(){
+	function webNoticeContent(){
 		parent::__construct();
 		$this->is_logged_in();
 

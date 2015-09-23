@@ -69,6 +69,9 @@ class User extends MY_Controller {
 				$this->session->set_userdata('user_type',$result['user_type']);
 				$this->session->set_userdata('name',$result['name']);
 			}
+			else{
+				
+			}
 			
 		}
 		echo json_encode($result);

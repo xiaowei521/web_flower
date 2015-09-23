@@ -208,9 +208,132 @@
 			};
 		</script>
 		
-	  
-		<link type="text/css" rel="stylesheet" href="/static/css/wait.css" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link type="text/css" rel="stylesheet" href="/static/components/extremetable/Styles/extremecomponents.css" />
+<script type="text/javascript" src="/static/components/jquery/validation/jquery.validate.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/components/jquery/validation/messages_zh.js"></script>
+<script type="text/javascript" src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" /></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#queryform").validate({
+			rules : {
+				search_pbfId : {
+					digits : true
+				}
+			}
+		});
+	})
 	
+	
+function onload()
+{
+	var d = new Date();
+	//给出定单日期
+	fm.date.value = d.getYear() * 10000 + (1+d.getMonth()) * 100 + d.getDate();
+	//给出不重复的定单号
+	var s = d.getYear() * 366 + d.getMonth() * 31 + d.getDate();
+	s = (s *24 + d.getHours() ) * 60 + d.getMinutes();
+	s = s * 60 + d.getSeconds();
+	fm.billno.value = s.toString().substring(1);
+}
+function test()
+{
+	 //window.location.href="netPay"
+	 $.ajax({
+				type : "GET",
+				url : "/buyer/netPay/judgePay",
+				data : {
+				  date : $("#date").val(),
+					billno : $("#billno").val(),
+					date1 : new Date()
+				},
+				dataType: "json",
+				async:false,
+				success : function(result) {
+					//alert(result[0]['success']);
+				}
+				
+			});
+			
+	 window.location.reload();
+}
+
+	function repeatJudgePay(pbfDateTime,pbfFlowId,id) {
+		$.ajax({
+			type : "GET",
+			url : "/buyer/netPay/judgePay",
+			data : {
+				date : pbfDateTime,
+				billno : pbfFlowId,
+				date1 : new Date()
+			},
+			dataType : "json",
+			success : function(result) {
+				if (result[0]['success'] == 'Y') {
+					$("#pbfIsReturn" + id).html('充值成功');
+					$("#operate" + id).html('');
+				} else if (result[0]['success'] == 'E') {
+					$("#pbfIsReturn" + id).html('充值错误');
+					$("#operate" + id).html('');
+				} else {
+					//alert(result[0]['message']);
+				}
+			}
+		});
+		return false;
+	}
+
+function SubmitPayReq(obj)
+{
+	
+	if(netPayForm.amount.value>0){
+		var d = new Date();
+		netPayForm.date.value = d.getFullYear()* 10000 + (1+d.getMonth()) * 100 + d.getDate();
+		$.ajax({
+				type : "GET",
+				url : "/buyer/savePay",
+				data : {
+					amount : $("#amount").val(),
+					date : new Date()
+				},
+				dataType: "json",
+				async:false,
+				success : function(result) {
+					//alert(result[0]['billno']);
+					//netPayForm.billno.value=result[0]['billno'];
+					//netPayForm.date.value = result[0]['date'];
+					//netPayForm.submit();
+					//$("#netPayForm").submit();
+					//$.post("https://netpay.cmbchina.com/netpayment/basehttp.dll?prepayc", "jsonp");
+					//window.location.href="https://netpay.cmbchina.com/netpayment/basehttp.dll?prepayc?branchid=0871&cono=012427&date="+netPayForm.date.value+"&billno="+netPayForm.billno.value+"&amount="+netPayForm.amount.value;
+					//window.open("https://netpay.cmbchina.com/netpayment/basehttp.dll?prepayc?branchid=0871&cono=012427&date="+netPayForm.date.value+"&billno="+netPayForm.billno.value+"&amount="+netPayForm.amount.value,"_blank");
+					
+					$('#myModal').modal({show:true});
+					
+				}
+			});
+			
+	
+		//netPayForm.submit();
+	//	$('#myModal').modal({show:true});
+			
+	}else{
+		//alert("!!!");
+		var d = new Date();
+		//给出定单日期
+		netPayForm.date.value = d.getFullYear()* 10000 + (1+d.getMonth()) * 100 + d.getDate();
+		//给出不重复的定单号
+		var s = d.getFullYear() * 366 + d.getMonth() * 31 + d.getDate();
+		s = (s *24 + d.getHours() ) * 60 + d.getMinutes();
+		s = s * 60 + d.getSeconds();
+		netPayForm.billno.value = s.toString().substring(1);
+	}
+	
+}
+</script>
+
 	
 	
 		
@@ -326,16 +449,73 @@
 			<div class="col-md-9" style=" padding-left: 0px; ">
 				<div class="panel panel-success">
 					<div class="panel-heading">资金预授</div>
-						
-		<div class="waiting" style="text-align: center;">
-			<br>
-			<br>
-			<img src="/static/images/ban.gif" border="0" /><h1>当前系统状态下，不允许此操作！</h1>
-			<br>
-			<br>
-			<br>
+					
+	<div class="operations">
+		<div class="errorBox">
+			
+			<label id="resultMessage"></label>
 		</div>
-	
+		<div class="operationquery">
+			<form id="netPayForm" class="form-horizontal" role="form" action="https://netpay.cmbchina.com/netpayment/basehttp.dll?prepayc" target="_blank" method="post">
+				<input name="branchid" value="0871" type="hidden"> <input name="cono" value="012427" type="hidden"> <input id="date" name="date" type="hidden"> <input id="billno" name="billno"
+					type="hidden">
+
+				<fieldset>
+					<legend>银行预授</legend>
+					<div class="input-group input-group-lg">
+						<span class="input-group-addon">充值金额</span> <input type="text" id="amount" name="amount" class="form-control" placeholder="0.00" onkeyup="if(this.value==this.value2);if(this.value.search(/^\d*(?:\.\d{0,2})?$/)==-1)this.value=(this.value2)?this.value2:'';else this.value2=this.value;"
+																	onafterpaste="if(this.value==this.value2);if(this.value.search(/^\d*(?:\.\d{0,2})?$/)==-1)this.value=(this.value2)?this.value2:'';else this.value2=this.value;">
+					</div>
+				</fieldset>
+			</form>
+			<br>
+			<button type="submit" class="btn btn-primary btn-lg btn-block" onclick="SubmitPayReq(this);">
+				<span class="glyphicon glyphicon-ok">网银充值</span>
+			</button>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">
+								<strong>网银充值</strong>
+							</h4>
+						</div>
+						<div class="modal-body">
+							<strong>请在新打开页面上完成网银充值，充值完成前请不要关闭或刷新此窗口！</strong>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="test();">充值成功</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal -->
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<span class="btn-block" style="text-align: center;">今日充值</span>
+	<div class="table-responsive">
+		<table id="myTable" class="table table-bordered">
+			<tr>
+				<th>序号</th>
+				<th>编号</th>
+				<th>充值订单号</th>
+				<th>充值金额</th>
+				<th>充值时间</th>
+				<th>充值状态</th>
+				<th>充值来源</th>
+				<th>操作</th>
+			</tr>
+
+			
+		</table>
+	</div>
+
 				</div>
 			</div>
 		</div>		

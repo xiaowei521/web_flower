@@ -51,6 +51,25 @@
      		}
      	}
      }
+     // 修改用户数据库的信息
+     // 用户 id  修改 信息 
+     public function set_user_database_info($user_id,$user_info){
+     	
+     	// 注意  是数组形式
+		/*$data = array(
+               'title' => $title,
+               'name' => $name,
+               'date' => $date
+            );
+        */
+     	$this->db->where('user_id', $user_id);
+     	$user_info['password'] = $this->passwd($user_info['password']);
+     	
+     	var_dump($user_info);
+     	
+     	$this->db->update('user', $user_info);
+		exit();
+     }
      
      // 存储用户信息
      public function set_user_info($userInfo){

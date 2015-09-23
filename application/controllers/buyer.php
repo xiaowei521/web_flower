@@ -3,15 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class buyer extends MY_Controller {
 	
-	function __construct(){
+	function buyer(){
 		parent::__construct();
-
+		$this->load->helper('url');
 		$this->load->library('cart');
 		$this->load->helper('form');
 		$this->load->model('buyerModel');
 		$this->load->model('UserModel');
-		$this->load->library('session');
-		
+
 		$this->is_logged_in();
 		
 	}
@@ -353,6 +352,30 @@ class buyer extends MY_Controller {
 	public function changePassword(){
 		$this->load->view('buy/changePassword.php');
 	}
+	public function changePsw(){
+		$oldpswd = $_POST['oldpswd'];
+		$newpswd = $_POST['newpswd'];
+		$repeatpswd =$_POST['repeatpswd'];
+		
+		
+		// 这里需要校验 一下
+		$user_id = $this->session->userdata('user_id');
+		
+		$result = $this->UserModel->j_user_info($user_id,$oldpswd);
+		
+		// 成功
+		if($result['status']){
+			if($newpswd == $repeatpswd){	
+				$setInfo = array('password'=>$newpswd);
+				$this->UserModel->set_user_database_info($user_id,$setInfo);
+			}
+		}
+		// 初始密码失败
+		else{
+			
+		}
+		$this->load->view('buy/changePassword.php');
+	}
 	
 	// 退款查询
 	public function drawBack(){
@@ -364,7 +387,7 @@ class buyer extends MY_Controller {
 		$this->load->view('buy/buyerLimit.php');
 	}
 	// 交易明细
-	public function transation(){
+	public function transaction(){
 		$this->load->view('buy/transation.php');
 		
 	}
@@ -407,6 +430,35 @@ class buyer extends MY_Controller {
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	//重要！！！ 充值问题
+	
+	
+	public  function savePay(){
+		
+		$result['info'] ="验证码错误";
+			
+	
+
+		echo json_encode($result);
+		exit();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

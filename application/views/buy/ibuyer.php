@@ -631,26 +631,4 @@
 	
 	
 		</div>
-		
-		<div class="footer">
-			<div class="container">
-				<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
-					公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br /> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br /> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
-				<br>
-				<script type="text/javascript">
-					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
-							: " http://");
-					document
-							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
-									+ cnzz_protocol
-									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-				</script>
-			</div>
-			</div>
-		</div>
-		<!-- Bootstrap core JavaScript-->
-    <script src="/static/components/bootstrap-3.2.0/js/bootstrap.min.js"></script>
-
 	
-</body>
-</html>

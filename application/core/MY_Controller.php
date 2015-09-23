@@ -36,7 +36,7 @@ abstract class MY_Controller extends CI_Controller {
 			if (! in_array ( $uri, $this->config->item ( 'sw_pass_url' ,'myconfig') )) {
 				redirect ( $this->config->item ( 'sw_login_url','myconfig' ), 'refresh' );
 			}
-			return;
+			//return;
 			//header("location:".site_url("user/login"));
 			// 跳到登陆界面
 		//	redirect('/user/login');

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class webRuleContent extends MY_Controller {
 
-	function __construct(){
+	function webRuleContent(){
 		parent::__construct();
 
 		$this->is_logged_in();

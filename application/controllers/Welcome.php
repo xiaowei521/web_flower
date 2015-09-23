@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
-	function __construct(){
+	function Welcome(){
 		parent::__construct();
 
 		$this->load->library('session');

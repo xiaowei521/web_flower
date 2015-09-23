@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = '';
+$config['base_url'] = 'http://localhost:10000/';
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +48,7 @@ $config['index_page'] = '';
 */
 
 //$config['uri_protocol']	= 'REQUEST_URI';
-  $config['uri_protocol']	= 'PATH_INFO';
+$config['uri_protocol']	= 'PATH_INFO';
 
 /*
 |--------------------------------------------------------------------------

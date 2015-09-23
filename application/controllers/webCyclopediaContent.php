@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class webCyclopediaContent extends MY_Controller {
 	
-	function __construct(){
+	function webCyclopediaContent(){
 		parent::__construct();
 
 
