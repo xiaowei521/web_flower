@@ -374,6 +374,7 @@ class buyer extends MY_Controller {
 		else{
 			
 		}
+		
 		$this->load->view('buy/changePassword.php');
 	}
 	

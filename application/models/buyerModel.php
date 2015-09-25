@@ -69,8 +69,6 @@
      		
      		
 //      	}
-     	
-     	
      	$json_data = json_encode($data);
      	$mydata = array(
      			'id' => $id,
@@ -79,9 +77,19 @@
      	);
      	
      	$this->db->insert('charge', $mydata);
-     	
-     	
      }
+     
+     // 判断订单的信息
+     public function j_charge_status($id){
+     	
+     	$data = $this->db->where('id',$id)->from('charge')->get()->result();
+     	$result['status'] = $data[0]->status;
+     	$result['user_id'] = $data[0]->user_id;
+     	$result['subtotal'] = $data[0]->good_price;
+     	return $result;
+     }
+     
+     
      // 筛选功能 购买界面 
      public function search(){
      	

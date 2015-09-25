@@ -2,11 +2,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>支付宝即时到账交易接口接口</title>
+	<title>支付宝纯担保交易接口接口</title>
 </head>
 <?php
 /* *
- * 功能：即时到账交易接口接入页
+ * 功能：纯担保交易接口接入页
  * 版本：3.3
  * 修改日期：2012-07-23
  * 说明：
@@ -22,8 +22,7 @@
  */
 
 require_once("application/config/alipay.config.php");
-require_once("application/libraries/alipay_submit.class.php");
-
+require_once("application/libraries/oldalipay/alipay_submit.class.php");
 
 /**************************请求参数**************************/
 
@@ -31,14 +30,9 @@ require_once("application/libraries/alipay_submit.class.php");
         $payment_type = "1";
         //必填，不能修改
         //服务器异步通知页面路径
-     //   $notify_url = "http://商户网关地址/create_direct_pay_by_user-PHP-UTF-8/notify_url.php";
          $notify_url = "http://127.0.0.1:10000/order/jump_old_notify_url";
-        //$notify_url = "http://127.0.0.1:10000";
-        //需http://格式的完整路径，不能加?id=123这类自定义参数
-        //页面跳转同步通知页面路径
-       // $return_url = "http://商户网关地址/create_direct_pay_by_user-PHP-UTF-8/return_url.php";
-        $return_url = "http://127.0.0.1:10000/order/jump_old_return_url";
-        //$return_url = "http://127.0.0.1:10000";  
+
+         $return_url = "http://127.0.0.1:10000/order/jump_old_return_url";
         //需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
         //商户订单号
         $out_trade_no = $_POST['WIDout_trade_no'];
@@ -47,35 +41,47 @@ require_once("application/libraries/alipay_submit.class.php");
         $subject = $_POST['WIDsubject'];
         //必填
         //付款金额
-        $total_fee = $_POST['WIDtotal_fee'];
+        $price = $_POST['WIDprice'];
         //必填
+        //商品数量
+        $quantity = "1";
+        //必填，建议默认为1，不改变值，把一次交易看成是一次下订单而非购买一件商品
+        //物流费用
+        $logistics_fee = "0.00";
+        //必填，即运费
+        //物流类型
+        $logistics_type = "EXPRESS";
+        //必填，三个值可选：EXPRESS（快递）、POST（平邮）、EMS（EMS）
+        //物流支付方式
+        $logistics_payment = "SELLER_PAY";
+        //必填，两个值可选：SELLER_PAY（卖家承担运费）、BUYER_PAY（买家承担运费）
         //订单描述
         $body = $_POST['WIDbody'];
         //商品展示地址
         $show_url = $_POST['WIDshow_url'];
-        //需以http://开头的完整路径，例如：http://www.商户网址.com/myorder.html
-        //防钓鱼时间戳
-        $anti_phishing_key = "";
-        //若要使用请调用类文件submit中的query_timestamp函数
-        //客户端的IP地址
-        $exter_invoke_ip = "";
-        //非局域网的外网IP地址，如：221.0.0.1
+        //需以http://开头的完整路径，如：http://www.商户网站.com/myorder.html
+        //收货人姓名
+        $receive_name = $_POST['WIDreceive_name'];
+        //如：张三
+        //收货人地址
+        $receive_address = $_POST['WIDreceive_address'];
+        //如：XX省XXX市XXX区XXX路XXX小区XXX栋XXX单元XXX号
+        //收货人邮编
+        $receive_zip = $_POST['WIDreceive_zip'];
+        //如：123456
+        //收货人电话号码
+        $receive_phone = $_POST['WIDreceive_phone'];
+        //如：0571-88158090
+        //收货人手机号码
+        $receive_mobile = $_POST['WIDreceive_mobile'];
+        //如：13312341234
 
-        
-        
-        //自己调试 
-        
-//         var_dump($subject);
-//         var_dump($total_fee);
-//         var_dump($out_trade_no);
-        
-//         exit();
 
 /************************************************************/
 
 //构造要请求的参数数组，无需改动
 $parameter = array(
-		"service" => "create_direct_pay_by_user",
+		"service" => "create_partner_trade_by_buyer",
 		"partner" => trim($alipay_config['partner']),
 		"seller_email" => trim($alipay_config['seller_email']),
 		"payment_type"	=> $payment_type,
@@ -83,24 +89,26 @@ $parameter = array(
 		"return_url"	=> $return_url,
 		"out_trade_no"	=> $out_trade_no,
 		"subject"	=> $subject,
-		"total_fee"	=> $total_fee,
+		"price"	=> $price,
+		"quantity"	=> $quantity,
+		"logistics_fee"	=> $logistics_fee,
+		"logistics_type"	=> $logistics_type,
+		"logistics_payment"	=> $logistics_payment,
 		"body"	=> $body,
 		"show_url"	=> $show_url,
-		"anti_phishing_key"	=> $anti_phishing_key,
-		"exter_invoke_ip"	=> $exter_invoke_ip,
+		"receive_name"	=> $receive_name,
+		"receive_address"	=> $receive_address,
+		"receive_zip"	=> $receive_zip,
+		"receive_phone"	=> $receive_phone,
+		"receive_mobile"	=> $receive_mobile,
 		"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
 );
 
 //建立请求
 $alipaySubmit = new AlipaySubmit($alipay_config);
+$html_text = $alipaySubmit->buildRequestForm($parameter,"get", "确认");
 
 
-// 	var_dump($alipaySubmit);
-// 	var_dump($parameter);
-	//exit();
-	$html_text = $alipaySubmit->buildRequestForm($parameter,"get", "确认");
-// 	var_dump($html_text);
-// 	exit();
 echo $html_text;
 
 ?>

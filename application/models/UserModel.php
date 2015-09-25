@@ -157,7 +157,37 @@
      	
      	$this->db->update('user', $update, array('user_id'=>$userId));
      	
+     }
+     
+     
+     // 充值 RMB 成功  后为玩家增加 金币
+     public function charge_success($order_id,$userId,$reduce_money){
+
+
+     	$data = $this->db->where(array('user_id'=>$userId))->get('user')->result();
      	
+     	//这个会出现异常么？ 应该不会
+     	$update['money'] = $data[0]->money + $reduce_money;
+     	$this->db->update('user', $update, array('user_id'=>$userId));
+     	
+     	
+     	//既然能进来 肯定 是没问题了 。这时候我在 更新订单。
+     	//$order_id      ********************充值完成  更新订单状态  *********************
+     	$charge_data = $this->db->where(array('id'=>$order_id))->get('charge')->result();
+     	$charge_update['status'] = 1;
+     	$this->db->update('charge', $charge_update, array('id'=>$order_id));
+     	
+     }
+     
+     
+     // 记录流水号
+     public function write_order_info($order_id,$status){
+     	
+     	$orderInfo['order_id'] = $order_id;
+     	$orderInfo['money'] = 5;
+     	$orderInfo['status'] = $status;
+     	
+     	$this->db->insert('order',$orderInfo);
      }
      
 }

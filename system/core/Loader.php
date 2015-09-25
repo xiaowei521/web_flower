@@ -822,6 +822,8 @@ class CI_Loader {
 	 * @param	array	$_ci_data	Data to load
 	 * @return	object
 	 */
+	
+	//容我来 仔细研究一下他的路径跳转问题。
 	protected function _ci_load($_ci_data)
 	{
 		// Set the default data variables
