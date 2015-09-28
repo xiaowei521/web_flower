@@ -105,12 +105,7 @@ class Order extends CI_Controller{
 		//	$this->UserModel->charge_success('sunwei',0);
 			$result_status  = 0;
 		}
-		
-		
 		// 记录 流水号，充值记录;
 		$this->UserModel->write_order_info($order_id,$result_status);
-		
-
 	}
-
 }
