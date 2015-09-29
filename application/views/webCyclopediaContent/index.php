@@ -71,20 +71,14 @@
 			<div class="panel panel-primary" style="margin-bottom: 10px;">
 				<div class="panel-heading"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp;&nbsp;花拍百科</div>
 			  <div class="panel-body">
-			  	<a href="/webCyclopediaContent" style="padding-bottom: 20px;"><span> 1、<strong>全部</strong></span></a><br>
-			  	
-							<a style="padding-bottom: 20px;" href="/webCyclopediaContent/show/74"><span> 2、<strong>情人节，云南玫瑰还会任性吗 ...</strong></span></a><br>
-					
-							<a style="padding-bottom: 20px;" href="/webCyclopediaContent/show/43"><span> 3、<strong>亮瞎你的眼，几十个泰兰品种 ...</strong></span></a><br>
-					
-							<a style="padding-bottom: 20px;" href="/webCyclopediaContent/show/35"><span> 4、<strong>云南玫瑰知多少（二）黄色， ...</strong></span></a><br>
-					
-							<a style="padding-bottom: 20px;" href="/webCyclopediaContent/show/34"><span> 5、<strong>云南玫瑰知多少（一）忘不了 ...</strong></span></a><br>
-					
-							<a style="padding-bottom: 20px;" href="/webCyclopediaContent/show/33"><span> 6、<strong>最炫泰兰新品介绍</strong></span></a><br>
-					
-							<a style="padding-bottom: 20px;" href="/webCyclopediaContent/show/32"><span> 7、<strong>带你到花田“种”玫瑰</strong></span></a><br>
-					
+			  
+			  <?php 
+			  	foreach ($data['list'] as $key => $value){
+					echo '<a href="'.$value['href'].'" style="padding-bottom: 20px;"><span>'.$key.'、<strong>'.$value['title'].'</strong></span></a><br>';
+				}
+			  ?>
+			  
+
 			  </div>
 			</div>
 		</div>
@@ -93,55 +87,17 @@
 			  <div class="panel-body">
 			  	<div style="text-align:center;height:60px; line-height:60px; color:#ce2745; font-size:20px; font-weight:bold; margin:10px 0 10px 0;">花拍百科</div>
 			  	
-							
-							<a href="/webCyclopediaContent/show/74">
-								<span style="color: black;">1、<strong>情人节，云南玫瑰还会任性吗？</strong></span>
-								<div style="color:#999999;padding-left: 20px;">2015-1-29<span class="glyphicon glyphicon-play" style="float: right;padding-right: 20px;"></span></div>
-							
-							</a>
-							<div style="overflow:hidden; border-bottom:2px dotted #ce2745; margin:10px 0 10px 0;"></div>
-					
-							
-							<a href="/webCyclopediaContent/show/43">
-								<span style="color: black;">2、<strong>亮瞎你的眼，几十个泰兰品种扑面而来</strong></span>
-								<div style="color:#999999;padding-left: 20px;">2014-10-14<span class="glyphicon glyphicon-play" style="float: right;padding-right: 20px;"></span></div>
-							
-							</a>
-							<div style="overflow:hidden; border-bottom:2px dotted #ce2745; margin:10px 0 10px 0;"></div>
-					
-							
-							<a href="/webCyclopediaContent/show/35">
-								<span style="color: black;">3、<strong>云南玫瑰知多少（二）黄色，等待属于你的真爱</strong></span>
-								<div style="color:#999999;padding-left: 20px;">2014-10-14<span class="glyphicon glyphicon-play" style="float: right;padding-right: 20px;"></span></div>
-							
-							</a>
-							<div style="overflow:hidden; border-bottom:2px dotted #ce2745; margin:10px 0 10px 0;"></div>
-					
-							
-							<a href="/webCyclopediaContent/show/34">
-								<span style="color: black;">4、<strong>云南玫瑰知多少（一）忘不了记忆中那一抹淡淡的紫</strong></span>
-								<div style="color:#999999;padding-left: 20px;">2014-10-13<span class="glyphicon glyphicon-play" style="float: right;padding-right: 20px;"></span></div>
-							
-							</a>
-							<div style="overflow:hidden; border-bottom:2px dotted #ce2745; margin:10px 0 10px 0;"></div>
-					
-							
-							<a href="/webCyclopediaContent/show/33">
-								<span style="color: black;">5、<strong>最炫泰兰新品介绍</strong></span>
-								<div style="color:#999999;padding-left: 20px;">2014-10-13<span class="glyphicon glyphicon-play" style="float: right;padding-right: 20px;"></span></div>
-							
-							</a>
-							<div style="overflow:hidden; border-bottom:2px dotted #ce2745; margin:10px 0 10px 0;"></div>
-					
-							
-							<a href="/webCyclopediaContent/show/32">
-								<span style="color: black;">6、<strong>带你到花田“种”玫瑰</strong></span>
-								<div style="color:#999999;padding-left: 20px;">2014-10-13<span class="glyphicon glyphicon-play" style="float: right;padding-right: 20px;"></span></div>
-							
-							</a>
-							<div style="overflow:hidden; border-bottom:2px dotted #ce2745; margin:10px 0 10px 0;"></div>
-					
-					
+			  <?php 
+			  	foreach ($data['list'] as $key => $value){
+					if($key == 1){
+						continue;
+					}
+					echo "<a href=\"".$value['href'].'"> <span style="color:black;">'.($key-1).'、<strong>'.$value['title'].'</strong></span><div style="color:#999999;padding-left: 20px;">';
+					echo $value['date'].'<span class="glyphicon glyphicon-play" style="float: right;padding-right: 20px;"></span></div></a>';
+					echo '<div style="overflow:hidden; border-bottom:2px dotted #ce2745; margin:10px 0 10px 0;"></div>';
+				}
+			  ?>
+			  
 					<button type="button"  class="btn btn-default btn-sm first disabled" tabindex="0"
 						aria-disabled="true">
 						<i class="icon-step-backward glyphicon glyphicon-step-backward"></i>

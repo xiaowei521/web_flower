@@ -10,6 +10,11 @@ class webCyclopediaContent extends MY_Controller {
 		
 		$this->is_logged_in();
 		
+		$this->config->load('view.config', TRUE);
+		
+		
+	 
+
 	}
 	
 	// 真的很多， 醉了
@@ -18,7 +23,14 @@ class webCyclopediaContent extends MY_Controller {
 		
 	//	$this->is_logged_in();
 		
-		$this->load->view('webCyclopediaContent/index');
+		
+	     $data = $this->config->item ( 'webCyclopediaContent','view.config' );
+		
+		
+		
+		$this->load->view('webCyclopediaContent/index',array(
+				'data' => $data,
+		));
 		
 	}
 	public function show(){
