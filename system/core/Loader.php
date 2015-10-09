@@ -63,8 +63,8 @@ class CI_Loader {
 	 *
 	 * @var	array
 	 */
-	protected $_ci_view_paths =	array(VIEWPATH	=> TRUE);
-
+//	protected $_ci_view_paths =	array(VIEWPATH	=> TRUE);
+	protected $_ci_view_paths =	array();
 	/**
 	 * List of paths to load libraries from
 	 *
@@ -137,7 +137,9 @@ class CI_Loader {
 	{
 		$this->_ci_ob_level = ob_get_level();
 		$this->_ci_classes =& is_loaded();
-
+		
+		$this->_ci_view_paths = array(APPPATH.'views/'	=> TRUE);
+		
 		log_message('info', 'Loader Class Initialized');
 	}
 

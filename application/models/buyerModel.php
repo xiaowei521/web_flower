@@ -79,6 +79,50 @@
      	$this->db->insert('charge', $mydata);
      }
      
+     //根据订单号 来查看订单信息
+     public function find_charge_info_by_id( $id ,$user_id){
+     	
+
+     	$data = $this->db->where(array('id' =>$id,'user_id'=>$user_id))->from('charge')->get()->result();
+     	$subtotal = 0.00;
+    
+     	$json_data = (json_decode($data[0]->data,TRUE));
+     	
+     	
+     	foreach($json_data as $key => $value){
+     		$subtotal += $value['subtotal'];
+     	}
+     	
+     	$result['subtotal'] = $subtotal;
+     	$result['data'] = $json_data;
+     	$result['status'] = $data[0]->status;
+     	return $result;
+     }
+     
+     public function find_self_charge_info_by_id($user_id){
+     	
+     	$data = $this->db->where('user_id',$user_id)->from('charge')->get()->result();
+     	
+
+     	foreach($data as $key =>$value){
+     		$subtotal = 0.00;
+     		$json_data = (json_decode($value->data,TRUE));
+     		
+     		foreach($json_data as $keys => $values){
+     			$subtotal += $values['subtotal'];
+     		}
+     		
+     		$result[$key]['subtotal']= $subtotal;
+     		$result[$key]['data']  = $json_data;
+     		$result[$key]['status']  = $value->status;
+     		$result[$key]['id'] = $value->id;
+     	}
+     	
+     	
+
+     	return $result;
+     }
+     
      // 判断订单的信息
      public function j_charge_status($id){
      	
