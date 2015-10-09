@@ -208,18 +208,62 @@ class buyer extends MY_Controller {
 		
 		$data = $this->cart->contents();
 		if($data == null){
-			
+			// 检测重复提交订单， 这个是不可能的。 我这里做的判断是 用户提交订单后移除 session 存储数据库
 			exit();
 		}
 		//我觉得这一步是进行 订单号 的生成
 		// 存储 订单的 信息
+		
+		//检测这个唯一的 物品是否提交过单子
+		
+//  		$RowIdArray =  $this -> session ->userdata('row_id_array');
+		
+//  		if(null == $RowIdArray ){
+//  			$RowIdArray = array();
+//  		}
+		
+//  		$biaoji1 = 0 ;
+//  		$biaoji2 = 0;
+//  		foreach($data as $key =>$value){
+//  			$biaoji2++;
+//  			if (! in_array ( $key, $RowIdArray )) {
+//  				array_push($RowIdArray,$key);
+//  			}
+//  			else{
+//  				$biaoji1 ++;
+//  		//		exit();
+//  				//属于重复提交订单
+//  			}
+//  		}
+ 		
+//  		//证明这个单子的数量全存在 证明是一个单子
+ 		
+//  		if($biaoji1 == $biaoji2){
+//  			exit();
+//  		}
+//  		else{
+ 			
+//  		}
+
+//  		$this -> session ->set_userdata('row_id_array',$RowIdArray);
+ 		
 		$charge_id = $this->produce_chargeId();
 		$this->buyerModel->set_charge($charge_id,$user_id,$data);
 		
+		//redirect ( 'buy/cart_checkout.php', 'refresh' );
 		
 		$userInfo = $this->UserModel->get_user_info($user_id);
 		
 	//	header('location:cart_checkout');
+		
+		//销毁购物车session 缓存。 不保存session。 
+		
+		
+		//存储到数据库
+		
+		$this->cart->destroy();
+		
+		
 		
 		$this->load->view('buy/cart_checkout.php',array(
 				'data' =>$data,
@@ -262,8 +306,14 @@ class buyer extends MY_Controller {
 	
 	// 用户 付款 操作。 保存购物车
 	public function saveCart(){
-		$cart_total = $this->cart->total();
+		
+		$charge_id = $this->uri->segment(4);
 		$user_id = $this->session->userdata('user_id');
+		$charge_info  = $this->buyerModel->find_charge_info_by_id($charge_id,$user_id);
+		
+		$cart_total = $charge_info['subtotal'];
+		
+		// 如何确认付款是当前数据
 		$userInfo = $this->UserModel->get_user_info($user_id);
 		
 		// 付款成功操作
@@ -286,18 +336,8 @@ class buyer extends MY_Controller {
 		//存储到 订单数据库 。
 		
 		//搞定 订单 
+		$cartInfo = $charge_info['data'];
 
-		
-		
-		
-		
-		$cartInfo = $this->cart->contents();
-		
-		//var_dump($cartInfo);
-		
-		//$this->cart->destroy(); 这样就全都删掉了。
-		
-		// 是否清空 购物车？ $this->cart->destroy();
 		$this->load->view('buy/cart_check_result.php',array(
 				'status' => $status,
 				'info' => $info,
@@ -422,6 +462,18 @@ class buyer extends MY_Controller {
 	public function rptBuyHisBalanceList(){
 		$this->load->view('buy/rptBuyHisBalanceList.php');
 	}
+	//我的订单
+	public function myorder(){
+		
+		$user_id = $this->session->userdata('user_id');
+		$charge_info  = $this->buyerModel->find_self_charge_info_by_id($user_id);
+		
+		
+		$this->load->view('buy/myorder',array(
+				'info' =>$charge_info,
+		));
+	}
+	
 	
 	//用户更新购物车
 	// 初步这么判断的是  根据用户选择 数量 来 异步提交表单 来 更新 购物车内容。

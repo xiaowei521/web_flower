@@ -227,7 +227,9 @@
 
 	<ul class="pager">
 	  <li class="previous"><a href="/buyer/">&larr; 继续购物</a></li>
+
 	  <li class="next "><a href="/buyer/checkout">确认订单 &rarr;</a></li>
+	  
 	</ul>
 	<script type="text/javascript">
 	    jQuery(document).ready(function() {

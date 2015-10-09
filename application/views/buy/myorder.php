@@ -1,29 +1,4 @@
-<!DOCTYPE HTML>
 
-
-
-
-
-
-<html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="description" content="昆明国际花卉拍卖交易中心:花拍在线 ">
-		<meta name="author" content="zgh">
-		<link rel="icon" href="/static/images/favicon.ico">
-		
-		<title>花拍在线 </title>
-		
-		<!-- Bootstrap core CSS -->
-	  <link href="/static/components/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/static/css/sitemesh/decorator.css" rel="stylesheet">
-		<script src="/static/components/jquery/jquery.js"></script>
-		
-		
-		
-		<link href="/static/css/sitemesh/decorator-in.css" rel="stylesheet">
 		<script type="text/javascript">
 			var timeLeft;
 			var syncInterval;
@@ -208,8 +183,54 @@
 			};
 		</script>
 		
-  	
-  
+
+<link href="/static/components/jqueryui/Styles/datepicker.css" type="text/css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="/static/components/extremetable/Styles/extremecomponents.css" />
+<script src="/static/components/jqueryui/Scripts/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<!-- Tablesorter: required -->
+<link rel="stylesheet" href="/static/components/jquery/Plugin/tablesorter-v2.17.4/css/theme.blue.css" />
+<script src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/jquery.tablesorter.js"></script>
+<script src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/widgets/widget-math.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		$(".datepicker").datepicker(
+				{
+					showMonthAfterYear : true,
+					monthNamesShort : [ '一月', '二月', '三月', '四月', '五月', '六月',
+							'七月', '八月', '九月', '十月', '十一月', '十二月' ],
+					dayNamesMin : [ '日', '一', '二', '三', '四', '五', '六' ],
+					dateFormat : "yy-mm-dd",
+					changeYear : true,
+					changeMonth : true
+				});
+
+		$('#buyerTraHisT')
+				.tablesorter(
+						{
+							theme : 'blue',
+							delayInit : true,
+							widgets : [ 'zebra', 'filter', 'math' ],
+							widgetOptions : {
+								math_data : 'math', // data-math attribute
+								math_ignore : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ,12, 16],
+								//math_mask : '#,##0.##',
+								math_complete : function($cell, wo, result,
+										value, arry) {
+									var txt = '<span class="align-decimal">'
+											+ result + '</span>';
+									if ($cell.attr('data-math') === 'all-sum') {
+										// when the "all-sum" is processed, add a count to the end
+										return txt + ' (Sum of ' + arry.length
+												+ ' cells)';
+									}
+									return txt;
+								}
+							}
+						});
+	});
+</script>
+
 	
 	
 		
@@ -234,9 +255,9 @@
 
 		<ol class="breadcrumb">
 			您现在的位置：
-		  <li><a href="/welcome">首页</a></li>
-		  <li><a href="myflower">我的花拍</a></li>
-		  <li class="active">我的花拍</li>
+		  <li><a href="/default">首页</a></li>
+		  <li><a href="/myKIFAOnline">我的花拍</a></li>
+		  <li class="active">交易明细</li>
 		</ol>
 		
 		
@@ -301,26 +322,76 @@
 			</div>
 			<div class="col-md-9" style=" padding-left: 0px; ">
 				<div class="panel panel-success">
-					<div class="panel-heading">我的花拍</div>
+					<div class="panel-heading">交易明细</div>
 					
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<div style=" text-align: center;"><a href="/index"><h1>开始交易！</a></h1></div> 
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br>
-    		<br> 
-  
+	<form class="form-inline" role="form" id="queryform" name="queryform" method="post" action="/buyer/rptBuyHisBuyTransactionD/query">
+			<input type="text" class="form-control" id="PrdCode" name="PrdCode" value="" placeholder="品种">
+			<input type="text" class="form-control" id="GrdCode" name="GrdCode" value="" placeholder="等级">
+			<input type="text" class="form-control datepicker" id="BeginDate" name="BeginDate" value="" size="10" required placeholder="起始日期"/>
+			<input type="text" class="form-control datepicker" id="EndDate" name="EndDate" value="" size="10" required placeholder="终止日期"/>
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
+		</form>
+		<br>
+		<div class="table-responsive">
+		<table id="buyerTraHissT">
+			<thead>
+				<tr>					
+					<th class="" >序号</th>
+					<th class="" >   -订单号</th>
+					<th class="remove sorter-false" >交易序号</th>
+					<th class="remove sorter-false" >供货单号</th>
+
+
+					<th class="remove sorter-false" >成交类型</th>
+				</tr>
+			</thead>
+			
+					<?php 
+					
+						foreach($info as $key => $value){
+							
+							echo '<tr><th>'.($key+1).'</th>';
+							echo '<th>'.$value['id'].'</th></tr>';
+							echo '<tr><th>'.($key+1).'</th>';
+							echo '<th>'.$value['id'].'</th></tr>';
+						}
+					?>
+		
+			<tfoot>
+				<tr>
+					<th>合计</th>	
+
+				
+					<th></th>	
+					<th></th>	
+					<th></th>	
+					<th></th>	
+					<th></th>	
+					<th></th>	
+					<th></th>	
+					<th></th>	
+                    <th></th>
+						
+					<th></th>
+					<th data-math="col-sum" data-math-mask="##0.00">0</th>
+					<th data-math="col-sum" data-math-mask="##0.00">0</th>
+					<th data-math="col-sum" data-math-mask="##0.00">0</th>
+					
+					<th></th>
+				</tr>
+			</tfoot>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div>
+
 				</div>
 			</div>
 		</div>		
 	
 	
 		</div>
-		
+	

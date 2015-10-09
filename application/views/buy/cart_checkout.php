@@ -145,8 +145,10 @@
 			<tbody>
 			
               <?php 
-              		echo "订单号".$charge_id;
+              $mytotal = 0.00;
+              $total_item = 0;
 					foreach($data as $key =>$value){
+								var_dump($value);
 								
 								echo "<tr><td align=\"center\">".$value['name']."</td>";
 								echo "<td align=\"center\" style=\"font-size:12px\">".$value['options']['good_brand']."</td>";
@@ -164,12 +166,14 @@
 					         	echo "<td align=\"center\" style=\"font-size:12px\" id=\"tempTotalFee150915000074\">". $value['subtotal']."</td>";
 					         //	echo "<td align=\"center\"><A style=\"cursor:hand\" onclick=\"removeFromCart(this.parentNode.parentNode,'150915000074');\"><span class=\"glyphicon glyphicon-trash\"></span></A></td>";
 								echo "</tr>";
+								$mytotal += $value['subtotal'];
+								$total_item ++;
 						}
 					?>
 
 				
 				<tr>
-					<td colspan=11><label id="total" style="float: right;">商品总计<?php echo $this->cart->total_items();?>批,预计订单金额 <?php echo $this->cart->total();?>可用限额<?php echo $user_info['money']?>元</label></td>
+					<td colspan=11><label id="total" style="float: right;">商品总计<?php echo $total_item;?>批,预计订单金额 <?php  echo $mytotal;?>可用限额<?php echo $user_info['money']?>元</label></td>
 				</tr>
 			</tbody>
 		</table>
@@ -177,7 +181,7 @@
 
 	<ul class="pager">
 	  <li class="previous"><a href="/buyer/cart">&larr; 上一步</a></li>
-	  <li class="next"><a href="/buyer/saveCart">付款 &rarr;</a></li>
+	  <li class="next"><a href="/buyer/saveCart/charge_id/<?php echo $charge_id;?>">付款 &rarr;</a></li>
 	</ul>
 	<script type="text/javascript">
 	    jQuery(document).ready(function() {
