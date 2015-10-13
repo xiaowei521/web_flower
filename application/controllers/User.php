@@ -60,9 +60,9 @@ class User extends MY_Controller {
 		}
 		else{
 
-			$this->load->model('UserModel');
+			$this->load->model('user_model');
 			
-			$result = $this->UserModel->j_user_info($userId,$passwd);
+			$result = $this->user_model->j_user_info($userId,$passwd);
 			// 如果登陆成功保存session
 			if($result['status'] == 1){
 				$this->session->set_userdata('user_id'  ,$result['user_id']);
@@ -167,8 +167,8 @@ class User extends MY_Controller {
 		$returnData['password'] = $_POST['passWD'];
 		
 		// 去model 里面处理 先生成 用户 基础数据
-		$this->load->model('UserModel');
-		$sendEmailInfo = $this->UserModel->set_user_info($returnData);
+		$this->load->model('user_model');
+		$sendEmailInfo = $this->user_model->set_user_info($returnData);
 		
 		$this->sendMail($sendEmailInfo);
 		
@@ -222,10 +222,10 @@ class User extends MY_Controller {
 		$token = $this->uri->segment(4);
 		$userId = $this->uri->segment(6);
 		
-		$this->load->model('UserModel');
+		$this->load->model('user_model');
 		
 		 // 如果激活成功，成功界面。
-		$result = $this->UserModel->get_email_token($token,$userId);
+		$result = $this->user_model->get_email_token($token,$userId);
 		
 		$this->load->view('active.php',$result);
 
@@ -241,12 +241,12 @@ class User extends MY_Controller {
 	//判断用户id 唯一性
 	public function isUnique(){
 		
-		$db = $this->load->model('UserModel');
+		$db = $this->load->model('user_model');
 		
 		$user_id = $_GET['id'];
 		//
 		//
-		if( $this->UserModel->judge_user_aleardy($user_id)){
+		if( $this->user_model->judge_user_aleardy($user_id)){
 			echo 'true';
 		}
 		else{
@@ -266,7 +266,7 @@ class User extends MY_Controller {
 			
 			
 			// 查询数据库返回的数据
-			$returnArray = $this->UserModel->get_provice_city($_GET['province']);
+			$returnArray = $this->user_model->get_provice_city($_GET['province']);
 			if(count($returnArray) ==0){
 				$data['success'] = 'N';
 			}

@@ -402,76 +402,43 @@
 <input type="hidden"  name="ec_s_traDate" />
 <input type="hidden"  name="ec_s_IsComplain" />
 </div>
-<div class="eXtremeTable" >
-<table id="ec_table"  border="0"  cellspacing="0"  cellpadding="0"  class="tableRegion"  width="100%" >
-	<thead>
-	<tr style="padding: 0px;" >
-		<td colspan="14" >
-		<table border="0"  cellpadding="0"  cellspacing="0"  width="100%" >
+	<div class="table-responsive">
+		<table id="myTable" class="table table-bordered">
 			<tr>
-				<td class="statusBar" >没有找到记录.</td>
-				<td class="compactToolbar"  align="right" >
-				<table border="0"  cellpadding="1"  cellspacing="2" >
-					<tr>
-					<td><img src="/static/components/extremetable/images/table/firstPageDisabled.gif"  style="border:0"  alt="第一页" /></td>
-					<td><img src="/static/components/extremetable/images/table/prevPageDisabled.gif"  style="border:0"  alt="上一页" /></td>
-					<td><img src="/static/components/extremetable/images/table/nextPageDisabled.gif"  style="border:0"  alt="下一页" /></td>
-					<td><img src="/static/components/extremetable/images/table/lastPageDisabled.gif"  style="border:0"  alt="最后页" /></td>
-					<td><img src="/static/components/extremetable/images/table/separator.gif"  style="border:0"  alt="Separator" /></td>
-					<td><select name="ec_rd"  onchange="javascript:document.forms.ec.ec_crd.value=this.options[this.selectedIndex].value;document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()" >
-				<option value="50"  selected="selected">50</option><option value="50"  selected="selected">50</option><option value="100" >100</option>
-				</select></td>
-					</tr>
-				</table></td>
+				<th>序号</th>
+				<th>购买订单</th>
+				<th>订单物品</th>
+				<th>充值状态</th>
+				<th>操作</th>
 			</tr>
-		</table>
-		</td>
-	</tr>		
+			
+			
+				<?php 
+				foreach ($data as $key =>$row){
+					echo '<tr><th>'.($key+1).'</th>';
+					echo '<th>'.$row->id.'</th>';
+					
+// 					var_dump($row->data);
+					$json_data = json_decode($row->data,TRUE);
+					$crash_str = "";
+					$i = 0;
+				//	var_dump($json_data);
+					foreach($json_data as $r_key => $r_value){
 
-	<tr>
-		<td class="tableHeader" >序号</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traId.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 交易单号" >交易单号</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traSupBrand.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 品牌" >品牌</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traBreedName.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 品类" >品类</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traPrdName.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 品种" >品种</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traGrdCode.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 等级" >等级</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traQuantity.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 成交数量" >成交数量</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traPrice.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 成交价格" >成交价格</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traAmount.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 成交金额" >成交金额</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traBuyCommision.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 佣金比例" >佣金比例</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traBuyComm.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 佣金" >佣金</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traPay.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 划账成交" >划账成交</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_traDate.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 交易时间" >交易时间</td>
-		<td class="tableHeader"  onmouseover="this.className='tableHeaderSort';this.style.cursor='pointer'"  onmouseout="this.className='tableHeader';this.style.cursor='default'"  onclick="javascript:document.forms.ec.ec_s_IsComplain.value='asc';document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()"  title="排序 投诉" >投诉</td>
-	</tr>
-	</thead>
-	<tbody class="tableBody" >
-	</tbody>
-	<tr style="padding: 0px;" >
-		<td colspan="14" >
-		<table border="0"  cellpadding="0"  cellspacing="0"  width="100%" >
-			<tr>
-				<td class="statusBar" >没有找到记录.</td>
-				<td class="compactToolbar"  align="right" >
-				<table border="0"  cellpadding="1"  cellspacing="2" >
-					<tr>
-					<td><img src="/static/components/extremetable/images/table/firstPageDisabled.gif"  style="border:0"  alt="第一页" /></td>
-					<td><img src="/static/components/extremetable/images/table/prevPageDisabled.gif"  style="border:0"  alt="上一页" /></td>
-					<td><img src="/static/components/extremetable/images/table/nextPageDisabled.gif"  style="border:0"  alt="下一页" /></td>
-					<td><img src="/static/components/extremetable/images/table/lastPageDisabled.gif"  style="border:0"  alt="最后页" /></td>
-					<td><img src="/static/components/extremetable/images/table/separator.gif"  style="border:0"  alt="Separator" /></td>
-					<td><select name="ec_rd"  onchange="javascript:document.forms.ec.ec_crd.value=this.options[this.selectedIndex].value;document.forms.ec.ec_p.value='1';document.forms.ec.setAttribute('action','/buyer/transaction');document.forms.ec.setAttribute('method','post');document.forms.ec.submit()" >
-				<option value="50"  selected="selected">50</option><option value="50"  selected="selected">50</option><option value="100" >100</option>
-				</select></td>
-					</tr>
-				</table></td>
-			</tr>
-		</table>
-		</td>
-	</tr>		
+							$crash_str .=  ('<p>名字：'.$r_value['name'].'数量:'.$r_value['qty'].'价钱'.$r_value['price'].'</p>  ');
+					}
 
-</table>
-</div>
+					echo '<th> '.$crash_str.'</th>';
+					echo '<th>'.$row->status.'</th>';
+
+					echo '<th> 没想好什么操作</th></tr>';
+				}
+				?>
+			
+
+			
+		</table>
+	</div>
 </form>
 
 	</div>

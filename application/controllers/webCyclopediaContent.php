@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class webCyclopediaContent extends MY_Controller {
+class WebCyclopediaContent extends MY_Controller {
 	
-	function webCyclopediaContent(){
+	function WebCyclopediaContent(){
 		parent::__construct();
 
 

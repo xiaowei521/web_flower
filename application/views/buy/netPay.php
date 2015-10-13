@@ -286,7 +286,7 @@ function test()
 	}
 
 function SubmitPayReq(obj)
-{
+{alert('请登陆');
 	
 	if(netPayForm.amount.value>0){
 		var d = new Date();
@@ -309,7 +309,19 @@ function SubmitPayReq(obj)
 					//$.post("https://netpay.cmbchina.com/netpayment/basehttp.dll?prepayc", "jsonp");
 					//window.location.href="https://netpay.cmbchina.com/netpayment/basehttp.dll?prepayc?branchid=0871&cono=012427&date="+netPayForm.date.value+"&billno="+netPayForm.billno.value+"&amount="+netPayForm.amount.value;
 					//window.open("https://netpay.cmbchina.com/netpayment/basehttp.dll?prepayc?branchid=0871&cono=012427&date="+netPayForm.date.value+"&billno="+netPayForm.billno.value+"&amount="+netPayForm.amount.value,"_blank");
-					
+
+
+
+					if(result['status']){
+						//证明可以去充值
+						alert('请ss登陆');
+						window.open("/Order/jump_old_index/pay_id/"+result['pay_id']);
+						
+					}
+					else{
+						alert('请登陆');
+						window.location.href="User/login";
+					}
 					$('#myModal').modal({show:true});
 					
 				}
@@ -503,13 +515,32 @@ function SubmitPayReq(obj)
 		<table id="myTable" class="table table-bordered">
 			<tr>
 				<th>序号</th>
-				<th>编号</th>
 				<th>充值订单号</th>
 				<th>充值金额</th>
 				<th>充值时间</th>
 				<th>充值状态</th>
 				<th>充值来源</th>
 				<th>操作</th>
+			</tr>
+			
+			<tr>
+				<?php 
+				foreach ($data as $key =>$row){
+					echo '<th>'.($key+1).'</th>';
+					echo '<th>'.$row->id.'</th>';
+					echo '<th>'.$row->value.'</th>';
+					echo '<th>'.$row->time.'</th>';
+					echo '<th>'.$row->status.'</th>';
+					echo '<th>'.$row->type.'</th>';
+					if($row->status){
+						echo '<th> 支付完成'.'</th>';
+}
+else{
+	echo '<th> <a href="http://localhost:10000/Order/jump_old_index/pay_id/'.$row->id.'">支付</a></th>';
+}
+
+				}
+				?>
 			</tr>
 
 			

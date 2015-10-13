@@ -2,9 +2,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class webRuleContent extends MY_Controller {
+class WebRuleContent extends MY_Controller {
 
-	function webRuleContent(){
+	function WebRuleContent(){
 		parent::__construct();
 
 		$this->is_logged_in();

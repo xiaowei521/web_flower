@@ -1,12 +1,11 @@
 <?php 
 
 abstract class MY_Controller extends CI_Controller {
-	function __construct(){
+	public function __construct(){
 		parent::__construct();
 
 		$this->load->library('session');
 		$this->load->helper("url");
-		
 		$this->config->load('myconfig', TRUE);
 	
 	}

@@ -1,7 +1,7 @@
 <?php  
- class buyerModel extends CI_Model{ 
+ class Buyer_model extends CI_Model{ 
  	 
-     function buyerModel(){  
+     function Buyer_model(){  
          parent::__construct();  
          $this->load->database();
      }  
@@ -99,6 +99,30 @@
      	return $result;
      }
      
+     
+     //根据订单id 来重置 status 的 订单状态
+     public  function set_charge_status_by_id($id,$status){
+     	
+     	$update['status'] = $status;
+     	
+     	$this->db->update('charge', $update, array('id'=>$id));
+     }
+     
+     //设置 充值 订单的信息 pay_detail 表
+     public function set_pay_info($data){
+     	     	
+     	$this->db->insert('pay_detail', $data);
+     	
+     }
+     public function get_pay_info($id){
+     //	$data = $this->db->where('id',$id)->from('pay_detail')->get()->result();
+     	
+     	$data = $this->db->where('id',$id)->from('pay_detail')->get()->row_array();
+     	return $data;
+     }
+     
+     
+     
      public function find_self_charge_info_by_id($user_id){
      	
      	$data = $this->db->where('user_id',$user_id)->from('charge')->get()->result();
@@ -141,7 +165,23 @@
      	
      }
      
+     
+     
+     //根据用户id 来获取订单信息
+     // 解压 data 数据信息
+     public function get_charge_info_by_userId( $userId ){
+     
+     	$data = $this->db->where(array('user_id'=>$userId))->from('charge')->get()->result();
+     
+     	
+     	
+     	
+     	return $data;
 
+     }
+     
+     
+     
      
      
 }

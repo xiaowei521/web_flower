@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = '';
+$route['default_controller'] = 'Welcome';
 $route['404_override'] = '';
 $route['sc/(:any)'] =  "tracker/sc/index/$1/$2/$3/$4"; 
 $route['sv/(:any)'] =  "tracker/sv/index/$1/$2/$3/$4";

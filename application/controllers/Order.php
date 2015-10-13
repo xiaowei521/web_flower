@@ -7,8 +7,8 @@ class Order extends CI_Controller{
 	function Order(){
 		parent::__construct();
 
-		$this->load->model('buyerModel');
-		$this->load->model('UserModel');
+		$this->load->model('buyer_model');
+		$this->load->model('user_model');
 	}
 	
 	public function index(){
@@ -25,8 +25,21 @@ class Order extends CI_Controller{
 		$this->load->view('alipay/return_url');
 	}
 	
+	
+	
+	//充值信息 充值金钱
 	public function jump_old_index(){
-		$this->load->view('oldalipay/index');
+		
+		$pay_id = $this->uri->segment(4);
+		//$pay_id = $_GET['pay_id'];
+		$pay_data = $this->buyer_model->get_pay_info($pay_id);
+		
+		var_dump($pay_data) ;
+		
+		$this->load->view('oldalipay/index',array(
+				'payId' =>$pay_id,
+				'data' =>$pay_data,
+		));
 	}
 	public function jump_old_alipayapi(){
 		$this->load->view('oldalipay/alipayapi');
@@ -87,7 +100,7 @@ class Order extends CI_Controller{
 		
 		// 先去判断这个订单的状态
 		// 判断 charge 的单子状态
-		$charge_info = $this->buyerModel-> j_charge_status ();
+		$charge_info = $this->buyer_model-> j_charge_status ();
 		
 		// 成功+100
 		if($status && !$charge_info['status']){
@@ -95,17 +108,22 @@ class Order extends CI_Controller{
 			
 			//根据订单 来去查询用户的 信息
 			
-			$this->UserModel->charge_success($order_id,$charge_info['user_id'],$charge_info['subtotal']);
+			$this->user_model->charge_success($order_id,$charge_info['user_id'],$charge_info['subtotal']);
 			
 			$result_status  = 1;
 		}
 		
 		//失败  +1  // 理论上来说 他是不可能进入到失败操作的。 因为失败的话  屏蔽掉
 		else{
-		//	$this->UserModel->charge_success('sunwei',0);
+		//	$this->user_model->charge_success('sunwei',0);
 			$result_status  = 0;
 		}
 		// 记录 流水号，充值记录;
-		$this->UserModel->write_order_info($order_id,$result_status);
+		$this->user_model->write_order_info($order_id,$result_status);
 	}
+	
+	
+
+	
+	
 }

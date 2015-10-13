@@ -166,19 +166,19 @@ ul,ol{
                     <dt>商户订单号：</dt>
                     <dd>
                         <span class="null-star">*</span>
-                        <input size="30" name="WIDout_trade_no" />
+                        <input size="30" name="WIDout_trade_no" disabled="disabled" value="<?php echo $data['id'];?>"/>
                         <span>商户网站订单系统中唯一订单号，必填</span>
                     </dd>
                     <dt>订单名称：</dt>
                     <dd>
                         <span class="null-star">*</span>
-                        <input size="30" name="WIDsubject" />
+                        <input size="30" name="WIDsubject" disabled="disabled" value="<?php echo "充值什么乱七八糟的名称";?>"/>
                         <span>必填</span>
                     </dd>
                     <dt>付款金额：</dt>
                     <dd>
                         <span class="null-star">*</span>
-                        <input size="30" name="WIDprice" />
+                        <input size="30" name="WIDprice" disabled="disabled" value="<?php echo $data['value'];?>"/>
                         <span>必填</span>
                     </dd>
                     <dt>订单描述：</dt>

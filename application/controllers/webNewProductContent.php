@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class webNewProductContent extends MY_Controller {
+class WebNewProductContent extends MY_Controller {
 	
-	function webNewProductContent(){
+	function WebNewProductContent(){
 		parent::__construct();
 
 		$this->is_logged_in();
