@@ -51,11 +51,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Welcome';
 
-
+$route['webCyclopediaContent/(:any)'] = 'webCyclopediaContent/show/$1/$2/$3';
 // $route ['buyer/myFlower'] = "buyer/index/$1";
 //  $route ['user/(:any)'] = "User/index/$1";
 
-
+$route['sc/(:any)'] =  "tracker/sc/index/$1/$2/$3/$4";
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

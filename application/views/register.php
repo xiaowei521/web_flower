@@ -95,7 +95,7 @@
 		<div class="container">
 			
 		<div class="logo">
-			<a href="/default"><img border="0" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" src="/static/images/logo.png"></a>
+			<a href="/welcome"><img border="0" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" src="/static/images/logo.png"></a>
 			<img border="0" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" src="/static/images/wx.jpg">
 			<!--  <div class="col-md-12">
 				<img class="img-responsive" alt="Responsive image"  src="/static/images/header.png"  usemap="#planetmap" >

@@ -9,6 +9,7 @@ class User extends MY_Controller {
 		$this->load->helper('url');
 		$this->load->driver('cache');
 		$this->load->library('session');
+		$this->load->model('user_model');
 	 //	$this->is_logged_in();
 		
 	}
@@ -107,7 +108,7 @@ class User extends MY_Controller {
 	
 	// 用户退出
 	public function j_logout(){
-		$this->is_logged_in();
+		
 // 		if($this->session->userdata('user_id') == NULL){
 // 			//
 // 		}
@@ -116,7 +117,7 @@ class User extends MY_Controller {
 // 		}
         //清空user_id
 		$this->session->unset_userdata('user_id');
-		
+		$this->is_logged_in();
 		$this->index();
 		
 	}
@@ -317,6 +318,72 @@ class User extends MY_Controller {
 	
 	}
 	
+	
+	
+	public function forgetpassword(){
+		
+		$this->is_logged_in();
+		$this->load->view('user/forgetpassword');
+	}
+	//用户召回密码发送邮件
+	public function findpassword(){
+		
+		$user_id = $_POST['id'];
+				
+		
+		$findInfo = $this->user_model->find_user_password($user_id);
+		
+		$config['protocol'] = 'smtp'; //采用smtp方式
+		$config['smtp_host'] = 'smtp.163.com'; //简便起见，只支持163邮箱
+		$config['smtp_user'] = '15947617098@163.com'; //你的邮箱帐号
+		$config['smtp_pass'] = '547966965'; //你的邮箱密码
+		$config['charset'] = 'utf-8';
+		$config['wordwrap'] = TRUE;
+		$config['mailtype'] = "html";
+		$this->load->library('email'); //加载email类
+		$this->email->initialize($config);//参数配置
+		$this->email->from('15947617098@163.com', '孙伟测试');
+		$this->email->to($findInfo['email']);
+		$this->email->subject('注册用户激活');
+		
+		$returnUrl = "亲爱的".$findInfo['user_id']."：   请点击重置您的密码。<br/>
+    <a href='localhost:10000/User/update_user_password/verify/".$findInfo['token']."/user_id/".$findInfo['user_id']."' target=
+'_blank'> 重置我的密码</a><br/>该链接24小时内有效。";
+		
+		$this->email->message($returnUrl);
+		
+		$this->email->send();
+		
+		
+		$this->load->view('user/findpassword',array(
+				'info' => $findInfo,
+		));
+		
+	}
+	public function update_user_password(){
+		
+		
+		$token = $this->uri->segment(4);
+		$userId = $this->uri->segment(6);
+		
+	//	$this->load->model('user_model');
+		$this->load->view('user/updateUserPassword',array(
+				'token' => $token,
+				'id' => $userId,
+		));
+		
+	}
+	public function set_user_password(){
+		$password = $_POST['newpswd'];
+		$user_id = $_POST['userid'];
+		
+		$object['password'] = $password;
+		
+		$this->user_model->set_user_database_info($user_id,$object);
+		
+		echo '修改成功！请牢记密码:'.$password;
+	}
+
 	
 	
 	

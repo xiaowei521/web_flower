@@ -65,10 +65,10 @@
      	$this->db->where('user_id', $user_id);
      	$user_info['password'] = $this->passwd($user_info['password']);
      	
-     	var_dump($user_info);
+     //	var_dump($user_info);
      	
      	$this->db->update('user', $user_info);
-		exit();
+	//	exit();
      }
      
      // 存储用户信息
@@ -132,6 +132,77 @@
      		return $result;
      	}
      }
+     
+     //用户密码丢失
+     public function find_user_password($userId){
+     
+     	
+     	$query = $this->db->where('user_id',$userId)->from('user')->get()->result();
+     	
+     	if($query == null){
+     		return false;
+     	}
+     	else{
+     		$result['email'] = $query[0]->buyConEmail;
+     		$result['user_id'] = $userId;
+     		$result['token'] =  $query[0]->token;
+     		return $result;
+     	}
+     }
+     
+     //召回密码 校验码
+     public function update_user_password($token,$user_id){
+     	
+     	if($this->db->where('user_id',$userId)->from('user')->get()->num_rows() == 0){
+     		 
+     		$result['status']  = "fasle";
+     		$result['info'] = "该用户不存在无法激活";
+     		return $result;
+     	}
+     	$query = $this->db->where('user_id',$userId)->from('user')->get()->result();
+     	// 未激活
+     	if($query[0]->status == 1){
+     		// 可以去测试验证吗
+     		if(time() <= $query[0]->token_exptime ){
+     			if($query[0]->token == $this->passwd($userId)){
+     				$update['status'] = 0;
+     				$this->db->update('user', $update, array('user_id'=>$userId));
+     				$result['status']  = "true";
+     				$result['info'] = "OK!";
+     				return $result;
+     			}
+     		}
+     		else{
+     			$result['status']  = "fasle";
+     			$result['info'] = "验证码过期";
+     			// 验证码过期
+     			return $result;
+     		}
+     	}
+     	// 已经激活
+     	else if($query[0]->status == 0){
+     		
+     		
+     		
+     		$result['status']  = "fasle";
+     		$result['info'] = "已经激活";
+     		return $result;
+     	}
+     	else{
+     		// 被封号中！链接失效
+     		$result['status']  = "fasle";
+     		$result['info'] = "账号异常/被封号，请联系客服";
+     		return $result;
+     	}
+     	
+     	
+     }
+     
+     
+     
+     
+     
+     
      //  加密
      public static function passwd($passwd){
      	$base = "sw_ajax";

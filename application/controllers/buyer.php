@@ -331,6 +331,18 @@ class Buyer extends MY_Controller {
 		$user_id = $this->session->userdata('user_id');
 		$charge_info  = $this->buyer_model->find_charge_info_by_id($charge_id,$user_id);
 		
+		if($charge_info['status'] == 1 ){
+		
+			$this->load->view('buy/cart_check_result.php',array(
+					'status' => 1,
+					'info' => '购买成功,请入频繁刷新！',
+					'data' => $charge_info,
+			));
+			return;
+		}
+		
+		
+		
 		$cart_total = $charge_info['subtotal'];
 		
 		// 如何确认付款是当前数据

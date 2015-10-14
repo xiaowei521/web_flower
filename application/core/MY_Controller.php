@@ -10,6 +10,23 @@ abstract class MY_Controller extends CI_Controller {
 	
 	}
 	
+	private function check_url($url){
+		
+		$config = array(
+			'webCyclopediaContent',
+			'webNewProductContent',
+			'webNoticeContent',
+			'webProductContent',
+			'webRuleContent',
+		);
+		foreach($config as $key => $value){
+			if(strpos($url,$value) !==false){
+					return true;
+			}
+		}
+		return false;
+
+	}
 	
 	public function is_logged_in()
 	{
@@ -29,12 +46,17 @@ abstract class MY_Controller extends CI_Controller {
 			
 			$uri = uri_string ( current_url () );
 			
+			if(!$this->check_url($uri)){
+				if (! in_array ( $uri, $this->config->item ( 'sw_pass_url' ,'myconfig') )) {
+						redirect ( $this->config->item ( 'sw_login_url','myconfig' ), 'refresh' );
+				}
+			}
+			
+			
 		//var_dump($uri);
 			//var_dump($this->config->item ( 'sw_pass_url' ,'myconfig'));
 			
-			if (! in_array ( $uri, $this->config->item ( 'sw_pass_url' ,'myconfig') )) {
-				redirect ( $this->config->item ( 'sw_login_url','myconfig' ), 'refresh' );
-			}
+
 			//return;
 			//header("location:".site_url("user/login"));
 			// 跳到登陆界面

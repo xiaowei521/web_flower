@@ -28,6 +28,17 @@ $config ['sw_pass_url'] = array (
 		'User/register',
 		'User/getRefreshImg',
 		'User/register_select',
+		'user/forgetpassword'
+// 		'webCyclopediaContent',
+// 		'webNewProductContent',
+// 		'webNoticeContent',
+// 		'webProductContent',
+// 		'webRuleContent',
+// 		'webCyclopediaContent',
+// 		'webNewProductContent',
+// 		'webNoticeContent',
+// 		'webProductContent',
+// 		'webRuleContent',
 		
 );
 $config ['sw_login_url'] = 'User/login';
