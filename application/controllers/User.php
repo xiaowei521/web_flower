@@ -140,8 +140,9 @@ class User extends MY_Controller {
 // 		$login_in =  $this->load->view('public/login_in.php','',true);
 // 		$footer = $this->load->view('public/footer.php','',true);
 // 		$header = $this->load->view('public/header.php','',true);
-		
+		$this->is_logged_in();
 		// 如果是购买商
+		
 		$value = $this->input->post ( 'bsselect', TRUE );
 		
 		if($value =='supplier'){

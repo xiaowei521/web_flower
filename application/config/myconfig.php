@@ -27,6 +27,7 @@ $config ['sw_pass_url'] = array (
 		'User/login',
 		'User/register',
 		'User/getRefreshImg',
+		'User/register_select',
 		
 );
 $config ['sw_login_url'] = 'User/login';
