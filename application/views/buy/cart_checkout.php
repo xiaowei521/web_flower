@@ -1,30 +1,11 @@
-<!DOCTYPE HTML>
-
-
-
-
-
-
-<html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="description" content="昆明国际花卉拍卖交易中心:花拍在线 ">
-		<meta name="author" content="zgh">
-		<link rel="icon" href="/static/images/favicon.ico">
-		
-		<title>花拍在线 </title>
-		
-		<!-- Bootstrap core CSS -->
-	  <link href="/static/components/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/static/css/sitemesh/decorator.css" rel="stylesheet">
-		<script src="/static/components/jquery/jquery.js"></script>
-		
-		
-		
-		<link href="/static/css/sitemesh/decorator-in.css" rel="stylesheet">
-		<script type="text/javascript">
+<?php
+if ($login_status) {
+	require_once ("application/views/public/login_in.php");
+} else {
+	require_once ("application/views/public/login_out.php");
+}
+?>
+<script type="text/javascript">
 			var timeLeft;
 			var syncInterval;
 			$(function() {
@@ -83,17 +64,22 @@
 								});
 			}
 		</script>
-		
-	<!-- Tablesorter: required -->
-	<link rel="stylesheet" href="/static/components/jquery/Plugin/tablesorter-v2.17.4/css/theme.ice.css">
-	<script src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/jquery.tablesorter.js"></script>
-	
-	<!-- render: required -->
-	<link rel="stylesheet" type="text/css" href="/static/components/render/css/default.include.css" media="all" />
-	<link rel="stylesheet" id="spi-render-css-css" href="/static/components/render/css/render.css?ver=3.5.2" type="text/css" media="all" />
-	
-	
-	<script type="text/javascript">
+
+<!-- Tablesorter: required -->
+<link rel="stylesheet"
+	href="/static/components/jquery/Plugin/tablesorter-v2.17.4/css/theme.ice.css">
+<script
+	src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/jquery.tablesorter.js"></script>
+
+<!-- render: required -->
+<link rel="stylesheet" type="text/css"
+	href="/static/components/render/css/default.include.css" media="all" />
+<link rel="stylesheet" id="spi-render-css-css"
+	href="/static/components/render/css/render.css?ver=3.5.2"
+	type="text/css" media="all" />
+
+
+<script type="text/javascript">
 		$(function() {
 			$("#myTable").tablesorter({
 				theme : 'ice'
@@ -101,89 +87,77 @@
 		});
 	</script>
 
-	
-		
-	</head>
-	<body>
 
-	
-		<div class="container">
+
+</head>
+<body>
+
+
+
+
+		<ol class="breadcrumb">
+			您现在的位置：
+			<li><a href="/welcome">首页</a></li>
+			<li class="active">购物车</li>
+		</ol>
+		<img class="img-responsive" src="/static/images/car2.png">
+		<div class="table-responsive">
+			<table id="myTable" class="table  table-bordered">
+				<thead>
+					<tr>
+						<td>品类</td>
+						<td>品牌</td>
+						<td>品种</td>
+						<td class="remove sorter-false">图</td>
+						<td>等级</td>
+						<td>价格</td>
+						<td>数量</td>
+						<td>购买数量</td>
+						<td>订单金额(元)</td>
+					</tr>
+				</thead>
+				<tbody>
 			
-	
-		<div class="logo">
-			<a href="/default"><img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" border="0" /></a>
-			<img src="/static/images/wx.jpg" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" border="0" />
-			<div class="time">
-				<label id=statusName></label>
-				<br>
-				<strong id="hour_show" style="background:#C71C60;padding: 2px 4px 2px 4px;border-radius:5px;"></strong><br>
+              <?php
+														$mytotal = 0.00;
+														$total_item = 0;
+														foreach ( $data as $key => $value ) {
+															var_dump ( $value );
+															
+															echo "<tr><td align=\"center\">" . $value ['name'] . "</td>";
+															echo "<td align=\"center\" style=\"font-size:12px\">" . $value ['options'] ['good_brand'] . "</td>";
+															echo "<td valign=\"middle\" align=\"left\" style=\"padding-bottom: 0;padding-right: 0;\">
+							    <span style=\"font-size:12px\">" . $value ['options'] ['good_variety'] . "</span></td>";
+															echo "<td style=\"padding-bottom: 0;padding-right: 0;\"><div id=\"sit-simple\"><a target=\"_blant\" class=\"sit-preview\" " . "href=\"" . $value ['options'] ['good_img_url'] . "\">" . "<img src=\"" . $value ['options'] ['good_img_url'] . "\"" . "data-preview-url=\"" . $value ['options'] ['good_img_url'] . "\"" . " width=\"20\" height=\"20\" border=\"0\" /></a></div></td>";
+															echo "<td align=\"center\">" . $value ['options'] ['good_level'] . "</td>";
+															echo "<td align=\"center\">" . $value ['price'] . "</td>";
+															
+															echo "<td align=\"center\"><label style=\"color: red;\">10</label>×20枝</td>";
+															
+															echo "<td style=\"padding-bottom: 0;padding-left: 0;padding-right: 0;\">" . $value ['qty'] . "</td>";
+															
+															echo "<td align=\"center\" style=\"font-size:12px\" id=\"tempTotalFee150915000074\">" . $value ['subtotal'] . "</td>";
+															// echo "<td align=\"center\"><A style=\"cursor:hand\" onclick=\"removeFromCart(this.parentNode.parentNode,'150915000074');\"><span class=\"glyphicon glyphicon-trash\"></span></A></td>";
+															echo "</tr>";
+															$mytotal += $value ['subtotal'];
+															$total_item ++;
+														}
+														?>
+
 				
-			</div>
+				<tr>
+						<td colspan=11><label id="total" style="float: right;">商品总计<?php echo $total_item;?>批,预计订单金额 <?php  echo $mytotal;?>可用限额<?php echo $user_info['money']?>元</label></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		
-	<ol class="breadcrumb">
-		您现在的位置：
-		<li><a href="/welcome">首页</a></li>
-		<li class="active">购物车</li>
-	</ol>
-	<img class="img-responsive" src="/static/images/car2.png">
-	<div class="table-responsive">
-		<table id="myTable" class="table  table-bordered">
-			<thead>
-				<tr>
-					<td>品类</td>
-					<td>品牌</td>
-					<td>品种</td>
-					<td  class="remove sorter-false">图</td>
-					<td>等级</td>
-					<td>价格</td>
-					<td>数量</td>
-					<td>购买数量</td>
-					<td>订单金额(元)</td>
-				</tr>
-			</thead>
-			<tbody>
-			
-              <?php 
-              $mytotal = 0.00;
-              $total_item = 0;
-					foreach($data as $key =>$value){
-								var_dump($value);
-								
-								echo "<tr><td align=\"center\">".$value['name']."</td>";
-								echo "<td align=\"center\" style=\"font-size:12px\">".$value['options']['good_brand']."</td>";
-								echo "<td valign=\"middle\" align=\"left\" style=\"padding-bottom: 0;padding-right: 0;\">
-							    <span style=\"font-size:12px\">".$value['options']['good_variety']."</span></td>";
-							    echo "<td style=\"padding-bottom: 0;padding-right: 0;\"><div id=\"sit-simple\"><a target=\"_blant\" class=\"sit-preview\" "."href=\"".$value['options']['good_img_url']."\">". "<img src=\"".$value['options']['good_img_url']."\""."data-preview-url=\"".$value['options']['good_img_url']."\""." width=\"20\" height=\"20\" border=\"0\" /></a></div></td>";
-								echo "<td align=\"center\">".$value['options']['good_level']."</td>";
-								echo "<td align=\"center\">".$value['price']."</td>";
-								
-								
-								echo "<td align=\"center\"><label style=\"color: red;\">10</label>×20枝</td>";
-								
-					         	echo "<td style=\"padding-bottom: 0;padding-left: 0;padding-right: 0;\">".$value['qty']."</td>";
-					         	
-					         	echo "<td align=\"center\" style=\"font-size:12px\" id=\"tempTotalFee150915000074\">". $value['subtotal']."</td>";
-					         //	echo "<td align=\"center\"><A style=\"cursor:hand\" onclick=\"removeFromCart(this.parentNode.parentNode,'150915000074');\"><span class=\"glyphicon glyphicon-trash\"></span></A></td>";
-								echo "</tr>";
-								$mytotal += $value['subtotal'];
-								$total_item ++;
-						}
-					?>
 
-				
-				<tr>
-					<td colspan=11><label id="total" style="float: right;">商品总计<?php echo $total_item;?>批,预计订单金额 <?php  echo $mytotal;?>可用限额<?php echo $user_info['money']?>元</label></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<ul class="pager">
-	  <li class="previous"><a href="/buyer/cart">&larr; 上一步</a></li>
-	  <li class="next"><a href="/buyer/saveCart/charge_id/<?php echo $charge_id;?>">付款 &rarr;</a></li>
-	</ul>
-	<script type="text/javascript">
+		<ul class="pager">
+			<li class="previous"><a href="/buyer/cart">&larr; 上一步</a></li>
+			<li class="next"><a
+				href="/buyer/saveCart/charge_id/<?php echo $charge_id;?>">付款 &rarr;</a></li>
+		</ul>
+		<script type="text/javascript">
 	    jQuery(document).ready(function() {
 	        jQuery("#sit-simple .sit-preview").smartImageTooltip({previewTemplate: "simple", imageWidth: "480px"});
 	        jQuery("#sit-caption .sit-preview").smartImageTooltip({previewTemplate: "caption", scaleDesktop: 70, scaleMobile: 55});
@@ -192,8 +166,11 @@
 	        jQuery("#sit-nolink img.sit-thumb").smartImageTooltip({previewTemplate: "caption", imageWidth: "480px"});
 	    });
 	</script>
-	<script type="text/javascript" src="/static/components/render/js/default.include.js"></script>
+		<script type="text/javascript"
+			src="/static/components/render/js/default.include.js"></script>
 
-	
-		</div>
-	
+
+	</div>
+<?php
+require_once ("application/views/public/footer.php"); 
+?>

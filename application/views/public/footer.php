@@ -10,6 +10,7 @@
         </div>
     </div>
 </div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="/bootstrap/js/bootstrap.min.js">
 </script>

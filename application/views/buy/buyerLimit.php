@@ -1,30 +1,12 @@
-<!DOCTYPE HTML>
+<?php
+if ($login_status) {
+	require_once ("application/views/public/login_in.php");
+} else {
+	require_once ("application/views/public/login_out.php");
+}
+?>
 
-
-
-
-
-
-<html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="description" content="昆明国际花卉拍卖交易中心:花拍在线 ">
-		<meta name="author" content="zgh">
-		<link rel="icon" href="/static/images/favicon.ico">
-		
-		<title>花拍在线 </title>
-		
-		<!-- Bootstrap core CSS -->
-	  <link href="/static/components/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/static/css/sitemesh/decorator.css" rel="stylesheet">
-		<script src="/static/components/jquery/jquery.js"></script>
-		
-		
-		
-		<link href="/static/css/sitemesh/decorator-in.css" rel="stylesheet">
-		<script type="text/javascript">
+<script type="text/javascript">
 			var timeLeft;
 			var syncInterval;
 			$(function() {
@@ -83,9 +65,10 @@
 								});
 			}
 		</script>
-		
-		<link type="text/css" rel="stylesheet" href="/static/components/sdmenu/css/sdmenu.css" />
-		<script type="text/javascript">
+
+<link type="text/css" rel="stylesheet"
+	href="/static/components/sdmenu/css/sdmenu.css" />
+<script type="text/javascript">
 			var myMenu;
 			window.onload = function() {
 				myMenu = new SDMenu("my_menu");
@@ -207,172 +190,143 @@
 				}
 			};
 		</script>
-		
-
-
-	
-	
-		
-	</head>
-	<body>
-
-	
-		<div class="container">
-			
-	
-		<div class="logo">
-			<a href="/default"><img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" border="0" /></a>
-			<img src="/static/images/wx.jpg" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" border="0" />
-			<div class="time">
-				<label id=statusName></label>
-				<br>
-				<strong id="hour_show" style="background:#C71C60;padding: 2px 4px 2px 4px;border-radius:5px;"></strong><br>
-				
-			</div>
-		</div>
-		
 
 		<ol class="breadcrumb">
 			您现在的位置：
-		  <li><a href="/welcome">首页</a></li>
-		  <li><a href="/buy/myFlower">我的花拍</a></li>
-		  <li class="active">限额查询</li>
+			<li><a href="/welcome">首页</a></li>
+			<li><a href="/buy/myFlower">我的花拍</a></li>
+			<li class="active">限额查询</li>
 		</ol>
-		
-		
+
+
 		<div class="row">
 			<div class="col-md-3">
 				<div class="panel panel-info">
-					<div class="panel-heading" style=" text-align: center; "><a href="/index">继续交易</a></div>
+					<div class="panel-heading" style="text-align: center;">
+						<a href="/buyer/index">继续交易</a>
+					</div>
 				</div>
 				<div class="panel panel-success">
 					<div class="panel-heading">我的花拍</div>
-					<div class="panel-body" style="padding: 0px 0px 36px 0px;text-align:center">
-						
-							<div id="my_menu" class="sdmenu">
-								<div class="collapsed">
-									<span>个人中心</span> 
-									<a href="/buyer/changePassword">密码重置</a>
-									<a href="/buyer/ibuyer">信息修改</a>
-								</div>
-								<div>
-									<span>交易中心</span> 
-									<a href="/buyer/netPay">网银充值</a>
-									<a href="/buyer/drawBack">退款申请</a>
-									<a href="/buyer/buyerLimit">限额查询</a> 
-									<a href="/buyer/transaction">交易明细</a>
-									<a href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
-								</div>
-								<div class="collapsed">
-									<span>结算中心</span> 
-									<a href="/buyer/buyRestBill">其它应收应付</a> 
-									<a href="/buyer/totalBalance">结算查询</a>
-								</div>
-								<div class="collapsed">
-									<span>历史查询</span> 
+					<div class="panel-body"
+						style="padding: 0px 0px 36px 0px; text-align: center">
 
-									<a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
-									<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a>									
-									<a href="/buyer/rptBuyHisLogdeListD">投诉明细</a>
-									<a href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a>
-									<a href="/buyer/rptBuyHisBalanceList">结算明细</a>
-								</div>
-								<div class="collapsed">
-									<span>交易规则</span> 
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a>									
-									<a href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
-								</div>
-								<div class="collapsed">
-									<span>常见问题</span> 
-									<a href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a>									
-									<a href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
-								</div>
+						<div id="my_menu" class="sdmenu">
+							<div class="collapsed">
+								<span>个人中心</span> <a href="/buyer/changePassword">密码重置</a> <a
+									href="/buyer/ibuyer">信息修改</a>
 							</div>
-							
-					</div>			
+							<div>
+								<span>交易中心</span> <a href="/buyer/netPay">网银充值</a> <a
+									href="/buyer/drawBack">退款申请</a> <a href="/buyer/buyerLimit">限额查询</a>
+								<a href="/buyer/transaction">交易明细</a> <a
+									href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
+							</div>
+							<div class="collapsed">
+								<span>结算中心</span> <a href="/buyer/buyRestBill">其它应收应付</a> <a
+									href="/buyer/totalBalance">结算查询</a>
+							</div>
+							<div class="collapsed">
+								<span>历史查询</span> <a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
+								<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a> <a
+									href="/buyer/rptBuyHisLogdeListD">投诉明细</a> <a
+									href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a> <a
+									href="/buyer/rptBuyHisBalanceList">结算明细</a>
+							</div>
+							<div class="collapsed">
+								<span>交易规则</span> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
+							</div>
+							<div class="collapsed">
+								<span>常见问题</span> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
+								<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
-			<div class="col-md-9" style=" padding-left: 0px; ">
+			<div class="col-md-9" style="padding-left: 0px;">
 				<div class="panel panel-success">
 					<div class="panel-heading">限额查询</div>
-					
-	<div class="result">
-		<fieldset>
-			<legend>预授金额</legend>
-			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
-				<tr>
-					<td class="left" style="width:25%; text-align: right;"><h3>预授金额</h3></td>
-					<td class="right"><h3>
-							￥0.00
-						</h3></td>
-				</tr>
-			</table>
-		</fieldset>
-		<br>
-		<fieldset>
-			<legend>计算比例</legend>
-			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
-				<tr>
-					<td class="left" style="width:25%; text-align: right;"><h3>佣金比例</h3></td>
-					<td class="right"><h3>0.05</h3></td>
-					<td class="left" style="width:25%; text-align: right;"><h3>运费比例</h3></td>
-					<td class="right"><h3>0.30</h3></td>
-				</tr>
-			</table>
-		</fieldset>
-		<br>
-		<fieldset>
-			<legend>购买限额</legend>
-			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
-				<tr>
-					<td class="left" style="width:25%; text-align: right;"><h3>购买限额</h3></td>
-					<td class="right"><h3>
-							￥0.00
-						</h3></td>
-				</tr>
-			</table>
-		</fieldset>
-		<br>
-		<fieldset>
-			<legend>交易使用</legend>
-			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
-				<tr>
-					<td class="left" style="width:25%; text-align: right;"><h3>竞价占用</h3></td>
-					<td class="right"><h3>
-							￥0.00
-						</h3></td>
-					<td class="left" style="width:25%; text-align: right;"><h3>实际使用</h3></td>
-					<td class="right"><h3>
-							￥0.00
-						</h3></td>
-				</tr>
-			</table>
-		</fieldset>
-		<br>
-		<fieldset>
-			<legend>可用限额</legend>
-			<table class="border" width=100% cellSpacing=0 cellPadding=2 align="center">
-				<tr>
-					<td class="left" style="width:25%; text-align: right;"><h3>可用限额</h3></td>
-					<td class="right"><h3>
-							￥0.00
-						</h3></td>
-				</tr>
-			</table>
-		</fieldset>
-		<br>
-	</div>
+
+					<div class="result">
+						<fieldset>
+							<legend>预授金额</legend>
+							<table class="border" width=100% cellSpacing=0 cellPadding=2
+								align="center">
+								<tr>
+									<td class="left" style="width: 25%; text-align: right;"><h3>预授金额</h3></td>
+									<td class="right"><h3>￥0.00</h3></td>
+								</tr>
+							</table>
+						</fieldset>
+						<br>
+						<fieldset>
+							<legend>计算比例</legend>
+							<table class="border" width=100% cellSpacing=0 cellPadding=2
+								align="center">
+								<tr>
+									<td class="left" style="width: 25%; text-align: right;"><h3>佣金比例</h3></td>
+									<td class="right"><h3>0.05</h3></td>
+									<td class="left" style="width: 25%; text-align: right;"><h3>运费比例</h3></td>
+									<td class="right"><h3>0.30</h3></td>
+								</tr>
+							</table>
+						</fieldset>
+						<br>
+						<fieldset>
+							<legend>购买限额</legend>
+							<table class="border" width=100% cellSpacing=0 cellPadding=2
+								align="center">
+								<tr>
+									<td class="left" style="width: 25%; text-align: right;"><h3>购买限额</h3></td>
+									<td class="right"><h3>￥0.00</h3></td>
+								</tr>
+							</table>
+						</fieldset>
+						<br>
+						<fieldset>
+							<legend>交易使用</legend>
+							<table class="border" width=100% cellSpacing=0 cellPadding=2
+								align="center">
+								<tr>
+									<td class="left" style="width: 25%; text-align: right;"><h3>竞价占用</h3></td>
+									<td class="right"><h3>￥0.00</h3></td>
+									<td class="left" style="width: 25%; text-align: right;"><h3>实际使用</h3></td>
+									<td class="right"><h3>￥0.00</h3></td>
+								</tr>
+							</table>
+						</fieldset>
+						<br>
+						<fieldset>
+							<legend>可用限额</legend>
+							<table class="border" width=100% cellSpacing=0 cellPadding=2
+								align="center">
+								<tr>
+									<td class="left" style="width: 25%; text-align: right;"><h3>可用限额</h3></td>
+									<td class="right"><h3>￥0.00</h3></td>
+								</tr>
+							</table>
+						</fieldset>
+						<br>
+					</div>
 
 				</div>
 			</div>
-		</div>		
-	
-	
 		</div>
-		
+
+
+	</div>
+
+<?php 
+require_once("application/views/public/footer.php"); 
+?>

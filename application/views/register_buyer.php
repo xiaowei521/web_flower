@@ -1,4 +1,11 @@
- <script type="text/javascript">
+<?php
+if ($login_status) {
+	require_once ("application/views/public/login_in.php");
+} else {
+	require_once ("application/views/public/login_out.php");
+}
+?>
+<script type="text/javascript">
             var checksubmitflg = false;
             function checkSubmit() {
                 if (checksubmitflg == true) {
@@ -172,402 +179,236 @@
                 });
             };
         </script>
-    </head>
-    
-    <body>
+</head>
 
-            <div class="container">
-                <div class="logo">
-                    <a href="/welcome">
-                        <img border="0" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;"
-                        src="/static/images/logo.png">
-                    </a>
-                    <img border="0" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;"
-                    src="/static/images/wx.jpg">
-                    <!-- <div class="col-md-12">
+<body>
+
+	<div class="container">
+		<div class="logo">
+			<a href="/welcome"> <img border="0"
+				style="width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;"
+				src="/static/images/logo.png">
+			</a> <img border="0"
+				style="width: 80px; height: 80px; float: right; margin-top: 6px; margin-right: 6px;"
+				src="/static/images/wx.jpg">
+			<!-- <div class="col-md-12">
                     <img class="img-responsive" alt="Responsive image"  src="/static/images/header.png"  usemap="#planetmap" >
                     <map name="planetmap">
                     <area href="" shape="rect" coords="0,0,230,98">
                     </map>
                     </div> -->
-                </div>
-                <ol class="breadcrumb">
-                    您现在的位置：
-                    <li>
-                        <a href="/welcome">
-                            首页
-                        </a>
-                    </li>
-                    <li class="active">
-                        用户注册
-                    </li>
-                </ol>
-                <div style="text-align: center;" role="alert" class="alert alert-warning">
-                    1、供购选择
-                    <span class="glyphicon glyphicon-arrow-right">
-                    </span>
-                    <font color="#FF0000">
-                        2、注册信息
-                    </font>
-                    <span class="glyphicon glyphicon-arrow-right">
-                    </span>
-                    3、注册成功
-                </div>
-                <form method="post" action="/user/set_register_buyer" role="form" class="form-horizontal"
-                name="buyer" id="buyer" novalidate="novalidate">
-                    <fieldset>
-                        <legend>
-                            购买商基本信息（亲，如下信息涉及您的货品安全、资金安全，请认真填写）
-                        </legend>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label" for="inputid">
-                                登录账号*
-                            </label>
-                            <div class="col-md-5">
-                                <input type="text" placeholder="6-20位数字或字母" onblur="this.value = this.value.toLowerCase();"
-                                value="" name="id" id="id" class="form-control">
-                            </div>
-                            <label class="col-md-1 control-label" for="inputid">
-                                花店名称*
-                            </label>
-                            <div class="col-md-5">
-                                <input type="text" placeholder="如无花店，请填写真实姓名" value="" name="buyName"
-                                id="buyName" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label" for="inputpassWD">
-                                登录密码*
-                            </label>
-                            <div class="col-md-5">
-                                <input type="password" placeholder="6-20位" value="" name="passWD" id="passWD"
-                                class="form-control">
-                            </div>
-                            <label class="col-md-1 control-label" for="inputrePassWD">
-                                确认密码*
-                            </label>
-                            <div class="col-md-5">
-                                <input type="password" placeholder="6-20位" value="" name="rePassWD" id="rePassWD"
-                                class="form-control">
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            联系人信息
-                        </legend>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label" for="inputbuyConName">
-                                姓名*
-                            </label>
-                            <div class="col-md-5">
-                                <input type="text" placeholder="" value="" name="buyConName" id="buyConName"
-                                class="form-control">
-                            </div>
-                            <label class="col-md-1 control-label" for="inputbuyConPid">
-                                身份证号*
-                            </label>
-                            <div class="col-md-5">
-                                <input type="text" placeholder="" value="" name="buyConPid" id="buyConPid"
-                                class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label" for="inputbuyConTel">
-                                电话*
-                            </label>
-                            <div class="col-md-5">
-                                <input type="text" placeholder="如实填写，方便及时联系" value="" name="buyConTel"
-                                id="buyConTel" class="form-control">
-                            </div>
-                            <label class="col-md-1 control-label" for="inputbuyConEmail">
-                                Email*
-                            </label>
-                            <div class="col-md-5">
-                                <input type="text" placeholder="如实填写，方便及时联系" value="" name="buyConEmail"
-                                id="buyConEmail" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label" for="inputbuyConQq">
-                                微信
-                            </label>
-                            <div class="col-md-5">
-                                <input type="text" placeholder="" value="" name="buyMinInfo" id="buyMinInfo"
-                                class="form-control">
-                            </div>
-                            <label class="col-md-1 control-label" for="inputbuyConQq">
-                                QQ
-                            </label>
-                            <div class="col-md-5">
-                                <input type="text" placeholder="" value="" name="buyConQq" id="buyConQq"
-                                class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label" for="inputbuyAddress">
-                                花店地址*
-                            </label>
-                            <div class="col-md-2">
-                                <select onchange="getConCity();" class="form-control" id="conProvince"
-                                name="conProvince">
-                                    <option value="">
-                                        请选择省份
-                                    </option>
-                                    <option value="11">
-                                        北京
-                                    </option>
-                                    <option value="12">
-                                        天津
-                                    </option>
-                                    <option value="13">
-                                        河北省
-                                    </option>
-                                    <option value="14">
-                                        山西省
-                                    </option>
-                                    <option value="15">
-                                        内蒙古自治区
-                                    </option>
-                                    <option value="21">
-                                        辽宁省&#12288;
-                                    </option>
-                                    <option value="22">
-                                        吉林省
-                                    </option>
-                                    <option value="23">
-                                        黑龙江省
-                                    </option>
-                                    <option value="31">
-                                        上海市
-                                    </option>
-                                    <option value="32">
-                                        江苏省
-                                    </option>
-                                    <option value="33">
-                                        浙江省
-                                    </option>
-                                    <option value="34">
-                                        安徽省
-                                    </option>
-                                    <option value="35">
-                                        福建省
-                                    </option>
-                                    <option value="36">
-                                        江西省
-                                    </option>
-                                    <option value="37">
-                                        山东省
-                                    </option>
-                                    <option value="41">
-                                        河南省&#12288;
-                                    </option>
-                                    <option value="42">
-                                        湖北省
-                                    </option>
-                                    <option value="43">
-                                        湖南省
-                                    </option>
-                                    <option value="44">
-                                        广东省
-                                    </option>
-                                    <option value="45">
-                                        广西壮族自治区
-                                    </option>
-                                    <option value="46">
-                                        海南省
-                                    </option>
-                                    <option value="50">
-                                        重庆市&#12288;
-                                    </option>
-                                    <option value="51">
-                                        四川省
-                                    </option>
-                                    <option value="52">
-                                        贵州省
-                                    </option>
-                                    <option value="53">
-                                        云南省
-                                    </option>
-                                    <option value="54">
-                                        西藏自治区
-                                    </option>
-                                    <option value="61">
-                                        陕西省
-                                    </option>
-                                    <option value="62">
-                                        甘肃省
-                                    </option>
-                                    <option value="63">
-                                        青海省
-                                    </option>
-                                    <option value="64">
-                                        宁夏回族自治区
-                                    </option>
-                                    <option value="65">
-                                        新疆维吾尔自治区&#12288;
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-control" id="conCity" name="conCity">
-                                    <option value="">
-                                        请选择州市
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" placeholder="详细地址" value="" name="buyAddress" id="buyAddress"
-                                class="form-control">
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>
-                            代理发货信息（亲，您在斗南是否有自己的提货人和发货人）
-                        </legend>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label" for="buyIsShip">
-                                是否代理*
-                            </label>
-                            <div class="col-md-11">
-                                <select onchange="buyIsShipChange()" class="form-control" id="buyIsShip"
-                                name="buyIsShip">
-                                    <option value="">
-                                        是否代理
-                                    </option>
-                                    <option value="N">
-                                        不需要
-                                    </option>
-                                    <option value="Y">
-                                        需要
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label" id="inputAddress" for="inputAddress">
-                                发货地址*
-                            </label>
-                            <div class="col-md-2">
-                                <select onchange="getCity();" class="form-control " id="province" name="province">
-                                    <option value="">
-                                        请选择省份
-                                    </option>
-                                    <option value="11">
-                                        北京
-                                    </option>
-                                    <option value="12">
-                                        天津
-                                    </option>
-                                    <option value="13">
-                                        河北省
-                                    </option>
-                                    <option value="14">
-                                        山西省
-                                    </option>
-                                    <option value="15">
-                                        内蒙古自治区
-                                    </option>
-                                    <option value="21">
-                                        辽宁省&#12288;
-                                    </option>
-                                    <option value="23">
-                                        黑龙江省
-                                    </option>
-                                    <option value="31">
-                                        上海市
-                                    </option>
-                                    <option value="32">
-                                        江苏省
-                                    </option>
-                                    <option value="33">
-                                        浙江省
-                                    </option>
-                                    <option value="34">
-                                        安徽省
-                                    </option>
-                                    <option value="35">
-                                        福建省
-                                    </option>
-                                    <option value="36">
-                                        江西省
-                                    </option>
-                                    <option value="37">
-                                        山东省
-                                    </option>
-                                    <option value="41">
-                                        河南省&#12288;
-                                    </option>
-                                    <option value="42">
-                                        湖北省
-                                    </option>
-                                    <option value="43">
-                                        湖南省
-                                    </option>
-                                    <option value="44">
-                                        广东省
-                                    </option>
-                                    <option value="45">
-                                        广西壮族自治区
-                                    </option>
-                                    <option value="50">
-                                        重庆市&#12288;
-                                    </option>
-                                    <option value="51">
-                                        四川省
-                                    </option>
-                                    <option value="52">
-                                        贵州省
-                                    </option>
-                                    <option value="53">
-                                        云南省
-                                    </option>
-                                    <option value="61">
-                                        陕西省
-                                    </option>
-                                    <option value="62">
-                                        甘肃省
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-control" id="city" name="city">
-                                    <option value="">
-                                        请选择州市
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" placeholder="详细地址" value="" name="buyShipAddress" id="buyShipAddress"
-                                class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label" id="inputbuyPickPsw" for="inputbuyPickPsw">
-                                提货密码
-                            </label>
-                            <div class="col-md-5">
-                                <input type="password" placeholder="6位数字" value="" name="buyPickPsw" id="buyPickPsw"
-                                class="form-control">
-                            </div>
-                            <label class="col-md-1 control-label" id="inputreBuyPickPsw" for="inputreBuyPickPsw">
-                                确认密码
-                            </label>
-                            <div class="col-md-5">
-                                <input type="password" placeholder="6位数字" value="" name="reBuyPickPsw"
-                                id="reBuyPickPsw" class="form-control">
-                            </div>
-                        </div>
-                    </fieldset>
-                    <span class="col-md-4">
-                    </span>
-                    <button class="btn btn-primary btn-lg col-md-4" type="submit">
-                        <span class="glyphicon glyphicon-ok">
-                            保存
-                        </span>
-                    </button>
-                    <span class="col-md-4">
-                    </span>
-                </form>
-            </div>
+		</div>
+		<ol class="breadcrumb">
+			您现在的位置：
+			<li><a href="/welcome"> 首页 </a></li>
+			<li class="active">用户注册</li>
+		</ol>
+		<div style="text-align: center;" role="alert"
+			class="alert alert-warning">
+			1、供购选择 <span class="glyphicon glyphicon-arrow-right"> </span> <font
+				color="#FF0000"> 2、注册信息 </font> <span
+				class="glyphicon glyphicon-arrow-right"> </span> 3、注册成功
+		</div>
+		<form method="post" action="/user/set_register_buyer" role="form"
+			class="form-horizontal" name="buyer" id="buyer"
+			novalidate="novalidate">
+			<fieldset>
+				<legend> 购买商基本信息（亲，如下信息涉及您的货品安全、资金安全，请认真填写） </legend>
+				<div class="form-group">
+					<label class="col-md-1 control-label" for="inputid"> 登录账号* </label>
+					<div class="col-md-5">
+						<input type="text" placeholder="6-20位数字或字母"
+							onblur="this.value = this.value.toLowerCase();" value=""
+							name="id" id="id" class="form-control">
+					</div>
+					<label class="col-md-1 control-label" for="inputid"> 花店名称* </label>
+					<div class="col-md-5">
+						<input type="text" placeholder="如无花店，请填写真实姓名" value=""
+							name="buyName" id="buyName" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-1 control-label" for="inputpassWD"> 登录密码* </label>
+					<div class="col-md-5">
+						<input type="password" placeholder="6-20位" value="" name="passWD"
+							id="passWD" class="form-control">
+					</div>
+					<label class="col-md-1 control-label" for="inputrePassWD"> 确认密码* </label>
+					<div class="col-md-5">
+						<input type="password" placeholder="6-20位" value=""
+							name="rePassWD" id="rePassWD" class="form-control">
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend> 联系人信息 </legend>
+				<div class="form-group">
+					<label class="col-md-1 control-label" for="inputbuyConName"> 姓名* </label>
+					<div class="col-md-5">
+						<input type="text" placeholder="" value="" name="buyConName"
+							id="buyConName" class="form-control">
+					</div>
+					<label class="col-md-1 control-label" for="inputbuyConPid"> 身份证号* </label>
+					<div class="col-md-5">
+						<input type="text" placeholder="" value="" name="buyConPid"
+							id="buyConPid" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-1 control-label" for="inputbuyConTel"> 电话* </label>
+					<div class="col-md-5">
+						<input type="text" placeholder="如实填写，方便及时联系" value=""
+							name="buyConTel" id="buyConTel" class="form-control">
+					</div>
+					<label class="col-md-1 control-label" for="inputbuyConEmail">
+						Email* </label>
+					<div class="col-md-5">
+						<input type="text" placeholder="如实填写，方便及时联系" value=""
+							name="buyConEmail" id="buyConEmail" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-1 control-label" for="inputbuyConQq"> 微信 </label>
+					<div class="col-md-5">
+						<input type="text" placeholder="" value="" name="buyMinInfo"
+							id="buyMinInfo" class="form-control">
+					</div>
+					<label class="col-md-1 control-label" for="inputbuyConQq"> QQ </label>
+					<div class="col-md-5">
+						<input type="text" placeholder="" value="" name="buyConQq"
+							id="buyConQq" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-1 control-label" for="inputbuyAddress"> 花店地址*
+					</label>
+					<div class="col-md-2">
+						<select onchange="getConCity();" class="form-control"
+							id="conProvince" name="conProvince">
+							<option value="">请选择省份</option>
+							<option value="11">北京</option>
+							<option value="12">天津</option>
+							<option value="13">河北省</option>
+							<option value="14">山西省</option>
+							<option value="15">内蒙古自治区</option>
+							<option value="21">辽宁省&#12288;</option>
+							<option value="22">吉林省</option>
+							<option value="23">黑龙江省</option>
+							<option value="31">上海市</option>
+							<option value="32">江苏省</option>
+							<option value="33">浙江省</option>
+							<option value="34">安徽省</option>
+							<option value="35">福建省</option>
+							<option value="36">江西省</option>
+							<option value="37">山东省</option>
+							<option value="41">河南省&#12288;</option>
+							<option value="42">湖北省</option>
+							<option value="43">湖南省</option>
+							<option value="44">广东省</option>
+							<option value="45">广西壮族自治区</option>
+							<option value="46">海南省</option>
+							<option value="50">重庆市&#12288;</option>
+							<option value="51">四川省</option>
+							<option value="52">贵州省</option>
+							<option value="53">云南省</option>
+							<option value="54">西藏自治区</option>
+							<option value="61">陕西省</option>
+							<option value="62">甘肃省</option>
+							<option value="63">青海省</option>
+							<option value="64">宁夏回族自治区</option>
+							<option value="65">新疆维吾尔自治区&#12288;</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select class="form-control" id="conCity" name="conCity">
+							<option value="">请选择州市</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<input type="text" placeholder="详细地址" value="" name="buyAddress"
+							id="buyAddress" class="form-control">
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend> 代理发货信息（亲，您在斗南是否有自己的提货人和发货人） </legend>
+				<div class="form-group">
+					<label class="col-md-1 control-label" for="buyIsShip"> 是否代理* </label>
+					<div class="col-md-11">
+						<select onchange="buyIsShipChange()" class="form-control"
+							id="buyIsShip" name="buyIsShip">
+							<option value="">是否代理</option>
+							<option value="N">不需要</option>
+							<option value="Y">需要</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-1 control-label" id="inputAddress"
+						for="inputAddress"> 发货地址* </label>
+					<div class="col-md-2">
+						<select onchange="getCity();" class="form-control " id="province"
+							name="province">
+							<option value="">请选择省份</option>
+							<option value="11">北京</option>
+							<option value="12">天津</option>
+							<option value="13">河北省</option>
+							<option value="14">山西省</option>
+							<option value="15">内蒙古自治区</option>
+							<option value="21">辽宁省&#12288;</option>
+							<option value="23">黑龙江省</option>
+							<option value="31">上海市</option>
+							<option value="32">江苏省</option>
+							<option value="33">浙江省</option>
+							<option value="34">安徽省</option>
+							<option value="35">福建省</option>
+							<option value="36">江西省</option>
+							<option value="37">山东省</option>
+							<option value="41">河南省&#12288;</option>
+							<option value="42">湖北省</option>
+							<option value="43">湖南省</option>
+							<option value="44">广东省</option>
+							<option value="45">广西壮族自治区</option>
+							<option value="50">重庆市&#12288;</option>
+							<option value="51">四川省</option>
+							<option value="52">贵州省</option>
+							<option value="53">云南省</option>
+							<option value="61">陕西省</option>
+							<option value="62">甘肃省</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select class="form-control" id="city" name="city">
+							<option value="">请选择州市</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<input type="text" placeholder="详细地址" value=""
+							name="buyShipAddress" id="buyShipAddress" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-1 control-label" id="inputbuyPickPsw"
+						for="inputbuyPickPsw"> 提货密码 </label>
+					<div class="col-md-5">
+						<input type="password" placeholder="6位数字" value=""
+							name="buyPickPsw" id="buyPickPsw" class="form-control">
+					</div>
+					<label class="col-md-1 control-label" id="inputreBuyPickPsw"
+						for="inputreBuyPickPsw"> 确认密码 </label>
+					<div class="col-md-5">
+						<input type="password" placeholder="6位数字" value=""
+							name="reBuyPickPsw" id="reBuyPickPsw" class="form-control">
+					</div>
+				</div>
+			</fieldset>
+			<span class="col-md-4"> </span>
+			<button class="btn btn-primary btn-lg col-md-4" type="submit">
+				<span class="glyphicon glyphicon-ok"> 保存 </span>
+			</button>
+			<span class="col-md-4"> </span>
+		</form>
+	</div>
+            <?php
+												require_once ("application/views/public/footer.php");
+												?>

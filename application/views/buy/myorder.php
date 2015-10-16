@@ -1,5 +1,11 @@
-
-		<script type="text/javascript">
+<?php
+if ($login_status) {
+	require_once ("application/views/public/login_in.php");
+} else {
+	require_once ("application/views/public/login_out.php");
+}
+?>
+<script type="text/javascript">
 			var timeLeft;
 			var syncInterval;
 			$(function() {
@@ -58,9 +64,10 @@
 								});
 			}
 		</script>
-		
-		<link type="text/css" rel="stylesheet" href="/static/components/sdmenu/css/sdmenu.css" />
-		<script type="text/javascript">
+
+<link type="text/css" rel="stylesheet"
+	href="/static/components/sdmenu/css/sdmenu.css" />
+<script type="text/javascript">
 			var myMenu;
 			window.onload = function() {
 				myMenu = new SDMenu("my_menu");
@@ -182,15 +189,22 @@
 				}
 			};
 		</script>
-		
 
-<link href="/static/components/jqueryui/Styles/datepicker.css" type="text/css" rel="stylesheet" />
-<link type="text/css" rel="stylesheet" href="/static/components/extremetable/Styles/extremecomponents.css" />
-<script src="/static/components/jqueryui/Scripts/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+
+<link href="/static/components/jqueryui/Styles/datepicker.css"
+	type="text/css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet"
+	href="/static/components/extremetable/Styles/extremecomponents.css" />
+<script
+	src="/static/components/jqueryui/Scripts/jquery-ui-1.10.3.custom.min.js"
+	type="text/javascript"></script>
 <!-- Tablesorter: required -->
-<link rel="stylesheet" href="/static/components/jquery/Plugin/tablesorter-v2.17.4/css/theme.blue.css" />
-<script src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/jquery.tablesorter.js"></script>
-<script src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/widgets/widget-math.js"></script>
+<link rel="stylesheet"
+	href="/static/components/jquery/Plugin/tablesorter-v2.17.4/css/theme.blue.css" />
+<script
+	src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/jquery.tablesorter.js"></script>
+<script
+	src="/static/components/jquery/Plugin/tablesorter-v2.17.4/js/widgets/widget-math.js"></script>
 
 <script type="text/javascript">
 	$(function() {
@@ -231,167 +245,151 @@
 	});
 </script>
 
-	
-	
-		
-	</head>
-	<body>
-
-	
-		<div class="container">
-			
-	
-		<div class="logo">
-			<a href="/default"><img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" border="0" /></a>
-			<img src="/static/images/wx.jpg" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" border="0" />
-			<div class="time">
-				<label id=statusName></label>
-				<br>
-				<strong id="hour_show" style="background:#C71C60;padding: 2px 4px 2px 4px;border-radius:5px;"></strong><br>
-				
-			</div>
 		</div>
-		
+
 
 		<ol class="breadcrumb">
 			您现在的位置：
-		  <li><a href="/default">首页</a></li>
-		  <li><a href="/myKIFAOnline">我的花拍</a></li>
-		  <li class="active">交易明细</li>
+			<li><a href="/default">首页</a></li>
+			<li><a href="/buyer/myflower">我的花拍</a></li>
+			<li class="active">交易明细</li>
 		</ol>
-		
-		
+
+
 		<div class="row">
 			<div class="col-md-3">
 				<div class="panel panel-info">
-					<div class="panel-heading" style=" text-align: center; "><a href="/index">继续交易</a></div>
+					<div class="panel-heading" style="text-align: center;">
+						<a href="/index">继续交易</a>
+					</div>
 				</div>
 				<div class="panel panel-success">
 					<div class="panel-heading">我的花拍</div>
-					<div class="panel-body" style="padding: 0px 0px 36px 0px;text-align:center">
-						
-							<div id="my_menu" class="sdmenu">
-								<div class="collapsed">
-									<span>个人中心</span> 
-									<a href="/buyer/changePassword">密码重置</a>
-									<a href="/buyer/ibuyer">信息修改</a>
-									<a href="/buyer/myorder">我的订单</a>
-								</div>
-								<div>
-									<span>交易中心</span> 
-									<a href="/buyer/netPay">网银充值</a>
-									<a href="/buyer/drawBack">退款申请</a>
-									<a href="/buyer/buyerLimit">限额查询</a> 
-									<a href="/buyer/transaction">交易明细</a>
-									<a href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
-								</div>
-								<div class="collapsed">
-									<span>结算中心</span> 
-									<a href="/buyer/buyRestBill">其它应收应付</a> 
-									<a href="/buyer/totalBalance">结算查询</a>
-								</div>
-								<div class="collapsed">
-									<span>历史查询</span> 
+					<div class="panel-body"
+						style="padding: 0px 0px 36px 0px; text-align: center">
 
-									<a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
-									<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a>									
-									<a href="/buyer/rptBuyHisLogdeListD">投诉明细</a>
-									<a href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a>
-									<a href="/buyer/rptBuyHisBalanceList">结算明细</a>
-								</div>
-								<div class="collapsed">
-									<span>交易规则</span> 
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a>									
-									<a href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
-								</div>
-								<div class="collapsed">
-									<span>常见问题</span> 
-									<a href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a>									
-									<a href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
-								</div>
+						<div id="my_menu" class="sdmenu">
+							<div class="collapsed">
+								<span>个人中心</span> <a href="/buyer/changePassword">密码重置</a> <a
+									href="/buyer/ibuyer">信息修改</a> <a href="/buyer/myorder">我的订单</a>
 							</div>
-							
-					</div>			
+							<div>
+								<span>交易中心</span> <a href="/buyer/netPay">网银充值</a> <a
+									href="/buyer/drawBack">退款申请</a> <a href="/buyer/buyerLimit">限额查询</a>
+								<a href="/buyer/transaction">交易明细</a> <a
+									href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
+							</div>
+							<div class="collapsed">
+								<span>结算中心</span> <a href="/buyer/buyRestBill">其它应收应付</a> <a
+									href="/buyer/totalBalance">结算查询</a>
+							</div>
+							<div class="collapsed">
+								<span>历史查询</span> <a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
+								<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a> <a
+									href="/buyer/rptBuyHisLogdeListD">投诉明细</a> <a
+									href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a> <a
+									href="/buyer/rptBuyHisBalanceList">结算明细</a>
+							</div>
+							<div class="collapsed">
+								<span>交易规则</span> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
+							</div>
+							<div class="collapsed">
+								<span>常见问题</span> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
+								<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
-			<div class="col-md-9" style=" padding-left: 0px; ">
+			<div class="col-md-9" style="padding-left: 0px;">
 				<div class="panel panel-success">
 					<div class="panel-heading">交易明细</div>
-					
-	<form class="form-inline" role="form" id="queryform" name="queryform" method="post" action="/buyer/rptBuyHisBuyTransactionD/query">
-			<input type="text" class="form-control" id="PrdCode" name="PrdCode" value="" placeholder="品种">
-			<input type="text" class="form-control" id="GrdCode" name="GrdCode" value="" placeholder="等级">
-			<input type="text" class="form-control datepicker" id="BeginDate" name="BeginDate" value="" size="10" required placeholder="起始日期"/>
-			<input type="text" class="form-control datepicker" id="EndDate" name="EndDate" value="" size="10" required placeholder="终止日期"/>
-			<button type="submit" class="btn btn-default">
-				<span class="glyphicon glyphicon-search"></span>
-			</button>
-		</form>
-		<br>
-		<div class="table-responsive">
-		<table id="buyerTraHissT">
-			<thead>
-				<tr>					
-					<th class="" >序号</th>
-					<th class="" >   -订单号</th>
-					<th class="remove sorter-false" >交易序号</th>
-					<th class="remove sorter-false" >供货单号</th>
+
+					<form class="form-inline" role="form" id="queryform"
+						name="queryform" method="post"
+						action="/buyer/rptBuyHisBuyTransactionD/query">
+						<input type="text" class="form-control" id="PrdCode"
+							name="PrdCode" value="" placeholder="品种"> <input type="text"
+							class="form-control" id="GrdCode" name="GrdCode" value=""
+							placeholder="等级"> <input type="text"
+							class="form-control datepicker" id="BeginDate" name="BeginDate"
+							value="" size="10" required placeholder="起始日期" /> <input
+							type="text" class="form-control datepicker" id="EndDate"
+							name="EndDate" value="" size="10" required placeholder="终止日期" />
+						<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</form>
+					<br>
+					<div class="table-responsive">
+						<table id="buyerTraHissT">
+							<thead>
+								<tr>
+									<th class="">序号</th>
+									<th class="">-订单号</th>
+									<th class="remove sorter-false">交易序号</th>
+									<th class="remove sorter-false">供货单号</th>
 
 
-					<th class="remove sorter-false" >成交类型</th>
-				</tr>
-			</thead>
+									<th class="remove sorter-false">成交类型</th>
+								</tr>
+							</thead>
 			
-					<?php 
+					<?php
 					
-						foreach($info as $key => $value){
-							
-							echo '<tr><th>'.($key+1).'</th>';
-							echo '<th>'.$value['id'].'</th></tr>';
-							echo '<tr><th>'.($key+1).'</th>';
-							echo '<th>'.$value['id'].'</th></tr>';
-						}
+					foreach ( $info as $key => $value ) {
+						
+						echo '<tr><th>' . ($key + 1) . '</th>';
+						echo '<th>' . $value ['id'] . '</th></tr>';
+						echo '<tr><th>' . ($key + 1) . '</th>';
+						echo '<th>' . $value ['id'] . '</th></tr>';
+					}
 					?>
 		
 			<tfoot>
-				<tr>
-					<th>合计</th>	
+								<tr>
+									<th>合计</th>
 
-				
-					<th></th>	
-					<th></th>	
-					<th></th>	
-					<th></th>	
-					<th></th>	
-					<th></th>	
-					<th></th>	
-					<th></th>	
-                    <th></th>
-						
-					<th></th>
-					<th data-math="col-sum" data-math-mask="##0.00">0</th>
-					<th data-math="col-sum" data-math-mask="##0.00">0</th>
-					<th data-math="col-sum" data-math-mask="##0.00">0</th>
-					
-					<th></th>
-				</tr>
-			</tfoot>
-			<tbody>
-				
-			</tbody>
-		</table>
-	</div>
+
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+
+									<th></th>
+									<th data-math="col-sum" data-math-mask="##0.00">0</th>
+									<th data-math="col-sum" data-math-mask="##0.00">0</th>
+									<th data-math="col-sum" data-math-mask="##0.00">0</th>
+
+									<th></th>
+								</tr>
+							</tfoot>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
 
 				</div>
 			</div>
-		</div>		
-	
-	
 		</div>
+	</div>
 	
+<?php
+require_once ("application/views/public/footer.php");
+?>

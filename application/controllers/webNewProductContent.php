@@ -1,25 +1,19 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
+defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 class WebNewProductContent extends MY_Controller {
-	
-	function WebNewProductContent(){
-		parent::__construct();
-
-		$this->is_logged_in();
-
-		
+	function WebNewProductContent() {
+		parent::__construct ();
 	}
 	
 	// 真的很多， 醉了
-	public function index(){
-		$this->load->view('webNewProductContent/index');
-		
+	public function index() {
+		$this->load->view ( 'webNewProductContent/index',array(
+				'login_status'=>$this->login_status,
+		));
 	}
-	public function show(){
-		
-		$this->load->view('webNewProductContent/show');
-	
+	public function show() {
+		$this->load->view ( 'webNewProductContent/show',array(
+				'login_status'=>$this->login_status,
+		));
 	}
-
 }

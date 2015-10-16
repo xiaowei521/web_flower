@@ -22,18 +22,25 @@ $config ['xml_maxsize'] = 5632000;
 $config ['xml_type'] = 'xml';
 $config ['xml_path'] = './cfg';
 $config ['xml_tpl'] = './config.xml';
-// 默认不登陆可访问的url
+
+
+// 设置遇到下面的url 不跳转 到登陆界面
 $config ['sw_pass_url'] = array (
-		'User/login',
-		'User/register',
-		'User/getRefreshImg',
-		'User/register_select',
-		'user/forgetpassword'
-// 		'webCyclopediaContent',
-// 		'webNewProductContent',
-// 		'webNoticeContent',
-// 		'webProductContent',
-// 		'webRuleContent',
+		'welcome',
+		'user/login',
+		'user/register',
+		'user/getrefreshimg',
+		'user/register_select',
+		'user/forgetpassword',
+		'webcyclopediacontent',
+		'webnewproductcontent',
+		'webnoticecontent',
+		'webproductcontent',
+		'webrulecontent',
+		'buyer/index',
+		'buyer/addtocartd',
+
+		
 // 		'webCyclopediaContent',
 // 		'webNewProductContent',
 // 		'webNoticeContent',
@@ -41,7 +48,11 @@ $config ['sw_pass_url'] = array (
 // 		'webRuleContent',
 		
 );
-$config ['sw_login_url'] = 'User/login';
+$config ['sw_login_url'] = 'user/login';
 $config ['dsp_no_auth_url'] = 'default/account/noauth';
 
 $config ['ad_log_path'] = '/home/work/xuguilin/adlog';
+
+
+
+$config['header'] = '';

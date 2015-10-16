@@ -1,30 +1,12 @@
-<!DOCTYPE HTML>
+<?php
+if ($login_status) {
+	require_once ("application/views/public/login_in.php");
+} else {
+	require_once ("application/views/public/login_out.php");
+}
+?>
 
-
-
-
-
-
-<html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="description" content="昆明国际花卉拍卖交易中心:花拍在线 ">
-		<meta name="author" content="zgh">
-		<link rel="icon" href="/static/images/favicon.ico">
-		
-		<title>花拍在线 </title>
-		
-		<!-- Bootstrap core CSS -->
-	  <link href="/static/components/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/static/css/sitemesh/decorator.css" rel="stylesheet">
-		<script src="/static/components/jquery/jquery.js"></script>
-		
-		
-		
-		<link href="/static/css/sitemesh/decorator-in.css" rel="stylesheet">
-		<script type="text/javascript">
+<script type="text/javascript">
 			var timeLeft;
 			var syncInterval;
 			$(function() {
@@ -83,9 +65,10 @@
 								});
 			}
 		</script>
-		
-		<link type="text/css" rel="stylesheet" href="/static/components/sdmenu/css/sdmenu.css" />
-		<script type="text/javascript">
+
+<link type="text/css" rel="stylesheet"
+	href="/static/components/sdmenu/css/sdmenu.css" />
+<script type="text/javascript">
 			var myMenu;
 			window.onload = function() {
 				myMenu = new SDMenu("my_menu");
@@ -207,10 +190,14 @@
 				}
 			};
 		</script>
-		
-<script type="text/javascript" src="/static/components/jquery/validation/jquery.validate.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="/static/components/jquery/validation/messages_zh.js"></script>
-<script type="text/javascript" src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" /></script>
+
+<script type="text/javascript"
+	src="/static/components/jquery/validation/jquery.validate.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="/static/components/jquery/validation/messages_zh.js"></script>
+<script type="text/javascript"
+	src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" /></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		jQuery.validator.addMethod("chrnum", function(value, element) {
@@ -296,339 +283,337 @@
 	};
 </script>
 
-	
-	
-		
-	</head>
-	<body>
-
-	
-		<div class="container">
-			
-	
-		<div class="logo">
-			<a href="/default"><img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" border="0" /></a>
-			<img src="/static/images/wx.jpg" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" border="0" />
-			<div class="time">
-				<label id=statusName></label>
-				<br>
-				<strong id="hour_show" style="background:#C71C60;padding: 2px 4px 2px 4px;border-radius:5px;"></strong><br>
-				
-			</div>
-		</div>
-		
-
 		<ol class="breadcrumb">
 			您现在的位置：
-		  <li><a href="/default">首页</a></li>
-		  <li><a href="/myKIFAOnline">我的花拍</a></li>
-		  <li class="active">信息修改</li>
+			<li><a href="/default">首页</a></li>
+			<li><a href="/buyer/myflower">我的花拍</a></li>
+			<li class="active">信息修改</li>
 		</ol>
-		
-		
+
+
 		<div class="row">
 			<div class="col-md-3">
 				<div class="panel panel-info">
-					<div class="panel-heading" style=" text-align: center; "><a href="/index">继续交易</a></div>
+					<div class="panel-heading" style="text-align: center;">
+						<a href="/index">继续交易</a>
+					</div>
 				</div>
 				<div class="panel panel-success">
 					<div class="panel-heading">我的花拍</div>
-					<div class="panel-body" style="padding: 0px 0px 36px 0px;text-align:center">
-						
-							<div id="my_menu" class="sdmenu">
-								<div class="collapsed">
-									<span>个人中心</span> 
-									<a href="/buyer/changePassword">密码重置</a>
-									<a href="/buyer/ibuyer">信息修改</a>
-								</div>
-								<div>
-									<span>交易中心</span> 
-									<a href="/buyer/netPay">网银充值</a>
-									<a href="/buyer/drawBack">退款申请</a>
-									<a href="/buyer/buyerLimit">限额查询</a> 
-									<a href="/buyer/transaction">交易明细</a>
-									<a href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
-								</div>
-								<div class="collapsed">
-									<span>结算中心</span> 
-									<a href="/buyer/buyRestBill">其它应收应付</a> 
-									<a href="/buyer/totalBalance">结算查询</a>
-								</div>
-								<div class="collapsed">
-									<span>历史查询</span> 
+					<div class="panel-body"
+						style="padding: 0px 0px 36px 0px; text-align: center">
 
-									<a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
-									<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a>									
-									<a href="/buyer/rptBuyHisLogdeListD">投诉明细</a>
-									<a href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a>
-									<a href="/buyer/rptBuyHisBalanceList">结算明细</a>
-								</div>
-								<div class="collapsed">
-									<span>交易规则</span> 
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a>									
-									<a href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
-								</div>
-								<div class="collapsed">
-									<span>常见问题</span> 
-									<a href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a>									
-									<a href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
-								</div>
+						<div id="my_menu" class="sdmenu">
+							<div class="collapsed">
+								<span>个人中心</span> <a href="/buyer/changePassword">密码重置</a> <a
+									href="/buyer/ibuyer">信息修改</a>
 							</div>
-							
-					</div>			
+							<div>
+								<span>交易中心</span> <a href="/buyer/netPay">网银充值</a> <a
+									href="/buyer/drawBack">退款申请</a> <a href="/buyer/buyerLimit">限额查询</a>
+								<a href="/buyer/transaction">交易明细</a> <a
+									href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
+							</div>
+							<div class="collapsed">
+								<span>结算中心</span> <a href="/buyer/buyRestBill">其它应收应付</a> <a
+									href="/buyer/totalBalance">结算查询</a>
+							</div>
+							<div class="collapsed">
+								<span>历史查询</span> <a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
+								<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a> <a
+									href="/buyer/rptBuyHisLogdeListD">投诉明细</a> <a
+									href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a> <a
+									href="/buyer/rptBuyHisBalanceList">结算明细</a>
+							</div>
+							<div class="collapsed">
+								<span>交易规则</span> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
+							</div>
+							<div class="collapsed">
+								<span>常见问题</span> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
+								<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
-			<div class="col-md-9" style=" padding-left: 0px; ">
+			<div class="col-md-9" style="padding-left: 0px;">
 				<div class="panel panel-success">
 					<div class="panel-heading">信息修改</div>
-					
-	
-	
-	<br>
-	<form id="buyer" name="buyer" class="form-horizontal" action="/buyer/ibuyer/update" method="post">
-		<fieldset>
-			<legend>购买商基本信息</legend>
-			<div class="form-group">
-		    <label for="inputid" class="col-md-2 control-label">登录账号*</label>
-		    <div class="col-md-4">
-		      <input type="text" class="form-control" id="id" name="id" value="weilanchuxia" onblur="this.value = this.value.toLowerCase();" readonly="readonly" placeholder="6-20位">
-		    </div>
-		    <label for="inputid" class="col-md-2 control-label">店铺名称*</label>
-		    <div class="col-md-4">
-		      <input type="text" class="form-control" id="buyName" name="buyName" value="微蓝初夏"  placeholder="">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label for="inputbuyPickPsw" class="col-md-2 control-label">提货密码*</label>
-		    <div class="col-md-4">
-		      <input type="password" class="form-control" id="buyPickPsw" name="buyPickPsw" value="880705" placeholder="">
-		    </div>
-		    <label for="inputreBuyPickPsw" class="col-md-2 control-label">确认密码*</label>
-		    <div class="col-md-4">
-		      <input type="password" class="form-control" id="reBuyPickPsw" name="reBuyPickPsw" value="880705" placeholder="">
-		    </div>
-		  </div>
-		 </fieldset>
-		 <fieldset>
-			<legend>联系人信息</legend> 
-		  <div class="form-group">
-		    <label for="inputbuyConName" class="col-md-2 control-label">姓名*</label>
-		    <div class="col-md-10">
-		      <input type="text" class="form-control" id="buyConName" name="buyConName" value="黎安亮" placeholder="">
-		    </div>
-	  	</div>
-  		<div class="form-group">
-		    <label for="inputbuyConPid" class="col-md-2 control-label">身份证号*</label>
-		    <div class="col-md-10">
-		      <input type="text" class="form-control" id="buyConPid" name="buyConPid" value="522121198804063225" placeholder="">
-		    </div>
-	  	</div>
-	  	<div class="form-group">
-		    <label for="inputbuyConTel" class="col-md-2 control-label">电话*</label>
-		    <div class="col-md-10">
-		      <input type="text" class="form-control" id="buyConTel" name="buyConTel" value="18275498931" placeholder="">
-		    </div>
-	  	</div>
-	  	<div class="form-group">
-		    <label for="inputbuyConMobile" class="col-md-2 control-label">备用电话</label>
-		    <div class="col-md-10">
-		      <input type="text" class="form-control" id="buyConMobile" name="buyConMobile" value="" placeholder="">
-		    </div>
-	  	</div>
-  		<div class="form-group">
-		    <label for="inputbuyConEmail" class="col-md-2 control-label">Email*</label>
-		    <div class="col-md-10">
-		      <input type="text" class="form-control" id="buyConEmail" name="buyConEmail" value="ecoutter@gmail.com" placeholder="">
-		    </div>
-	  	</div>
-	  	<div class="form-group">
-		    <label for="inputbuyConQq" class="col-md-2 control-label">微信</label>
-		    <div class="col-md-10">
-		      <input type="text" class="form-control" id="buyMinInfo" name="buyMinInfo" value="" placeholder="">
-		    </div>
-	  	</div>
-	  	<div class="form-group">
-		    <label for="inputbuyConQq" class="col-md-2 control-label">QQ</label>
-		    <div class="col-md-10">
-		      <input type="text" class="form-control" id="buyConQq" name="buyConQq" value="" placeholder="">
-		    </div>
-	  	</div>
-	  	<div class="form-group">
-		    <label for="inputbuyAddress" class="col-md-2 control-label">地址*</label>
-		    <div class="col-md-2">
-		      <select name="conProvince" id="conProvince" class="form-control" onchange="getConCity();">
-							<option value="">请选择省份</option>
-							
-								<option value="11" >北京</option>
-							
-								<option value="12" >天津</option>
-							
-								<option value="13" >河北省</option>
-							
-								<option value="14" >山西省</option>
-							
-								<option value="15" >内蒙古自治区</option>
-							
-								<option value="21" >辽宁省　</option>
-							
-								<option value="22" >吉林省</option>
-							
-								<option value="23" >黑龙江省</option>
-							
-								<option value="31" >上海市</option>
-							
-								<option value="32" >江苏省</option>
-							
-								<option value="33" >浙江省</option>
-							
-								<option value="34" >安徽省</option>
-							
-								<option value="35" >福建省</option>
-							
-								<option value="36" >江西省</option>
-							
-								<option value="37" >山东省</option>
-							
-								<option value="41" >河南省　</option>
-							
-								<option value="42" >湖北省</option>
-							
-								<option value="43" >湖南省</option>
-							
-								<option value="44" >广东省</option>
-							
-								<option value="45" >广西壮族自治区</option>
-							
-								<option value="46" >海南省</option>
-							
-								<option value="50" >重庆市　</option>
-							
-								<option value="51" >四川省</option>
-							
-								<option value="52" selected>贵州省</option>
-							
-								<option value="53" >云南省</option>
-							
-								<option value="54" >西藏自治区</option>
-							
-								<option value="61" >陕西省</option>
-							
-								<option value="62" >甘肃省</option>
-							
-								<option value="63" >青海省</option>
-							
-								<option value="64" >宁夏回族自治区</option>
-							
-								<option value="65" >新疆维吾尔自治区　</option>
-							
-					</select>
-				</div>
-				<div class="col-md-2">
-					<select name="conCity" id="conCity" class="form-control">
-							<option value="">请选择州市</option>
-							
-								<option value="5226" >黔东南苗族侗族自治州</option>
-							
-								<option value="5222" >铜仁地区</option>
-							
-								<option value="5201" >贵阳市</option>
-							
-								<option value="5224" >毕节地区</option>
-							
-								<option value="5203" selected>遵义市</option>
-							
-								<option value="5204" >安顺市</option>
-							
-								<option value="5202" >六盘水市</option>
-							
-								<option value="5223" >黔西南布依族苗族自治州</option>
-							
-								<option value="5227" >黔南布依族苗族自治州</option>
-							
-					</select>
-				</div>
-		    <div class="col-md-6">
-		      <input type="text" class="form-control" id="buyAddress" name="buyAddress" value="中华南路" placeholder="">
-		    </div>
-	  	</div>
-	  	<div class="form-group">
-		    <label for="inputbuyZip" class="col-md-2 control-label">邮编</label>
-		    <div class="col-md-10">
-		      <input type="text" class="form-control" id="buyZip" name="buyZip" value="" placeholder="">
-		    </div>
-	  	</div>	
-		</fieldset>
-		<fieldset>
-			<legend>代理发货信息</legend>
-			<div class="form-group">
-		    <label for="buyIsShip" class="col-md-2 control-label">是否代理</label>
-		    <div class="col-md-10">
-		      <select name="buyIsShip" id="buyIsShip" class="form-control" disabled="disabled">
-		      		<option value="">是否代理</option>
-							<option value="N" >不需要</option>
-							<option value="Y" selected>需要</option>
-					</select>
-		    </div>
-	  	</div>
-	  	<div class="form-group">
-		    <label for="inputid" class="col-md-2 control-label">发货地址</label>
-		  	<div class="col-md-2">
-		  		 <input type="text" class="form-control" id="province" name="province" value="贵州省" disabled="disabled">
-				</div>
-		  	<div class="col-md-2">
-					<input type="text" class="form-control" id="city" name="city" value="贵阳市" disabled="disabled">
-				</div>
-		  	<div class="col-md-6">
-					 <input type="text" class="form-control" id="buyShipAddress" name="buyShipAddress" value="火车站" placeholder="详细地址" disabled="disabled">
-		  	</div>
-		  </div>
-		</fieldset>
-		
-		<fieldset>
-			<legend>退款信息</legend>
-			<div class="form-group">
-			    <label for="inputbuyZip" class="col-md-2 control-label">开户行</label>
-			    <div class="col-md-10">
-			      <input type="text" class="form-control" id="buyBankCode" name="buyBankCode" value="" placeholder="">
-			    </div>
-	  	</div>
-	  	
-	  	<div class="form-group">
-			    <label for="inputbuyZip" class="col-md-2 control-label">账户名</label>
-			    <div class="col-md-10">
-			      <input type="text" class="form-control" id="buyBankAccName" name="buyBankAccName" value="" placeholder="">
-			    </div>
-	  	</div>
-	  	
-	  	<div class="form-group">
-			    <label for="inputbuyZip" class="col-md-2 control-label">账号</label>
-			    <div class="col-md-10">
-			      <input type="text" class="form-control" id="buyBankAccount" name="buyBankAccount" value="" placeholder="">
-			    </div>
-	  	</div>
-		</fieldset>
-		
-		<div class="row">
-			<span class="col-md-4"></span>
-			
-			<button type="submit" class="btn btn-primary btn-lg col-md-4">
-				<span class="glyphicon glyphicon-ok">保存</span>
-			</button>
-			<span class="col-md-4"></span>
-		</div>
-	</form>
 
 
+
+					<br>
+					<form id="buyer" name="buyer" class="form-horizontal"
+						action="/buyer/ibuyer/update" method="post">
+						<fieldset>
+							<legend>购买商基本信息</legend>
+							<div class="form-group">
+								<label for="inputid" class="col-md-2 control-label">登录账号*</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control" id="id" name="id"
+										value="weilanchuxia"
+										onblur="this.value = this.value.toLowerCase();"
+										readonly="readonly" placeholder="6-20位">
+								</div>
+								<label for="inputid" class="col-md-2 control-label">店铺名称*</label>
+								<div class="col-md-4">
+									<input type="text" class="form-control" id="buyName"
+										name="buyName" value="微蓝初夏" placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputbuyPickPsw" class="col-md-2 control-label">提货密码*</label>
+								<div class="col-md-4">
+									<input type="password" class="form-control" id="buyPickPsw"
+										name="buyPickPsw" value="880705" placeholder="">
+								</div>
+								<label for="inputreBuyPickPsw" class="col-md-2 control-label">确认密码*</label>
+								<div class="col-md-4">
+									<input type="password" class="form-control" id="reBuyPickPsw"
+										name="reBuyPickPsw" value="880705" placeholder="">
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>联系人信息</legend>
+							<div class="form-group">
+								<label for="inputbuyConName" class="col-md-2 control-label">姓名*</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyConName"
+										name="buyConName" value="黎安亮" placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputbuyConPid" class="col-md-2 control-label">身份证号*</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyConPid"
+										name="buyConPid" value="522121198804063225" placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputbuyConTel" class="col-md-2 control-label">电话*</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyConTel"
+										name="buyConTel" value="18275498931" placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputbuyConMobile" class="col-md-2 control-label">备用电话</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyConMobile"
+										name="buyConMobile" value="" placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputbuyConEmail" class="col-md-2 control-label">Email*</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyConEmail"
+										name="buyConEmail" value="ecoutter@gmail.com" placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputbuyConQq" class="col-md-2 control-label">微信</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyMinInfo"
+										name="buyMinInfo" value="" placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputbuyConQq" class="col-md-2 control-label">QQ</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyConQq"
+										name="buyConQq" value="" placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputbuyAddress" class="col-md-2 control-label">地址*</label>
+								<div class="col-md-2">
+									<select name="conProvince" id="conProvince"
+										class="form-control" onchange="getConCity();">
+										<option value="">请选择省份</option>
+
+										<option value="11">北京</option>
+
+										<option value="12">天津</option>
+
+										<option value="13">河北省</option>
+
+										<option value="14">山西省</option>
+
+										<option value="15">内蒙古自治区</option>
+
+										<option value="21">辽宁省</option>
+
+										<option value="22">吉林省</option>
+
+										<option value="23">黑龙江省</option>
+
+										<option value="31">上海市</option>
+
+										<option value="32">江苏省</option>
+
+										<option value="33">浙江省</option>
+
+										<option value="34">安徽省</option>
+
+										<option value="35">福建省</option>
+
+										<option value="36">江西省</option>
+
+										<option value="37">山东省</option>
+
+										<option value="41">河南省</option>
+
+										<option value="42">湖北省</option>
+
+										<option value="43">湖南省</option>
+
+										<option value="44">广东省</option>
+
+										<option value="45">广西壮族自治区</option>
+
+										<option value="46">海南省</option>
+
+										<option value="50">重庆市</option>
+
+										<option value="51">四川省</option>
+
+										<option value="52" selected>贵州省</option>
+
+										<option value="53">云南省</option>
+
+										<option value="54">西藏自治区</option>
+
+										<option value="61">陕西省</option>
+
+										<option value="62">甘肃省</option>
+
+										<option value="63">青海省</option>
+
+										<option value="64">宁夏回族自治区</option>
+
+										<option value="65">新疆维吾尔自治区</option>
+
+									</select>
+								</div>
+								<div class="col-md-2">
+									<select name="conCity" id="conCity" class="form-control">
+										<option value="">请选择州市</option>
+
+										<option value="5226">黔东南苗族侗族自治州</option>
+
+										<option value="5222">铜仁地区</option>
+
+										<option value="5201">贵阳市</option>
+
+										<option value="5224">毕节地区</option>
+
+										<option value="5203" selected>遵义市</option>
+
+										<option value="5204">安顺市</option>
+
+										<option value="5202">六盘水市</option>
+
+										<option value="5223">黔西南布依族苗族自治州</option>
+
+										<option value="5227">黔南布依族苗族自治州</option>
+
+									</select>
+								</div>
+								<div class="col-md-6">
+									<input type="text" class="form-control" id="buyAddress"
+										name="buyAddress" value="中华南路" placeholder="">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputbuyZip" class="col-md-2 control-label">邮编</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyZip"
+										name="buyZip" value="" placeholder="">
+								</div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>代理发货信息</legend>
+							<div class="form-group">
+								<label for="buyIsShip" class="col-md-2 control-label">是否代理</label>
+								<div class="col-md-10">
+									<select name="buyIsShip" id="buyIsShip" class="form-control"
+										disabled="disabled">
+										<option value="">是否代理</option>
+										<option value="N">不需要</option>
+										<option value="Y" selected>需要</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputid" class="col-md-2 control-label">发货地址</label>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="province"
+										name="province" value="贵州省" disabled="disabled">
+								</div>
+								<div class="col-md-2">
+									<input type="text" class="form-control" id="city" name="city"
+										value="贵阳市" disabled="disabled">
+								</div>
+								<div class="col-md-6">
+									<input type="text" class="form-control" id="buyShipAddress"
+										name="buyShipAddress" value="火车站" placeholder="详细地址"
+										disabled="disabled">
+								</div>
+							</div>
+						</fieldset>
+
+						<fieldset>
+							<legend>退款信息</legend>
+							<div class="form-group">
+								<label for="inputbuyZip" class="col-md-2 control-label">开户行</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyBankCode"
+										name="buyBankCode" value="" placeholder="">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="inputbuyZip" class="col-md-2 control-label">账户名</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyBankAccName"
+										name="buyBankAccName" value="" placeholder="">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="inputbuyZip" class="col-md-2 control-label">账号</label>
+								<div class="col-md-10">
+									<input type="text" class="form-control" id="buyBankAccount"
+										name="buyBankAccount" value="" placeholder="">
+								</div>
+							</div>
+						</fieldset>
+
+						<div class="row">
+							<span class="col-md-4"></span>
+
+							<button type="submit" class="btn btn-primary btn-lg col-md-4">
+								<span class="glyphicon glyphicon-ok">保存</span>
+							</button>
+							<span class="col-md-4"></span>
+						</div>
+					</form>
 				</div>
 			</div>
-		</div>		
-	
-	
 		</div>
-	
+	</div>
+	<?php
+	require_once ("application/views/public/footer.php");
+	?>

@@ -1,4 +1,11 @@
-
+<?php 
+	if($login_status){
+		require_once("application/views/public/login_in.php");
+	}
+	else{
+		require_once("application/views/public/login_out.php");
+	}
+?>
     <style type="text/css">
         .form-signin { max-width: 390px; padding: 15px; margin: 0 auto; text-align:center;
         } .form-signin .form-signin-heading, .form-signin .checkbox { margin-bottom:
@@ -38,27 +45,8 @@
               }});
     	}
     </script>
-    
-    
-    </head>
-    
-    <body>
 
-            <div class="container">
-                <div class="logo">
-                    <a href="/default">
-                        <img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;"
-                        border="0">
-                    </a>
-                    <img src="/static/images/wx.jpg" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;"
-                    border="0">
-                    <!-- <div class="col-md-12">
-                    <img class="img-responsive" alt="Responsive image"  src="/static/images/header.png"  usemap="#planetmap" >
-                    <map name="planetmap">
-                    <area href="" shape="rect" coords="0,0,230,98">
-                    </map>
-                    </div> -->
-                </div>
+
                 <ol class="breadcrumb">
                     您现在的位置：
                     <li>
@@ -112,4 +100,6 @@
                 ​
             </form>
 
-            
+<?php 
+require_once("application/views/public/footer.php"); 
+?>      

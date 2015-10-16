@@ -1,30 +1,13 @@
-<!DOCTYPE HTML>
+<?php
+if ($login_status) {
+	require_once ("application/views/public/login_in.php");
+} else {
+	require_once ("application/views/public/login_out.php");
+}
+?>
 
 
-
-
-
-
-<html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="description" content="昆明国际花卉拍卖交易中心:花拍在线 ">
-		<meta name="author" content="zgh">
-		<link rel="icon" href="/static/images/favicon.ico">
-		
-		<title>花拍在线 </title>
-		
-		<!-- Bootstrap core CSS -->
-	  <link href="/static/components/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/static/css/sitemesh/decorator.css" rel="stylesheet">
-		<script src="/static/components/jquery/jquery.js"></script>
-		
-		
-		
-		<link href="/static/css/sitemesh/decorator-in.css" rel="stylesheet">
-		<script type="text/javascript">
+<script type="text/javascript">
 			var timeLeft;
 			var syncInterval;
 			$(function() {
@@ -83,9 +66,10 @@
 								});
 			}
 		</script>
-		
-		<link type="text/css" rel="stylesheet" href="/static/components/sdmenu/css/sdmenu.css" />
-		<script type="text/javascript">
+
+<link type="text/css" rel="stylesheet"
+	href="/static/components/sdmenu/css/sdmenu.css" />
+<script type="text/javascript">
 			var myMenu;
 			window.onload = function() {
 				myMenu = new SDMenu("my_menu");
@@ -207,11 +191,15 @@
 				}
 			};
 		</script>
-		
-		<script type="text/javascript" src="/static/components/jquery/validation/jquery.validate.min.js" type="text/javascript"></script>
-		<script type="text/javascript" src="/static/components/jquery/validation/messages_zh.js"></script>
-		<script type="text/javascript" src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" /></script>
-		<script type="text/javascript">
+
+<script type="text/javascript"
+	src="/static/components/jquery/validation/jquery.validate.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="/static/components/jquery/validation/messages_zh.js"></script>
+<script type="text/javascript"
+	src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" /></script>
+<script type="text/javascript">
 			$(document).ready(function() {
 				$("#user").validate({
 					rules : {
@@ -235,133 +223,114 @@
 				});
 			});
 		</script>
-		
-	
-	
-	
-	
-		
-	</head>
-	<body>
 
-	
-		<div class="container">
-			
-	
-		<div class="logo">
-			<a href="/default"><img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" border="0" /></a>
-			<img src="/static/images/wx.jpg" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" border="0" />
-			<div class="time">
-				<label id=statusName></label>
-				<br>
-				<strong id="hour_show" style="background:#C71C60;padding: 2px 4px 2px 4px;border-radius:5px;"></strong><br>
-				
-			</div>
-		</div>
-		
 
 		<ol class="breadcrumb">
 			您现在的位置：
-		  <li><a href="/default">首页</a></li>
-		  <li><a href="/myKIFAOnline">我的花拍</a></li>
-		  <li class="active">密码重置</li>
+			<li><a href="/default">首页</a></li>
+			<li><a href="/myKIFAOnline">我的花拍</a></li>
+			<li class="active">密码重置</li>
 		</ol>
-		
-		
+
+
 		<div class="row">
 			<div class="col-md-3">
 				<div class="panel panel-info">
-					<div class="panel-heading" style=" text-align: center; "><a href="/index">继续交易</a></div>
+					<div class="panel-heading" style="text-align: center;">
+						<a href="/index">继续交易</a>
+					</div>
 				</div>
 				<div class="panel panel-success">
 					<div class="panel-heading">我的花拍</div>
-					<div class="panel-body" style="padding: 0px 0px 36px 0px;text-align:center">
-						
-							<div id="my_menu" class="sdmenu">
-								<div class="collapsed">
-									<span>个人中心</span> 
-									<a href="/buyer/changePassword">密码重置</a>
-									<a href="/buyer/ibuyer">信息修改</a>
-								</div>
-								<div>
-									<span>交易中心</span> 
-									<a href="/buyer/netPay">网银充值</a>
-									<a href="/buyer/drawBack">退款申请</a>
-									<a href="/buyer/buyerLimit">限额查询</a> 
-									<a href="/buyer/transaction">交易明细</a>
-									<a href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
-								</div>
-								<div class="collapsed">
-									<span>结算中心</span> 
-									<a href="/buyer/buyRestBill">其它应收应付</a> 
-									<a href="/buyer/totalBalance">结算查询</a>
-								</div>
-								<div class="collapsed">
-									<span>历史查询</span> 
+					<div class="panel-body"
+						style="padding: 0px 0px 36px 0px; text-align: center">
 
-									<a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
-									<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a>									
-									<a href="/buyer/rptBuyHisLogdeListD">投诉明细</a>
-									<a href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a>
-									<a href="/buyer/rptBuyHisBalanceList">结算明细</a>
-								</div>
-								<div class="collapsed">
-									<span>交易规则</span> 
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a>									
-									<a href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
-								</div>
-								<div class="collapsed">
-									<span>常见问题</span> 
-									<a href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a>									
-									<a href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
-								</div>
+						<div id="my_menu" class="sdmenu">
+							<div class="collapsed">
+								<span>个人中心</span> <a href="/buyer/changePassword">密码重置</a> <a
+									href="/buyer/ibuyer">信息修改</a>
 							</div>
-							
-					</div>			
+							<div>
+								<span>交易中心</span> <a href="/buyer/netPay">网银充值</a> <a
+									href="/buyer/drawBack">退款申请</a> <a href="/buyer/buyerLimit">限额查询</a>
+								<a href="/buyer/transaction">交易明细</a> <a
+									href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
+							</div>
+							<div class="collapsed">
+								<span>结算中心</span> <a href="/buyer/buyRestBill">其它应收应付</a> <a
+									href="/buyer/totalBalance">结算查询</a>
+							</div>
+							<div class="collapsed">
+								<span>历史查询</span> <a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
+								<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a> <a
+									href="/buyer/rptBuyHisLogdeListD">投诉明细</a> <a
+									href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a> <a
+									href="/buyer/rptBuyHisBalanceList">结算明细</a>
+							</div>
+							<div class="collapsed">
+								<span>交易规则</span> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
+							</div>
+							<div class="collapsed">
+								<span>常见问题</span> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
+								<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
-			<div class="col-md-9" style=" padding-left: 0px; ">
+			<div class="col-md-9" style="padding-left: 0px;">
 				<div class="panel panel-success">
 					<div class="panel-heading">密码重置</div>
-					
-		
-		<form id="user" name="user" action="/buyer/changePsw" method="post">
-			<fieldset>
-				<legend>原始信息</legend>
-				<div class="input-group">
-				  <span class="input-group-addon">原始密码</span>
-				  <input type="password" id="oldpswd" name="oldpswd" class="form-control" placeholder="原始密码">
-				</div>
-			</fieldset>
-			<br>
-			<fieldset>
-				<legend>变更信息</legend>
-				<div class="input-group">
-				  <span class="input-group-addon">变更密码</span>
-				  <input type="password" id="newpswd" name="newpswd" class="form-control" placeholder="变更密码">
-				</div>
-				<div class="input-group">
-				  <span class="input-group-addon">确认密码</span>
-				  <input type="password" id="repeatpswd" name="repeatpswd" class="form-control" placeholder="确认密码">
-				</div>
-			</fieldset>
-			<br>
-			<button type="submit" class="btn btn-default">
-				<span class="glyphicon glyphicon-ok">保存</span>
-			</button>
-		</form>
-	
+
+
+					<form id="user" name="user" action="/buyer/changePsw" method="post">
+						<fieldset>
+							<legend>原始信息</legend>
+							<div class="input-group">
+								<span class="input-group-addon">原始密码</span> <input
+									type="password" id="oldpswd" name="oldpswd"
+									class="form-control" placeholder="原始密码">
+							</div>
+						</fieldset>
+						<br>
+						<fieldset>
+							<legend>变更信息</legend>
+							<div class="input-group">
+								<span class="input-group-addon">变更密码</span> <input
+									type="password" id="newpswd" name="newpswd"
+									class="form-control" placeholder="变更密码">
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon">确认密码</span> <input
+									type="password" id="repeatpswd" name="repeatpswd"
+									class="form-control" placeholder="确认密码">
+							</div>
+						</fieldset>
+						<br>
+						<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-ok">保存</span>
+						</button>
+					</form>
+
 				</div>
 			</div>
-		</div>		
-	
-	
 		</div>
+
+
+	</div>
 		
-	
+
+
+<?php
+require_once ("application/views/public/footer.php");
+?>

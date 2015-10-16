@@ -1,30 +1,11 @@
-<!DOCTYPE HTML>
-
-
-
-
-
-
-<html lang="zh-CN">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<meta name="description" content="昆明国际花卉拍卖交易中心:花拍在线 ">
-		<meta name="author" content="zgh">
-		<link rel="icon" href="/static/images/favicon.ico">
-		
-		<title>花拍在线 </title>
-		
-		<!-- Bootstrap core CSS -->
-	  <link href="/static/components/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet">
-		<link href="/static/css/sitemesh/decorator.css" rel="stylesheet">
-		<script src="/static/components/jquery/jquery.js"></script>
-		
-		
-		
-		<link href="/static/css/sitemesh/decorator-in.css" rel="stylesheet">
-		<script type="text/javascript">
+<?php
+if ($login_status) {
+	require_once ("application/views/public/login_in.php");
+} else {
+	require_once ("application/views/public/login_out.php");
+}
+?>
+<script type="text/javascript">
 			var timeLeft;
 			var syncInterval;
 			$(function() {
@@ -83,9 +64,10 @@
 								});
 			}
 		</script>
-		
-		<link type="text/css" rel="stylesheet" href="/static/components/sdmenu/css/sdmenu.css" />
-		<script type="text/javascript">
+
+<link type="text/css" rel="stylesheet"
+	href="/static/components/sdmenu/css/sdmenu.css" />
+<script type="text/javascript">
 			var myMenu;
 			window.onload = function() {
 				myMenu = new SDMenu("my_menu");
@@ -207,11 +189,16 @@
 				}
 			};
 		</script>
-		
-<link type="text/css" rel="stylesheet" href="/static/components/extremetable/Styles/extremecomponents.css" />
-<script type="text/javascript" src="/static/components/jquery/validation/jquery.validate.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="/static/components/jquery/validation/messages_zh.js"></script>
-<script type="text/javascript" src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" /></script>
+
+<link type="text/css" rel="stylesheet"
+	href="/static/components/extremetable/Styles/extremecomponents.css" />
+<script type="text/javascript"
+	src="/static/components/jquery/validation/jquery.validate.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="/static/components/jquery/validation/messages_zh.js"></script>
+<script type="text/javascript"
+	src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js" /></script>
 
 
 <script type="text/javascript">
@@ -238,199 +225,147 @@
 		}
 	};
 </script>
-
-	
-	
-		
-	</head>
-	<body>
-		<div class="header">
-			<div class="container">
-				<div class="row">
-					
-				  
-					
-					
-						<div class="col-md-6">
-							<div style="float: left;">
-								weilanchuxia
-								(901071)您好，欢迎光临花拍在线[<a href="/j_spring_security_logout">退出</a>]
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div style="float: right;">
-								
-										<a href="/buyer/cart"><span class="glyphicon glyphicon-shopping-cart"></span>购物车</a>&nbsp;|&nbsp;
-								
-								<a href="/Buyer/myflower">我的花拍</a>&nbsp;|&nbsp; <a href="/welcome">返回首页</a>&nbsp;|&nbsp;<a href="http://www.kifa.net.cn">KIFA官网</a>&nbsp;|&nbsp;<a href="/webOtherContentForCommon">联系我们</a>
-							</div>
-						</div>
-					
-				</div>
-			</div>
-		</div>
-	
-		<div class="container">
-			
-	
-		<div class="logo">
-			<a href="/default"><img src="/static/images/logo.png" style=" width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;" border="0" /></a>
-			<img src="/static/images/wx.jpg" style=" width: 80px; height: 80px; float:right;margin-top:6px;margin-right: 6px;" border="0" />
-			<div class="time">
-				<label id=statusName></label>
-				<br>
-				<strong id="hour_show" style="background:#C71C60;padding: 2px 4px 2px 4px;border-radius:5px;"></strong><br>
-				
-			</div>
-		</div>
-		
-
 		<ol class="breadcrumb">
 			您现在的位置：
-		  <li><a href="/default">首页</a></li>
-		  <li><a href="/myKIFAOnline">我的花拍</a></li>
-		  <li class="active">交易明细</li>
+			<li><a href="/welcome">首页</a></li>
+			<li><a href="/buyer/myflower">我的花拍</a></li>
+			<li class="active">交易明细</li>
 		</ol>
-		
-		
 		<div class="row">
 			<div class="col-md-3">
 				<div class="panel panel-info">
-					<div class="panel-heading" style=" text-align: center; "><a href="/index">继续交易</a></div>
+					<div class="panel-heading" style="text-align: center;">
+						<a href="/buyer/index">继续交易</a>
+					</div>
 				</div>
 				<div class="panel panel-success">
 					<div class="panel-heading">我的花拍</div>
-					<div class="panel-body" style="padding: 0px 0px 36px 0px;text-align:center">
-						
-							<div id="my_menu" class="sdmenu">
-								<div class="collapsed">
-									<span>个人中心</span> 
-									<a href="/buyer/changePassword">密码重置</a>
-									<a href="/buyer/ibuyer">信息修改</a>
-								</div>
-								<div>
-									<span>交易中心</span> 
-									<a href="/buyer/netPay">网银充值</a>
-									<a href="/buyer/drawBack">退款申请</a>
-									<a href="/buyer/buyerLimit">限额查询</a> 
-									<a href="/buyer/transaction">交易明细</a>
-									<a href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
-								</div>
-								<div class="collapsed">
-									<span>结算中心</span> 
-									<a href="/buyer/buyRestBill">其它应收应付</a> 
-									<a href="/buyer/totalBalance">结算查询</a>
-								</div>
-								<div class="collapsed">
-									<span>历史查询</span> 
+					<div class="panel-body"
+						style="padding: 0px 0px 36px 0px; text-align: center">
 
-									<a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
-									<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a>									
-									<a href="/buyer/rptBuyHisLogdeListD">投诉明细</a>
-									<a href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a>
-									<a href="/buyer/rptBuyHisBalanceList">结算明细</a>
-								</div>
-								<div class="collapsed">
-									<span>交易规则</span> 
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a>									
-									<a href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a>
-									<a href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
-								</div>
-								<div class="collapsed">
-									<span>常见问题</span> 
-									<a href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a>									
-									<a href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
-									<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
-								</div>
+						<div id="my_menu" class="sdmenu">
+							<div class="collapsed">
+								<span>个人中心</span> <a href="/buyer/changePassword">密码重置</a> <a
+									href="/buyer/ibuyer">信息修改</a>
 							</div>
-							
-					</div>			
+							<div>
+								<span>交易中心</span> <a href="/buyer/netPay">网银充值</a> <a
+									href="/buyer/drawBack">退款申请</a> <a href="/buyer/buyerLimit">限额查询</a>
+								<a href="/buyer/transaction">交易明细</a> <a
+									href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
+							</div>
+							<div class="collapsed">
+								<span>结算中心</span> <a href="/buyer/buyRestBill">其它应收应付</a> <a
+									href="/buyer/totalBalance">结算查询</a>
+							</div>
+							<div class="collapsed">
+								<span>历史查询</span> <a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
+								<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a> <a
+									href="/buyer/rptBuyHisLogdeListD">投诉明细</a> <a
+									href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a> <a
+									href="/buyer/rptBuyHisBalanceList">结算明细</a>
+							</div>
+							<div class="collapsed">
+								<span>交易规则</span> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a> <a
+									href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
+							</div>
+							<div class="collapsed">
+								<span>常见问题</span> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a> <a
+									href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
+								<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
+							</div>
+						</div>
+
+					</div>
 				</div>
 			</div>
-			<div class="col-md-9" style=" padding-left: 0px; ">
+			<div class="col-md-9" style="padding-left: 0px;">
 				<div class="panel panel-success">
 					<div class="panel-heading">交易明细</div>
-					
-	<form class="form-inline" role="form" id="queryform" name="queryform" method="post" action="/buyer/transaction">
-		<input type="text" class="form-control" id="search_traFlowId" name="search_traFlowId" value="" placeholder="交易流水号">
-		<button type="submit" class="btn btn-default">
-			<span class="glyphicon glyphicon-search"></span>
-		</button>
-	</form>
-	<br>
 
-	<div class="table-responsive">
-		
-			
-				
-				
-				
-				
-				
-				
-				
+					<form class="form-inline" role="form" id="queryform"
+						name="queryform" method="post" action="/buyer/transaction">
+						<input type="text" class="form-control" id="search_traFlowId"
+							name="search_traFlowId" value="" placeholder="交易流水号">
+						<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</form>
+					<br>
 
-				
-				
-				
-				
-				
-				
-				
+					<div class="table-responsive">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<form id="ec" action="/buyer/transaction" method="post">
+							<div>
+								<input type="hidden" name="ec_i" value="ec" /> <input
+									type="hidden" name="ec_crd" value="50" /> <input type="hidden"
+									name="ec_p" value="1" /> <input type="hidden" name="ec_s_traId" />
+								<input type="hidden" name="ec_s_traSupBrand" /> <input
+									type="hidden" name="ec_s_traBreedName" /> <input type="hidden"
+									name="ec_s_traPrdName" /> <input type="hidden"
+									name="ec_s_traGrdCode" /> <input type="hidden"
+									name="ec_s_traQuantity" /> <input type="hidden"
+									name="ec_s_traPrice" /> <input type="hidden"
+									name="ec_s_traAmount" /> <input type="hidden"
+									name="ec_s_traBuyCommision" /> <input type="hidden"
+									name="ec_s_traBuyComm" /> <input type="hidden"
+									name="ec_s_traPay" /> <input type="hidden" name="ec_s_traDate" />
+								<input type="hidden" name="ec_s_IsComplain" />
+							</div>
+							<div class="table-responsive">
+								<table id="myTable" class="table table-bordered">
+									<tr>
+										<th>序号</th>
+										<th>购买订单</th>
+										<th>订单物品</th>
+										<th>充值状态</th>
+										<th>操作</th>
+									</tr>
 			
-		
-<form id="ec"  action="/buyer/transaction"  method="post" >
-<div>
-<input type="hidden"  name="ec_i"  value="ec" />
-<input type="hidden"  name="ec_crd"  value="50" />
-<input type="hidden"  name="ec_p"  value="1" />
-<input type="hidden"  name="ec_s_traId" />
-<input type="hidden"  name="ec_s_traSupBrand" />
-<input type="hidden"  name="ec_s_traBreedName" />
-<input type="hidden"  name="ec_s_traPrdName" />
-<input type="hidden"  name="ec_s_traGrdCode" />
-<input type="hidden"  name="ec_s_traQuantity" />
-<input type="hidden"  name="ec_s_traPrice" />
-<input type="hidden"  name="ec_s_traAmount" />
-<input type="hidden"  name="ec_s_traBuyCommision" />
-<input type="hidden"  name="ec_s_traBuyComm" />
-<input type="hidden"  name="ec_s_traPay" />
-<input type="hidden"  name="ec_s_traDate" />
-<input type="hidden"  name="ec_s_IsComplain" />
-</div>
-	<div class="table-responsive">
-		<table id="myTable" class="table table-bordered">
-			<tr>
-				<th>序号</th>
-				<th>购买订单</th>
-				<th>订单物品</th>
-				<th>充值状态</th>
-				<th>操作</th>
-			</tr>
 			
-			
-				<?php 
-				foreach ($data as $key =>$row){
-					echo '<tr><th>'.($key+1).'</th>';
-					echo '<th>'.$row->id.'</th>';
+				<?php
+				foreach ( $data as $key => $row ) {
+					echo '<tr><th>' . ($key + 1) . '</th>';
+					echo '<th>' . $row->id . '</th>';
 					
-// 					var_dump($row->data);
-					$json_data = json_decode($row->data,TRUE);
+					// var_dump($row->data);
+					$json_data = json_decode ( $row->data, TRUE );
 					$crash_str = "";
 					$i = 0;
-				//	var_dump($json_data);
-					foreach($json_data as $r_key => $r_value){
-
-							$crash_str .=  ('<p>名字：'.$r_value['name'].'数量:'.$r_value['qty'].'价钱'.$r_value['price'].'</p>  ');
+					// var_dump($json_data);
+					foreach ( $json_data as $r_key => $r_value ) {
+						
+						$crash_str .= ('<p>名字：' . $r_value ['name'] . '数量:' . $r_value ['qty'] . '价钱' . $r_value ['price'] . '</p>  ');
 					}
-
-					echo '<th> '.$crash_str.'</th>';
-					echo '<th>'.$row->status.'</th>';
-
+					
+					echo '<th> ' . $crash_str . '</th>';
+					echo '<th>' . $row->status . '</th>';
+					
 					echo '<th> 没想好什么操作</th></tr>';
 				}
 				?>
@@ -438,37 +373,19 @@
 
 			
 		</table>
-	</div>
-</form>
+							</div>
+						</form>
 
-	</div>
+					</div>
 
 				</div>
 			</div>
-		</div>		
-	
-	
 		</div>
-		
-		<div class="footer">
-			<div class="container">
-				<div style="font-size: 12px; line-height: 15px; text-align: center; color: #666666;">
-					公司地址：云南 昆明 斗南 | 邮编：650500 | 客服热线：0871-66200029<br /> Copyright@2014-2018 kifaonline.com.cn All Rights Reserved <br /> 电子商务平台KIFA花拍在线网站备案 滇ICP备滇ICP备53012103402015号
-				<br>
-				<script type="text/javascript">
-					var cnzz_protocol = (("https:" == document.location.protocol) ? " https://"
-							: " http://");
-					document
-							.write(unescape("%3Cspan id='cnzz_stat_icon_1252972050'%3E%3C/span%3E%3Cscript src='"
-									+ cnzz_protocol
-									+ "s19.cnzz.com/z_stat.php%3Fid%3D1252972050%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
-				</script>
-			</div>
-			</div>
-		</div>
-		<!-- Bootstrap core JavaScript-->
-    <script src="/static/components/bootstrap-3.2.0/js/bootstrap.min.js"></script>
 
-	
-</body>
-</html>
+
+	</div>
+		
+
+<?php
+require_once ("application/views/public/footer.php");
+?>
