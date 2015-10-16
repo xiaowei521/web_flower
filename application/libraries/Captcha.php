@@ -67,6 +67,7 @@ class Captcha {
     	header('Content-type:image/png');
     	imagepng($this->img);
     	imagedestroy($this->img);
+
     }
     
     

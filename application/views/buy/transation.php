@@ -225,129 +225,108 @@ if ($login_status) {
 		}
 	};
 </script>
-		<ol class="breadcrumb">
-			您现在的位置：
-			<li><a href="/welcome">首页</a></li>
-			<li><a href="/buyer/myflower">我的花拍</a></li>
-			<li class="active">交易明细</li>
-		</ol>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="panel panel-info">
-					<div class="panel-heading" style="text-align: center;">
-						<a href="/buyer/index">继续交易</a>
-					</div>
-				</div>
-				<div class="panel panel-success">
-					<div class="panel-heading">我的花拍</div>
-					<div class="panel-body"
-						style="padding: 0px 0px 36px 0px; text-align: center">
+<ol class="breadcrumb">
+	您现在的位置：
+	<li><a href="/welcome">首页</a></li>
+	<li><a href="/buyer/myflower">我的花拍</a></li>
+	<li class="active">交易明细</li>
+</ol>
+<div class="row">
+	<div class="col-md-3">
+		<div class="panel panel-info">
+			<div class="panel-heading" style="text-align: center;">
+				<a href="/buyer/index">继续交易</a>
+			</div>
+			<div class="panel panel-success">
+				<div class="panel-heading">我的花拍</div>
+				<div class="panel-body"
+					style="padding: 0px 0px 36px 0px; text-align: center">
 
-						<div id="my_menu" class="sdmenu">
-							<div class="collapsed">
-								<span>个人中心</span> <a href="/buyer/changePassword">密码重置</a> <a
-									href="/buyer/ibuyer">信息修改</a>
-							</div>
-							<div>
-								<span>交易中心</span> <a href="/buyer/netPay">网银充值</a> <a
-									href="/buyer/drawBack">退款申请</a> <a href="/buyer/buyerLimit">限额查询</a>
-								<a href="/buyer/transaction">交易明细</a> <a
-									href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
-							</div>
-							<div class="collapsed">
-								<span>结算中心</span> <a href="/buyer/buyRestBill">其它应收应付</a> <a
-									href="/buyer/totalBalance">结算查询</a>
-							</div>
-							<div class="collapsed">
-								<span>历史查询</span> <a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
-								<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a> <a
-									href="/buyer/rptBuyHisLogdeListD">投诉明细</a> <a
-									href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a> <a
-									href="/buyer/rptBuyHisBalanceList">结算明细</a>
-							</div>
-							<div class="collapsed">
-								<span>交易规则</span> <a
-									href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a> <a
-									href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a> <a
-									href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a> <a
-									href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a> <a
-									href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
-							</div>
-							<div class="collapsed">
-								<span>常见问题</span> <a
-									href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a> <a
-									href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a> <a
-									href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a> <a
-									href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
-								<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
-							</div>
+					<div id="my_menu" class="sdmenu">
+						<div class="collapsed">
+							<span>个人中心</span> <a href="/buyer/changePassword">密码重置</a> <a
+								href="/buyer/ibuyer">信息修改</a>
 						</div>
-
+						<div>
+							<span>交易中心</span> <a href="/buyer/netPay">网银充值</a> <a
+								href="/buyer/drawBack">退款申请</a> <a href="/buyer/buyerLimit">限额查询</a>
+							<a href="/buyer/transaction">交易明细</a> <a
+								href="/buyer/rptBuyBuyTransactionT">交易汇总</a>
+						</div>
+						<div class="collapsed">
+							<span>结算中心</span> <a href="/buyer/buyRestBill">其它应收应付</a> <a
+								href="/buyer/totalBalance">结算查询</a>
+						</div>
+						<div class="collapsed">
+							<span>历史查询</span> <a href="/buyer/rptBuyHisBuyTransactionD">交易明细</a>
+							<a href="/buyer/rptBuyHisBuyTransactionT">交易汇总</a> <a
+								href="/buyer/rptBuyHisLogdeListD">投诉明细</a> <a
+								href="/buyer/rptBuyHisBuyPreBankFundD">充值明细</a> <a
+								href="/buyer/rptBuyHisBalanceList">结算明细</a>
+						</div>
+						<div class="collapsed">
+							<span>交易规则</span> <a
+								href="/buyer/webInBuyerRuleForBuyerContent/我要购买">我要购买</a> <a
+								href="/buyer/webInBuyerRuleForBuyerContent/物流方式">物流方式</a> <a
+								href="/buyer/webInBuyerRuleForBuyerContent/支付及结算">支付及结算</a> <a
+								href="/buyer/webInBuyerRuleForBuyerContent/质量及标准">质量及标准</a> <a
+								href="/buyer/webInBuyerRuleForBuyerContent/我要投诉">我要投诉</a>
+						</div>
+						<div class="collapsed">
+							<span>常见问题</span> <a
+								href="/buyer/webInBuyerProblemForBuyerContent/购买问题">购买问题</a> <a
+								href="/buyer/webInBuyerProblemForBuyerContent/物流问题">物流问题</a> <a
+								href="/buyer/webInBuyerProblemForBuyerContent/支付问题">支付问题</a> <a
+								href="/buyer/webInBuyerProblemForBuyerContent/系统操作问题">系统操作问题</a>
+							<a href="/buyer/webInBuyerProblemForBuyerContent/其它问题">其它问题</a>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-9" style="padding-left: 0px;">
-				<div class="panel panel-success">
-					<div class="panel-heading">交易明细</div>
+		</div>
+	</div>
+	<div class="col-md-9" style="padding-left: 0px;">
+		<div class="panel panel-success">
+			<div class="panel-heading">交易明细</div>
 
-					<form class="form-inline" role="form" id="queryform"
-						name="queryform" method="post" action="/buyer/transaction">
-						<input type="text" class="form-control" id="search_traFlowId"
-							name="search_traFlowId" value="" placeholder="交易流水号">
-						<button type="submit" class="btn btn-default">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</form>
-					<br>
+			<form class="form-inline" role="form" id="queryform" name="queryform"
+				method="post" action="/buyer/transaction">
+				<input type="text" class="form-control" id="search_traFlowId"
+					name="search_traFlowId" value="" placeholder="交易流水号">
+				<button type="submit" class="btn btn-default">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</form>
+			<br>
 
+			<div class="table-responsive">
+
+				<form id="ec" action="/buyer/transaction" method="post">
+					<div>
+						<input type="hidden" name="ec_i" value="ec" /> <input
+							type="hidden" name="ec_crd" value="50" /> <input type="hidden"
+							name="ec_p" value="1" /> <input type="hidden" name="ec_s_traId" />
+						<input type="hidden" name="ec_s_traSupBrand" /> <input
+							type="hidden" name="ec_s_traBreedName" /> <input type="hidden"
+							name="ec_s_traPrdName" /> <input type="hidden"
+							name="ec_s_traGrdCode" /> <input type="hidden"
+							name="ec_s_traQuantity" /> <input type="hidden"
+							name="ec_s_traPrice" /> <input type="hidden"
+							name="ec_s_traAmount" /> <input type="hidden"
+							name="ec_s_traBuyCommision" /> <input type="hidden"
+							name="ec_s_traBuyComm" /> <input type="hidden" name="ec_s_traPay" />
+						<input type="hidden" name="ec_s_traDate" /> <input type="hidden"
+							name="ec_s_IsComplain" />
+					</div>
 					<div class="table-responsive">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-						<form id="ec" action="/buyer/transaction" method="post">
-							<div>
-								<input type="hidden" name="ec_i" value="ec" /> <input
-									type="hidden" name="ec_crd" value="50" /> <input type="hidden"
-									name="ec_p" value="1" /> <input type="hidden" name="ec_s_traId" />
-								<input type="hidden" name="ec_s_traSupBrand" /> <input
-									type="hidden" name="ec_s_traBreedName" /> <input type="hidden"
-									name="ec_s_traPrdName" /> <input type="hidden"
-									name="ec_s_traGrdCode" /> <input type="hidden"
-									name="ec_s_traQuantity" /> <input type="hidden"
-									name="ec_s_traPrice" /> <input type="hidden"
-									name="ec_s_traAmount" /> <input type="hidden"
-									name="ec_s_traBuyCommision" /> <input type="hidden"
-									name="ec_s_traBuyComm" /> <input type="hidden"
-									name="ec_s_traPay" /> <input type="hidden" name="ec_s_traDate" />
-								<input type="hidden" name="ec_s_IsComplain" />
-							</div>
-							<div class="table-responsive">
-								<table id="myTable" class="table table-bordered">
-									<tr>
-										<th>序号</th>
-										<th>购买订单</th>
-										<th>订单物品</th>
-										<th>充值状态</th>
-										<th>操作</th>
-									</tr>
-			
-			
+						<table id="myTable" class="table table-bordered">
+							<tr>
+								<th>序号</th>
+								<th>购买订单</th>
+								<th>订单物品</th>
+								<th>充值状态</th>
+								<th>操作</th>
+							</tr>
 				<?php
 				foreach ( $data as $key => $row ) {
 					echo '<tr><th>' . ($key + 1) . '</th>';
@@ -369,22 +348,15 @@ if ($login_status) {
 					echo '<th> 没想好什么操作</th></tr>';
 				}
 				?>
-			
-
-			
 		</table>
-							</div>
-						</form>
-
 					</div>
-
-				</div>
+				</form>
 			</div>
 		</div>
-
-
 	</div>
-		
+</div>
+</div>
+
 
 <?php
 require_once ("application/views/public/footer.php");

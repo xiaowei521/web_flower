@@ -27,35 +27,35 @@
 <script
 	src="/static/components/jquery/validation/jquery-validate.bootstrap-tooltip.js"
 	type="text/javascript">
-        </script>
+</script>
 </head>
 <body>
-<div class="header">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<div style="float: left;">
-					您好，欢迎光临花拍在线[ <a href="/user/login"> 请登录 </a> ] [ <a
-						href="/User/register"> 免费注册 </a> ]
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div style="float: left;">
+						您好，欢迎光临花拍在线[ <a href="/user/login"> 请登录 </a> ] [ <a
+							href="/User/register"> 免费注册 </a> ]
+					</div>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<div style="float: right;">
-					<a href="/buyer/myFlower"> 我的花拍 </a> &nbsp;|&nbsp; <a
-						href="/Welcome"> 返回首页 </a> &nbsp;|&nbsp; <a
-						href="http://www.kifa.net.cn"> KIFA官网 </a> &nbsp;|&nbsp; <a
-						href="/webOtherContentForCommon"> 联系我们 </a>
+				<div class="col-md-6">
+					<div style="float: right;">
+						<a href="/buyer/myFlower"> 我的花拍 </a> &nbsp;|&nbsp; <a
+							href="/Welcome"> 返回首页 </a> &nbsp;|&nbsp; <a
+							href="http://www.kifa.net.cn"> KIFA官网 </a> &nbsp;|&nbsp; <a
+							href="/webOtherContentForCommon"> 联系我们 </a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="container">
-<div class="logo">
-	<a href="/welcome"><img src="/static/images/logo.png"
-		style="width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;"
-		border="0"></a> <img src="/static/images/wx.jpg"
-		style="width: 80px; height: 80px; float: right; margin-top: 6px; margin-right: 6px;"
-		border="0">
-</div>
+	<div class="container">
+		<div class="logo">
+			<a href="/welcome"><img src="/static/images/logo.png"
+				style="width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;"
+				border="0"></a> <img src="/static/images/wx.jpg"
+				style="width: 80px; height: 80px; float: right; margin-top: 6px; margin-right: 6px;"
+				border="0">
+		</div>

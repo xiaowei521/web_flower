@@ -117,19 +117,27 @@ if ($login_status) {
 				uid : "用户id",
 				date : new Date()
 			},
-			//dataType: "text",
+			dataType: "json",
 			success : function(data) {
-				    ajaxobj=eval("("+data+")");  
-				    if(ajaxobj.status){
-						alert(ajaxobj.info);
+				    if(data.stauts == 1){
+						alert(data.info);
 				    }
 				    else{
-					    window.location.href="http://localhost:10000/User/login";
+					    window.location.href="http://www.novpace.com/User/login";
 				    }
+				    
 			},
+			error : function (XMLHttpRequest, textStatus, errorThrown) {
+					alert('请前往登陆 (三秒后自动跳转)');
+					setTimeout(func,"3000");//三秒后执行
+					window.location.href="http://www.novpace.com/User/login";
+				
+			}
 		});
 		//return false;
 		};
+		function func(){
+		}
 
 			function fixPrice(id) {
 			$.ajax({

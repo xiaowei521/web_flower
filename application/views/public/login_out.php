@@ -36,7 +36,8 @@
 				<div class="col-md-6">
 					<div style="float: left;">
 								<?php    echo $this->session->userdata ( 'user_id' );?>
-								(<?php  echo $this->session->userdata ( 'user_name' ); ?>)您好，欢迎光临花拍在线[<a href="/user/j_logout">退出</a>]
+								(<?php  echo $this->session->userdata ( 'user_name' ); ?>)您好，欢迎光临花拍在线[<a
+							href="/user/j_logout">退出</a>]
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -64,6 +65,3 @@
 				style="width: 80px; height: 80px; float: right; margin-top: 6px; margin-right: 6px;"
 				border="0">
 		</div>
-	
-	
-	

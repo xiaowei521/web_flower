@@ -1,3 +1,4 @@
+
 <?php 
 	if($login_status){
 		require_once("application/views/public/login_in.php");
@@ -44,6 +45,12 @@
                  	           		
               }});
     	}
+    	function set_code(self){
+    		var timestamp = Date.parse(new Date());
+			var src = "http://localhost:10000/user/getRefreshImg/"+timestamp;
+            $(self).attr('src',src);
+    	}
+
     </script>
 
 
@@ -74,7 +81,7 @@
                     <div class="input-group">
                         <input type="text" id="captcha" name="captcha" class="form-control" style="width: 175px;margin-right: 5px;"
                         placeholder="效验码" required="">
-<img class="login-captcha-img" src="http://<?php echo $_SERVER['HTTP_HOST'];?>/user/getRefreshImg/date/<?php echo time();?>" http_header="<?php echo $_SERVER['HTTP_HOST'];?>" alt="刷新验证码">
+<img class="login-captcha-img" onclick ="set_code(this)" src="http://<?php echo $_SERVER['HTTP_HOST'];?>/user/getRefreshImg/date/<?php echo time();?>" http_header="<?php echo $_SERVER['HTTP_HOST'];?>" alt="刷新验证码">
                     </div>
                     <br>
                 

@@ -347,7 +347,7 @@ function SubmitPayReq(obj)
 	<div class="col-md-3">
 		<div class="panel panel-info">
 			<div class="panel-heading" style="text-align: center;">
-				<a href="/index">继续交易</a>
+				<a href="/buyer/index">继续交易</a>
 			</div>
 		</div>
 		<div class="panel panel-success">

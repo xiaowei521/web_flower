@@ -38,7 +38,7 @@ $config ['sw_pass_url'] = array (
 		'webproductcontent',
 		'webrulecontent',
 		'buyer/index',
-		'buyer/addtocartd',
+		'user/findpassword',
 
 		
 // 		'webCyclopediaContent',

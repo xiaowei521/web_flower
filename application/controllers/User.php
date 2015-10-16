@@ -82,6 +82,7 @@ class User extends MY_Controller {
 	
 	// 用户刷新 获取验证码
 	public function getRefreshImg() {
+		
 		echo $this->captcha->doimg ();
 		$this->session->set_userdata ( 'checkcode', $this->captcha->getCode () );
 	}
@@ -228,7 +229,9 @@ class User extends MY_Controller {
 	}
 	
 	public function forgetpassword() {
-		$this->load->view ( 'user/forgetpassword' );
+		$this->load->view ( 'user/forgetpassword' ,array(
+				'login_status'=>$this->login_status,
+		));
 	}
 	// 用户召回密码发送邮件
 	public function findpassword() {
@@ -258,7 +261,8 @@ class User extends MY_Controller {
 		$this->email->send ();
 		
 		$this->load->view ( 'user/findpassword', array (
-				'info' => $findInfo 
+				'info' => $findInfo,
+				'login_status'=>$this->login_status,
 		) );
 	}
 	public function update_user_password() {
@@ -268,7 +272,8 @@ class User extends MY_Controller {
 		// $this->load->model('user_model');
 		$this->load->view ( 'user/updateUserPassword', array (
 				'token' => $token,
-				'id' => $userId 
+				'id' => $userId ,
+				'login_status'=>$this->login_status,
 		) );
 	}
 	public function set_user_password() {

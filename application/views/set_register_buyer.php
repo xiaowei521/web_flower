@@ -7,7 +7,7 @@ if ($login_status) {
 ?>
 <ol class="breadcrumb">
 	您现在的位置：
-	<li><a href="/default"> 首页 </a></li>
+	<li><a href="/welcome"> 首页 </a></li>
 	<li class="active">用户注册</li>
 </ol>
 <div class="alert alert-warning" role="alert"

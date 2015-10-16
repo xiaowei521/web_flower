@@ -10,6 +10,9 @@ abstract class MY_Controller extends CI_Controller {
 		
 		$uri = strtolower ( uri_string ( current_url () ) );
 		if ($this->j_session () && $this->check_url ( $uri )) {
+			if('' == $uri ){
+				redirect ( 'welcome', 'refresh' );
+			}
 			redirect ( $this->config->item ( 'sw_login_url', 'myconfig' ), 'refresh' );
 		}
 	}

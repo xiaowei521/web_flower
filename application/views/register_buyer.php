@@ -179,25 +179,6 @@ if ($login_status) {
                 });
             };
         </script>
-</head>
-
-<body>
-
-	<div class="container">
-		<div class="logo">
-			<a href="/welcome"> <img border="0"
-				style="width: 200px; height: 45px; padding-left: 10px; margin-top: 18px;"
-				src="/static/images/logo.png">
-			</a> <img border="0"
-				style="width: 80px; height: 80px; float: right; margin-top: 6px; margin-right: 6px;"
-				src="/static/images/wx.jpg">
-			<!-- <div class="col-md-12">
-                    <img class="img-responsive" alt="Responsive image"  src="/static/images/header.png"  usemap="#planetmap" >
-                    <map name="planetmap">
-                    <area href="" shape="rect" coords="0,0,230,98">
-                    </map>
-                    </div> -->
-		</div>
 		<ol class="breadcrumb">
 			您现在的位置：
 			<li><a href="/welcome"> 首页 </a></li>

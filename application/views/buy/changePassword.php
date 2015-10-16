@@ -227,8 +227,8 @@ if ($login_status) {
 
 		<ol class="breadcrumb">
 			您现在的位置：
-			<li><a href="/default">首页</a></li>
-			<li><a href="/myKIFAOnline">我的花拍</a></li>
+			<li><a href="/welcome">首页</a></li>
+			<li><a href="/buyer/myflower">我的花拍</a></li>
 			<li class="active">密码重置</li>
 		</ol>
 
@@ -237,7 +237,7 @@ if ($login_status) {
 			<div class="col-md-3">
 				<div class="panel panel-info">
 					<div class="panel-heading" style="text-align: center;">
-						<a href="/index">继续交易</a>
+						<a href="/buyer/index">继续交易</a>
 					</div>
 				</div>
 				<div class="panel panel-success">
